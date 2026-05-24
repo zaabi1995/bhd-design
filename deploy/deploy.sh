@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# deploy.sh — push BHD design system to design.bhd.om on BHD VPS.
+# deploy.sh: push BHD design system to design.bhd.om on BHD VPS.
 # Idempotent. Run after every src/ edit.
 #
 # Prereqs (one-time):
