@@ -1,0 +1,64 @@
+/*
+ * BHD RTL Convention v1
+ * https://design.bhd.om/rtl.css
+ *
+ * BHD-Group rule: every project that ships Arabic MUST use logical properties
+ * instead of physical left/right. Set <html dir="rtl" lang="ar"> and the same
+ * markup flips correctly.
+ *
+ * Drop this AFTER tokens.css. Gives you utility classes if your project does
+ * NOT use Tailwind (Tailwind v3.4+ already ships logical utilities).
+ *
+ * Tailwind users: prefer the native utilities
+ *   ps-4  pe-4  ms-2  me-2  start-0  end-0  text-start  text-end
+ *   rtl:rotate-180  rtl:hidden  ltr:hidden
+ *
+ * Plain CSS users: use the .bhd-* helpers below.
+ *
+ * NEVER write `left: 16px` or `padding-right: 8px` in a project that ships
+ * Arabic. Use `inset-inline-start: 16px` and `padding-inline-end: 8px`.
+ */
+
+/* Logical-property helpers for non-Tailwind consumers */
+.bhd-ps-1 { padding-inline-start: 0.25rem; }
+.bhd-ps-2 { padding-inline-start: 0.5rem; }
+.bhd-ps-3 { padding-inline-start: 0.75rem; }
+.bhd-ps-4 { padding-inline-start: 1rem; }
+.bhd-ps-6 { padding-inline-start: 1.5rem; }
+.bhd-ps-8 { padding-inline-start: 2rem; }
+
+.bhd-pe-1 { padding-inline-end: 0.25rem; }
+.bhd-pe-2 { padding-inline-end: 0.5rem; }
+.bhd-pe-3 { padding-inline-end: 0.75rem; }
+.bhd-pe-4 { padding-inline-end: 1rem; }
+.bhd-pe-6 { padding-inline-end: 1.5rem; }
+.bhd-pe-8 { padding-inline-end: 2rem; }
+
+.bhd-ms-1 { margin-inline-start: 0.25rem; }
+.bhd-ms-2 { margin-inline-start: 0.5rem; }
+.bhd-ms-3 { margin-inline-start: 0.75rem; }
+.bhd-ms-4 { margin-inline-start: 1rem; }
+.bhd-ms-auto { margin-inline-start: auto; }
+
+.bhd-me-1 { margin-inline-end: 0.25rem; }
+.bhd-me-2 { margin-inline-end: 0.5rem; }
+.bhd-me-3 { margin-inline-end: 0.75rem; }
+.bhd-me-4 { margin-inline-end: 1rem; }
+.bhd-me-auto { margin-inline-end: auto; }
+
+.bhd-text-start { text-align: start; }
+.bhd-text-end   { text-align: end; }
+
+.bhd-start-0 { inset-inline-start: 0; }
+.bhd-end-0   { inset-inline-end: 0; }
+
+.bhd-border-s { border-inline-start: 1px solid var(--border); }
+.bhd-border-e { border-inline-end: 1px solid var(--border); }
+
+/* Flip directional icons (chevrons, arrows) under RTL.
+ * Apply class .bhd-rtl-flip to any element that should mirror in RTL. */
+[dir="rtl"] .bhd-rtl-flip { transform: scaleX(-1); }
+
+/* Hide-by-dir helpers */
+[dir="ltr"] .bhd-only-rtl { display: none; }
+[dir="rtl"] .bhd-only-ltr { display: none; }

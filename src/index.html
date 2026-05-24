@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bhd-theme-mode="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BHD Design — design.bhd.om</title>
+  <meta name="description" content="Shared design tokens, dark-mode init, Cmd+K, RTL utilities, and admin shell for the BHD-Group portfolio.">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/rtl.css">
+  <link rel="stylesheet" href="/skeleton.css">
+  <link rel="stylesheet" href="/cmdk.css">
+  <link rel="stylesheet" href="https://fonts.bhd.om/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+  <script src="/dark-mode.js"></script>
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+      font-size: 0.825rem;
+    }
+    pre {
+      background: var(--muted);
+      color: var(--foreground);
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      margin: 0.5rem 0 1rem;
+      line-height: 1.55;
+    }
+    code:not(pre code) {
+      background: var(--muted);
+      padding: 0.1rem 0.35rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 1.25rem; }
+    header.site {
+      border-bottom: 1px solid var(--border);
+      background: var(--card);
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(8px);
+    }
+    header.site .inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    header.site .brand {
+      font-weight: 600; font-size: 0.95rem; color: var(--foreground);
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    header.site .brand .dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--primary);
+    }
+    header.site nav { display: flex; gap: 1.25rem; align-items: center; font-size: 0.875rem; }
+    header.site nav a { color: var(--muted-foreground); }
+    header.site nav a:hover { color: var(--foreground); text-decoration: none; }
+    .theme-btn {
+      appearance: none; border: 1px solid var(--border); background: var(--card);
+      color: var(--foreground); padding: 0.4rem 0.6rem; border-radius: var(--radius-md);
+      cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.825rem;
+    }
+    .theme-btn:hover { background: var(--accent); }
+
+    .hero {
+      padding: 4.5rem 0 3rem;
+      text-align: center;
+    }
+    .hero .eyebrow {
+      display: inline-block; padding: 0.25rem 0.65rem;
+      background: var(--muted); color: var(--muted-foreground);
+      border-radius: 9999px; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.02em; margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin: 0 0 0.85rem;
+      line-height: 1.1;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted-foreground);
+      max-width: 56ch;
+      margin: 0 auto 1.75rem;
+    }
+    .hero .cta {
+      display: inline-flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
+    }
+    .btn {
+      appearance: none; cursor: pointer; font-family: inherit; font-size: 0.875rem;
+      padding: 0.55rem 1rem; border-radius: var(--radius-md); border: 1px solid transparent;
+      display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 500;
+      transition: opacity 120ms ease, background 120ms ease;
+    }
+    .btn-primary { background: var(--primary); color: var(--primary-foreground); }
+    .btn-primary:hover { opacity: 0.9; text-decoration: none; }
+    .btn-ghost {
+      background: var(--card); color: var(--foreground); border-color: var(--border);
+    }
+    .btn-ghost:hover { background: var(--accent); text-decoration: none; }
+
+    .section {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .section h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.25rem;
+    }
+    .section .lead {
+      color: var(--muted-foreground);
+      margin: 0 0 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0 1.5rem;
+    }
+    .swatch {
+      border: 1px solid var(--border); border-radius: var(--radius-md);
+      padding: 0; overflow: hidden; background: var(--card);
+    }
+    .swatch__color { height: 56px; }
+    .swatch__meta { padding: 0.5rem 0.65rem; font-size: 0.75rem; }
+    .swatch__name { font-weight: 500; }
+    .swatch__var { color: var(--muted-foreground); font-family: ui-monospace, monospace; }
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.85rem;
+    }
+    .module {
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      background: var(--card); padding: 1rem 1.1rem;
+    }
+    .module h3 {
+      font-size: 0.95rem; font-weight: 600; margin: 0 0 0.3rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .module h3 .badge {
+      font-size: 0.7rem; padding: 0.1rem 0.4rem;
+      background: var(--muted); color: var(--muted-foreground);
+      border-radius: 9999px; font-weight: 400;
+    }
+    .module p {
+      font-size: 0.825rem; color: var(--muted-foreground); margin: 0 0 0.75rem;
+      line-height: 1.5;
+    }
+    .module .url {
+      font-family: ui-monospace, monospace; font-size: 0.75rem;
+      color: var(--foreground);
+      display: block; padding: 0.4rem 0.55rem;
+      background: var(--muted); border-radius: var(--radius-sm);
+      word-break: break-all;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 700px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
+
+    .demo-card {
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      background: var(--card); padding: 1rem;
+    }
+    .demo-card h4 { margin: 0 0 0.5rem; font-size: 0.875rem; font-weight: 600; }
+    .demo-card .desc { font-size: 0.825rem; color: var(--muted-foreground); margin: 0 0 0.85rem; }
+
+    .skel-rows .bhd-skel-row {
+      padding: 0.5rem 0; border-color: var(--border);
+    }
+
+    footer.site {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0 3rem;
+      font-size: 0.825rem;
+      color: var(--muted-foreground);
+      text-align: center;
+    }
+
+    /* Inline RTL demo */
+    .rtl-demo {
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap inner">
+    <span class="brand"><span class="dot"></span> design.bhd.om</span>
+    <nav>
+      <a href="#tokens">Tokens</a>
+      <a href="#modules">Modules</a>
+      <a href="#admin-shell">Admin shell</a>
+      <a href="/admin-shell.html">Preview ↗</a>
+      <button class="theme-btn" onclick="BHDTheme.toggle()" aria-label="Toggle theme">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        Theme
+      </button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">BHD-Group shared design system · v1</span>
+    <h1>One palette, one shell, eleven sites.</h1>
+    <p>Drop-in CSS tokens, dark-mode init, Cmd+K, RTL utilities, and an admin shell that the entire BHD-Group portfolio inherits from. Hosted at design.bhd.om.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#quick-start">Quick start →</a>
+      <a class="btn btn-ghost" href="/admin-shell.html">Live admin shell ↗</a>
+      <button class="btn btn-ghost" onclick="BHDCmdK.open()">Try ⌘K</button>
+    </div>
+  </div>
+</section>
+
+<!-- TOKENS ----------------------------------------------------------------- -->
+<section class="section" id="tokens">
+  <div class="wrap">
+    <h2>Tokens</h2>
+    <p class="lead">Semantic CSS variables, light + dark. Anchored on the BHD navy primary. Works with plain CSS, Tailwind v3 (arbitrary values), or Tailwind v4 (drop-in <code>@theme inline</code> block in the file).</p>
+
+    <div class="swatches">
+      <div class="swatch"><div class="swatch__color" style="background: var(--background); border-bottom: 1px solid var(--border)"></div><div class="swatch__meta"><div class="swatch__name">Background</div><div class="swatch__var">--background</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background: var(--foreground)"></div><div class="swatch__meta"><div class="swatch__name">Foreground</div><div class="swatch__var">--foreground</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background: var(--primary)"></div><div class="swatch__meta"><div class="swatch__name">Primary (BHD navy)</div><div class="swatch__var">--primary</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background: var(--muted)"></div><div class="swatch__meta"><div class="swatch__name">Muted</div><div class="swatch__var">--muted</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background: var(--accent)"></div><div class="swatch__meta"><div class="swatch__name">Accent</div><div class="swatch__var">--accent</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background: var(--destructive)"></div><div class="swatch__meta"><div class="swatch__name">Destructive</div><div class="swatch__var">--destructive</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background: var(--border)"></div><div class="swatch__meta"><div class="swatch__name">Border</div><div class="swatch__var">--border</div></div></div>
+      <div class="swatch"><div class="swatch__color" style="background: var(--ring)"></div><div class="swatch__meta"><div class="swatch__name">Ring</div><div class="swatch__var">--ring</div></div></div>
+    </div>
+
+    <h3 style="font-size: 1rem; margin: 0.5rem 0;">Radius</h3>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+      <div style="background: var(--card); border: 1px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-sm); font-size: 0.825rem;">sm · 4px</div>
+      <div style="background: var(--card); border: 1px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-md); font-size: 0.825rem;">md · 6px</div>
+      <div style="background: var(--card); border: 1px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-lg); font-size: 0.825rem;">lg · 8px</div>
+      <div style="background: var(--card); border: 1px solid var(--border); padding: 1rem 1.5rem; border-radius: var(--radius-xl); font-size: 0.825rem;">xl · 12px</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK START ----------------------------------------------------------- -->
+<section class="section" id="quick-start">
+  <div class="wrap">
+    <h2>Quick start</h2>
+    <p class="lead">Add the foundation to any BHD-Group project in three lines.</p>
+
+<pre><code>&lt;link rel="stylesheet" href="https://design.bhd.om/tokens.css"&gt;
+&lt;link rel="stylesheet" href="https://design.bhd.om/cmdk.css"&gt;
+&lt;script src="https://design.bhd.om/dark-mode.js"&gt;&lt;/script&gt;</code></pre>
+
+    <p class="lead" style="margin-top: 1rem">Then on your <code>&lt;html&gt;</code>:</p>
+<pre><code>&lt;html lang="en" dir="ltr" data-bhd-theme-mode="light"&gt;</code></pre>
+
+    <p class="lead">For Arabic sites, switch to:</p>
+<pre><code>&lt;html lang="ar" dir="rtl" data-bhd-theme-mode="light"&gt;</code></pre>
+  </div>
+</section>
+
+<!-- MODULES --------------------------------------------------------------- -->
+<section class="section" id="modules">
+  <div class="wrap">
+    <h2>Modules</h2>
+    <p class="lead">Every BHD-Group project loads what it needs. Cache forever, version via query param.</p>
+
+    <div class="modules">
+      <div class="module">
+        <h3>tokens.css <span class="badge">required</span></h3>
+        <p>Semantic CSS variables, light/dark, BHD palette, radius scale, shadow scale, layout sizes. Includes a hard-coded rule that strips letter-spacing on Arabic.</p>
+        <span class="url">https://design.bhd.om/tokens.css</span>
+      </div>
+      <div class="module">
+        <h3>dark-mode.js <span class="badge">recommended</span></h3>
+        <p>Pre-DOM theme init. localStorage + <code>prefers-color-scheme</code>. Exposes <code>BHDTheme.set()</code> · <code>.toggle()</code> · <code>.current()</code>.</p>
+        <span class="url">https://design.bhd.om/dark-mode.js</span>
+      </div>
+      <div class="module">
+        <h3>rtl.css</h3>
+        <p>Logical-property utilities for non-Tailwind projects. Tailwind users prefer native <code>ps-*</code> / <code>pe-*</code> / <code>ms-*</code> / <code>me-*</code>.</p>
+        <span class="url">https://design.bhd.om/rtl.css</span>
+      </div>
+      <div class="module">
+        <h3>cmdk.js + cmdk.css</h3>
+        <p>Command palette, Cmd+K / Ctrl+K. Vanilla. Pair with cmdk.css. React variant at <code>/cmdk.jsx</code>.</p>
+        <span class="url">https://design.bhd.om/cmdk.js</span>
+      </div>
+      <div class="module">
+        <h3>skeleton.css</h3>
+        <p>Skeleton loaders + empty-state pattern. Drop <code>&lt;div class="bhd-skel"&gt;</code> for placeholders, <code>&lt;div class="bhd-empty"&gt;</code> for empty UIs.</p>
+        <span class="url">https://design.bhd.om/skeleton.css</span>
+      </div>
+      <div class="module">
+        <h3>admin-shell.html</h3>
+        <p>Clone-and-edit starter for any admin surface. Sidebar + topbar + content. Cmd+K wired. Dark mode wired. RTL-safe.</p>
+        <span class="url">https://design.bhd.om/admin-shell.html</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMOS ------------------------------------------------------------ -->
+<section class="section" id="demos">
+  <div class="wrap">
+    <h2>Live demos</h2>
+    <p class="lead">All powered by the same tokens this page uses. Toggle the theme above and watch everything follow.</p>
+
+    <div class="demo-grid">
+      <div class="demo-card">
+        <h4>Skeleton loader</h4>
+        <p class="desc">Drop-in placeholder for any list or card. Animates while loading.</p>
+        <div class="bhd-skel-group skel-rows">
+          <div class="bhd-skel-row">
+            <div class="bhd-skel bhd-skel-circle" style="width:32px;height:32px"></div>
+            <div style="flex:1">
+              <div class="bhd-skel" style="height:10px;width:35%"></div>
+              <div class="bhd-skel" style="height:8px;width:65%;margin-top:6px"></div>
+            </div>
+          </div>
+          <div class="bhd-skel-row">
+            <div class="bhd-skel bhd-skel-circle" style="width:32px;height:32px"></div>
+            <div style="flex:1">
+              <div class="bhd-skel" style="height:10px;width:50%"></div>
+              <div class="bhd-skel" style="height:8px;width:75%;margin-top:6px"></div>
+            </div>
+          </div>
+          <div class="bhd-skel-row">
+            <div class="bhd-skel bhd-skel-circle" style="width:32px;height:32px"></div>
+            <div style="flex:1">
+              <div class="bhd-skel" style="height:10px;width:42%"></div>
+              <div class="bhd-skel" style="height:8px;width:55%;margin-top:6px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h4>Empty state</h4>
+        <p class="desc">Consistent empty pattern with icon, title, description, CTA.</p>
+        <div class="bhd-empty" style="padding:1.5rem 0.5rem;">
+          <svg class="bhd-empty__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <div class="bhd-empty__title">No invoices yet</div>
+          <p class="bhd-empty__desc">When you create your first invoice it will appear here.</p>
+          <button class="bhd-empty__cta">New invoice</button>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h4>RTL flip</h4>
+        <p class="desc">Same markup, two directions. Logical properties do all the work.</p>
+        <div class="rtl-demo" dir="ltr">
+          <strong>LTR:</strong> <span class="bhd-ms-2">Total due</span> <span class="bhd-ms-auto" style="float:right">OMR 1,250</span>
+        </div>
+        <div class="rtl-demo" dir="rtl" lang="ar">
+          <strong>RTL:</strong> <span class="bhd-ms-2">المستحق الكلي</span> <span class="bhd-ms-auto" style="float:right">١٢٥٠ ر.ع.</span>
+        </div>
+      </div>
+
+      <div class="demo-card">
+        <h4>Command palette</h4>
+        <p class="desc">Cmd+K (macOS) / Ctrl+K (Win/Linux). Fuzzy match across label + hint + keywords.</p>
+        <button class="btn btn-primary" onclick="BHDCmdK.open()">Open palette</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROLLOUT PLAN ---------------------------------------------------------- -->
+<section class="section" id="rollout">
+  <div class="wrap">
+    <h2>Portfolio rollout</h2>
+    <p class="lead">Phase 1 (this package) is live. Phase 2 ports projects on top.</p>
+
+    <table style="width:100%; border-collapse: collapse; font-size: 0.875rem;">
+      <thead>
+        <tr style="text-align: start; border-bottom: 1px solid var(--border);">
+          <th style="padding: 0.5rem 0.5rem 0.5rem 0; text-align: start;">Project</th>
+          <th style="padding: 0.5rem; text-align: start;">Scope</th>
+          <th style="padding: 0.5rem; text-align: start;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">arabian.ceo</td><td style="padding: 0.5rem;">Full Bootstrap → Tailwind v4 + admin shell</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">Dardasha admin</td><td style="padding: 0.5rem;">RTL pass · Cmd+K · tokens</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">BHD Chat</td><td style="padding: 0.5rem;">RTL pass · tokens · dark mode</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">Cardify admin</td><td style="padding: 0.5rem;">Tokens + Cmd+K port</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">BHD-ERP</td><td style="padding: 0.5rem;">AntD token alignment · Cmd+K · dark-mode script</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">fencing.om</td><td style="padding: 0.5rem;">Lift SaaS landing patterns</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">AlMaha Marble</td><td style="padding: 0.5rem;">Catalog + projects gallery patterns</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">bhd.om</td><td style="padding: 0.5rem;">Astro landing-page upgrade</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">hosn.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr><td style="padding: 0.5rem 0.5rem 0.5rem 0;">mithaq.om, paperandpen.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <p>design.bhd.om · BHD-Group shared design system · v1<br>Built on Metronic v9.4.12 patterns. Tokens MIT-equivalent internal-use, components OK to lift across BHD-Group projects.</p>
+  </div>
+</footer>
+
+<script src="/cmdk.js"></script>
+<script>
+  BHDCmdK.init({
+    commands: [
+      { id: 'theme',       label: 'Toggle theme',        hint: 'UI',      action: () => BHDTheme.toggle() },
+      { id: 'tokens',      label: 'Jump to Tokens',      hint: 'Section', action: () => location.hash = '#tokens' },
+      { id: 'modules',     label: 'Jump to Modules',     hint: 'Section', action: () => location.hash = '#modules' },
+      { id: 'quick-start', label: 'Jump to Quick start', hint: 'Section', action: () => location.hash = '#quick-start' },
+      { id: 'shell',       label: 'Open admin shell',    hint: 'Preview', action: () => location.href = '/admin-shell.html' },
+      { id: 'github',      label: 'View on GitHub',      hint: 'External', action: () => window.open('https://github.com/zaabi1995/bhd-design', '_blank') }
+    ]
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--
+  BHD Admin Shell v1, demo1-inspired starter template.
+  https://design.bhd.om/admin-shell.html
+
+  Self-contained: pulls tokens.css, dark-mode.js, cmdk.js from design.bhd.om.
+  Tailwind v4 CDN for fast clone-and-customize. For production, swap the CDN
+  for a real build pipeline.
+
+  Clone, edit, deploy. Adapt the sidebar items, topbar actions, content slot.
+  RTL: change <html dir="rtl" lang="ar">, everything mirrors automatically.
+-->
+<html lang="en" dir="ltr" data-bhd-theme-mode="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BHD Admin Shell</title>
+
+  <link rel="stylesheet" href="https://design.bhd.om/tokens.css">
+  <link rel="stylesheet" href="https://design.bhd.om/rtl.css">
+  <link rel="stylesheet" href="https://design.bhd.om/skeleton.css">
+  <link rel="stylesheet" href="https://design.bhd.om/cmdk.css">
+
+  <link rel="stylesheet" href="https://fonts.bhd.om/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+  <script src="https://design.bhd.om/dark-mode.js"></script>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            background: 'var(--background)',
+            foreground: 'var(--foreground)',
+            card: 'var(--card)',
+            'card-foreground': 'var(--card-foreground)',
+            primary: { DEFAULT: 'var(--primary)', foreground: 'var(--primary-foreground)' },
+            secondary: { DEFAULT: 'var(--secondary)', foreground: 'var(--secondary-foreground)' },
+            muted: { DEFAULT: 'var(--muted)', foreground: 'var(--muted-foreground)' },
+            accent: { DEFAULT: 'var(--accent)', foreground: 'var(--accent-foreground)' },
+            destructive: { DEFAULT: 'var(--destructive)', foreground: 'var(--destructive-foreground)' },
+            border: 'var(--border)'
+          },
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bhd-base bg-background text-foreground antialiased flex min-h-screen">
+
+  <!-- Sidebar -->
+  <aside class="hidden lg:flex flex-col w-[var(--sidebar-width)] shrink-0 border-e border-border bg-card">
+    <div class="h-[var(--header-height)] flex items-center px-6 border-b border-border">
+      <span class="font-semibold tracking-tight text-base">BHD Admin</span>
+    </div>
+    <nav class="flex-1 overflow-y-auto p-3 space-y-0.5 text-sm">
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md bg-accent text-accent-foreground font-medium">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Customers
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Invoices
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        Orders
+      </a>
+      <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-accent hover:text-accent-foreground text-muted-foreground">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9c.36.16.7.43.95.78"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="p-3 border-t border-border text-xs text-muted-foreground">
+      v1.0 · <a href="https://design.bhd.om" class="hover:underline">design.bhd.om</a>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="flex-1 flex flex-col min-w-0">
+    <!-- Topbar -->
+    <header class="h-[var(--header-height)] flex items-center justify-between px-4 sm:px-6 border-b border-border bg-card">
+      <div class="flex items-center gap-3 min-w-0">
+        <button class="lg:hidden p-2 -ms-2 text-muted-foreground hover:text-foreground" aria-label="Open menu">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <h1 class="text-base font-semibold truncate">Dashboard</h1>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="BHDCmdK.open()"
+                class="hidden sm:inline-flex items-center gap-2 px-2.5 py-1.5 text-xs text-muted-foreground bg-muted/60 border border-border rounded-md hover:bg-accent">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Search
+          <kbd class="ms-2 px-1.5 py-0.5 text-[10px] bg-background border border-border rounded">⌘K</kbd>
+        </button>
+
+        <button onclick="BHDTheme.toggle()"
+                class="p-2 text-muted-foreground hover:text-foreground rounded-md hover:bg-accent"
+                aria-label="Toggle theme">
+          <svg class="w-4 h-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="w-4 h-4 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <!-- KPI card -->
+        <div class="rounded-lg border border-border bg-card p-4">
+          <div class="text-xs text-muted-foreground">Revenue</div>
+          <div class="text-2xl font-semibold mt-1">OMR 12,480</div>
+          <div class="text-xs text-green-600 mt-1">+8.2% vs last month</div>
+        </div>
+        <div class="rounded-lg border border-border bg-card p-4">
+          <div class="text-xs text-muted-foreground">Orders</div>
+          <div class="text-2xl font-semibold mt-1">214</div>
+          <div class="text-xs text-green-600 mt-1">+12 today</div>
+        </div>
+        <div class="rounded-lg border border-border bg-card p-4">
+          <div class="text-xs text-muted-foreground">Customers</div>
+          <div class="text-2xl font-semibold mt-1">1,089</div>
+          <div class="text-xs text-muted-foreground mt-1">+24 this week</div>
+        </div>
+        <div class="rounded-lg border border-border bg-card p-4">
+          <div class="text-xs text-muted-foreground">Outstanding</div>
+          <div class="text-2xl font-semibold mt-1">OMR 3,210</div>
+          <div class="text-xs text-amber-500 mt-1">5 overdue</div>
+        </div>
+      </div>
+
+      <!-- Empty-state example -->
+      <div class="rounded-lg border border-border bg-card">
+        <div class="px-4 py-3 border-b border-border flex items-center justify-between">
+          <h2 class="text-sm font-semibold">Recent activity</h2>
+          <a href="#" class="text-xs text-primary hover:underline">View all</a>
+        </div>
+        <div class="bhd-empty">
+          <svg class="bhd-empty__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <h3 class="bhd-empty__title">Nothing here yet</h3>
+          <p class="bhd-empty__desc">When orders come in, they'll appear here.</p>
+          <button class="bhd-empty__cta">Create your first order</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://design.bhd.om/cmdk.js"></script>
+  <script>
+    BHDCmdK.init({
+      commands: [
+        { id: 'theme-toggle', label: 'Toggle dark mode',  hint: 'Theme',    action: () => BHDTheme.toggle() },
+        { id: 'go-dashboard', label: 'Go to dashboard',   hint: 'Navigate', action: () => location.href = '#dashboard' },
+        { id: 'go-customers', label: 'Go to customers',   hint: 'Navigate', action: () => location.href = '#customers' },
+        { id: 'go-invoices',  label: 'Go to invoices',    hint: 'Navigate', action: () => location.href = '#invoices' },
+        { id: 'new-invoice',  label: 'New invoice',       hint: 'Action',   action: () => alert('Open invoice form') },
+        { id: 'new-customer', label: 'New customer',      hint: 'Action',   action: () => alert('Open customer form') }
+      ]
+    });
+  </script>
+</body>
+</html>

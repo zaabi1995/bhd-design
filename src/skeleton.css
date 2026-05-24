@@ -1,0 +1,100 @@
+/*
+ * BHD Skeleton + Empty State patterns v1
+ * https://design.bhd.om/skeleton.css
+ *
+ * Drop-in skeleton loaders + empty-state styles. Pairs with tokens.css.
+ *
+ * Skeleton:
+ *   <div class="bhd-skel" style="height: 12px; width: 80%"></div>
+ *   <div class="bhd-skel bhd-skel-circle" style="width: 40px; height: 40px"></div>
+ *   <div class="bhd-skel bhd-skel-text"></div>
+ *
+ * Empty state:
+ *   <div class="bhd-empty">
+ *     <svg class="bhd-empty__icon">...</svg>
+ *     <h3 class="bhd-empty__title">No invoices yet</h3>
+ *     <p class="bhd-empty__desc">Create your first invoice to see it here.</p>
+ *     <button class="bhd-empty__cta">New invoice</button>
+ *   </div>
+ */
+
+@keyframes bhd-skel-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.bhd-skel {
+  background-color: var(--muted, #f4f4f5);
+  border-radius: var(--radius-sm, 4px);
+  animation: bhd-skel-pulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  display: block;
+}
+.bhd-skel-circle { border-radius: 9999px; }
+.bhd-skel-text { height: 0.875rem; width: 100%; margin: 0.35rem 0; }
+.bhd-skel-text:last-child { width: 60%; }
+
+/* Group container that helps readers parse skeleton as content */
+.bhd-skel-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.bhd-skel-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border, #e5e5e5);
+}
+.bhd-skel-row:last-child { border-bottom: 0; }
+
+/* Empty state ------------------------------------------------------------ */
+.bhd-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--foreground);
+  gap: 0.75rem;
+}
+.bhd-empty__icon {
+  width: 56px;
+  height: 56px;
+  color: var(--muted-foreground);
+  margin-bottom: 0.25rem;
+}
+.bhd-empty__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+.bhd-empty__desc {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  max-width: 36ch;
+  margin: 0;
+  line-height: 1.5;
+}
+.bhd-empty__cta {
+  margin-top: 0.5rem;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary, #2b3990);
+  color: var(--primary-foreground, #fff);
+  border: 0;
+  padding: 0.5rem 0.95rem;
+  border-radius: var(--radius-md, 6px);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+.bhd-empty__cta:hover { opacity: 0.9; }
+
+/* Compact, inline-friendly empty (table rows, narrow cards) */
+.bhd-empty-inline {
+  padding: 1.5rem 1rem;
+  font-size: 0.825rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
