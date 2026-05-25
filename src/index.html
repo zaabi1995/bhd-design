@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/rtl.css">
   <link rel="stylesheet" href="/skeleton.css">
   <link rel="stylesheet" href="/cmdk.css">
+  <link rel="stylesheet" href="/currency.css">
+  <script src="/currency.js" defer></script>
   <link rel="stylesheet" href="https://fonts.bhd.om/css2?family=Inter:wght@400;500;600;700&display=swap">
 
   <script src="/dark-mode.js"></script>
@@ -382,14 +384,28 @@
       </div>
 
       <div class="demo-card">
-        <h4>RTL flip</h4>
-        <p class="desc">Same markup, two directions. Logical properties do all the work.</p>
+        <h4>RTL flip + OMR symbol</h4>
+        <p class="desc">Same markup, two directions. Logical properties + bidi-isolated currency.</p>
         <div class="rtl-demo" dir="ltr">
-          <strong>LTR:</strong> <span class="bhd-ms-2">Total due</span> <span class="bhd-ms-auto" style="float:right">OMR 1,250</span>
+          <strong>LTR:</strong> <span class="bhd-ms-2">Total due</span>
+          <span class="bhd-ms-auto" style="float:right"><span class="bhd-omr"><span class="bhd-omr__sym">﷼</span> <bdi>1,250.500</bdi></span></span>
         </div>
         <div class="rtl-demo" dir="rtl" lang="ar">
-          <strong>RTL:</strong> <span class="bhd-ms-2">المستحق الكلي</span> <span class="bhd-ms-auto" style="float:right">١٢٥٠ ر.ع.</span>
+          <strong>RTL:</strong> <span class="bhd-ms-2">المستحق الكلي</span>
+          <span class="bhd-ms-auto" style="float:right"><span class="bhd-omr"><span class="bhd-omr__sym">﷼</span> <bdi>١٬٢٥٠٫٥٠٠</bdi></span></span>
         </div>
+      </div>
+
+      <div class="demo-card">
+        <h4>OMR formatter API</h4>
+        <p class="desc">Symbol always on the LEFT. 3-decimal precision. Bidi-safe. Declarative <code>data-bhd-omr</code> or imperative <code>BHDCurrency.formatOMR()</code>.</p>
+        <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.4rem 0;color:var(--muted-foreground);">Subtotal</td><td style="padding:0.4rem 0;text-align:end;" data-bhd-omr="1250.5"></td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:0.4rem 0;color:var(--muted-foreground);">VAT 5%</td><td style="padding:0.4rem 0;text-align:end;" data-bhd-omr="62.525"></td></tr>
+            <tr><td style="padding:0.4rem 0;font-weight:600;">Total</td><td style="padding:0.4rem 0;text-align:end;font-weight:700;" data-bhd-omr="1313.025"></td></tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="demo-card">
