@@ -1,33 +1,35 @@
 /*
- * BHD Currency v1
+ * BHD Currency v3
  * https://design.bhd.om/currency.js
  *
- * Canonical OMR (Omani Rial) formatter. Symbol always on the LEFT in both
- * LTR + RTL contexts. 3-decimal precision per Omani banking convention
- * (1 OMR = 1000 baisa). Uses ﷼ (U+FDFC, Arabic Ligature Rial Sign).
+ * Canonical OMR (Omani Rial) formatter. Inlines the OFFICIAL Omani Rial sign
+ * (Central Bank of Oman, 2025) as an SVG with fill=currentColor so the
+ * symbol inherits the surrounding text colour (works in dark mode, brand
+ * accents, etc.). NOT the generic Arabic Rial ligature ﷼ — that reads as
+ * Saudi/Iranian/Yemeni Rial to a designer.
+ *
+ * Symbol always on the LEFT of the number. 3-decimal precision per Omani
+ * banking convention (1 OMR = 1000 baisa).
  *
  * Usage (inline):
  *   element.innerHTML = BHDCurrency.formatOMR(1250.5);
- *   // <span class="bhd-omr"><span class="bhd-omr__sym">﷼</span> <bdi>1,250.500</bdi></span>
  *
  * Usage (declarative, hydrates on DOMContentLoaded):
  *   <span data-bhd-omr="1250.5"></span>
- *   <td data-bhd-omr="100"></td>
  *
  * Locale-aware digits:
  *   BHDCurrency.formatOMR(100, { locale: 'ar-OM' })
- *   // <span class="bhd-omr"><span class="bhd-omr__sym">﷼</span> <bdi>١٠٠٫٠٠٠</bdi></span>
+ *
+ * Legacy markup support: any pre-existing <span class="bhd-omr__sym"></span>
+ * (empty, no inner content) on the page is auto-hydrated with the inline SVG.
  */
 (function () {
-  // The visual glyph is the official Omani Rial sign from Central Bank of
-  // Oman (2025), rendered via CSS mask on .bhd-omr__sym. Keep this span
-  // empty in HTML so the SVG from currency.css is the ONLY visible glyph.
-  // Older code that emits the ﷼ Unicode character still works (currency.css
-  // suppresses the inner text), but new code emits an empty <span>.
+  // Official Omani Rial sign, CBO 2025. viewBox 741.36 × 415.06.
+  // fill="currentColor" so colour inherits from parent.
+  var OMR_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 741.36 415.06" fill="currentColor" aria-hidden="true" focusable="false"><path d="M259.9,219.89c-.63-49.2,11.44-95.41,35.76-137.75C331.7,19.4,371.24-.36,439.78,34.99c10.67,5.5,53.6,35.43,57.81,44.54,5.03,10.87-27.48,103.87-29.11,122.3-34.69-37.51-99.37-98.66-154.85-69.62-45.05,23.58-12.02,62.54,11.46,87.68h406.25l-39.14,70.23-289.2-2c-1.11,4.66.87,3.3,2.53,4.6,12.44,9.72,80.97,31.54,94.75,31.54l172.05,1.99-39.49,71.25H10.03l39.24-71.24h272.14l-37.11-36.13H69.33l39.23-70.23h151.33Z"/></svg>';
 
   function escapeHtml(s) {
-    return String(s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
   function formatNumber(value, locale, decimals) {
@@ -44,7 +46,7 @@
   function formatOMR(value, opts) {
     opts = opts || {};
     var decimals = typeof opts.decimals === 'number' ? opts.decimals : 3;
-    var locale = opts.locale; // undefined → auto-detect from <html lang>
+    var locale = opts.locale;
     if (!locale && typeof document !== 'undefined') {
       var langAttr = document.documentElement.getAttribute('lang') || '';
       locale = langAttr.indexOf('ar') === 0 ? 'ar-OM' : 'en-OM';
@@ -55,12 +57,29 @@
     if (opts.pill)   classes.push('bhd-omr--pill');
     if (opts.size === 'xs') classes.push('bhd-omr--xs');
     return '<span class="' + classes.join(' ') + '">' +
-             '<span class="bhd-omr__sym" role="img" aria-label="OMR"></span>' +
+             '<span class="bhd-omr__sym" role="img" aria-label="OMR">' + OMR_SVG + '</span>' +
              '<bdi>' + escapeHtml(n) + '</bdi>' +
            '</span>';
   }
 
-  function hydrate(root) {
+  // Inject the inline SVG into any empty .bhd-omr__sym spans found on the
+  // page. This covers both Astro/EJS templates that emit
+  // <span class="bhd-omr__sym" role="img" aria-label="OMR"></span> and any
+  // other consumer that doesn't render its own SVG.
+  function hydrateSymbols(root) {
+    root = root || document;
+    var syms = root.querySelectorAll('.bhd-omr__sym');
+    for (var i = 0; i < syms.length; i++) {
+      var el = syms[i];
+      // Skip if already populated (contains an <svg>).
+      if (el.querySelector('svg')) continue;
+      // If the span still has the wrong legacy character (e.g. ﷼) inside,
+      // wipe it before injecting the official SVG.
+      el.innerHTML = OMR_SVG;
+    }
+  }
+
+  function hydrateData(root) {
     root = root || document;
     var nodes = root.querySelectorAll('[data-bhd-omr]');
     for (var i = 0; i < nodes.length; i++) {
@@ -76,10 +95,16 @@
     }
   }
 
+  function hydrate(root) {
+    hydrateData(root);
+    hydrateSymbols(root);
+  }
+
   window.BHDCurrency = {
-    SYM_OMR: SYM_OMR,
+    OMR_SVG: OMR_SVG,
     formatOMR: formatOMR,
-    hydrate: hydrate
+    hydrate: hydrate,
+    hydrateSymbols: hydrateSymbols
   };
 
   if (typeof document !== 'undefined') {
