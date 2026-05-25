@@ -1,41 +1,67 @@
 /*
- * BHD Currency v1
+ * BHD Currency v2
  * https://design.bhd.om/currency.css
  *
- * Canonical OMR display: ﷼ symbol always on the LEFT (before the number)
- * in both LTR + RTL contexts. 3-decimal precision per Omani banking
- * convention. <bdi> protects against bidi bleed.
+ * Canonical OMR display: the OFFICIAL Omani Rial sign (Central Bank of Oman,
+ * 2025) on the LEFT of the number. NOT the generic Arabic Rial ligature ﷼.
  *
- * Usage:
- *   <span class="bhd-omr"><span class="bhd-omr__sym">﷼</span> <bdi>10.500</bdi></span>
+ * The .bhd-omr__sym span renders the official SVG via CSS mask so it
+ * inherits the surrounding text colour (works in dark mode, brand accents,
+ * etc.). Keep .bhd-omr__sym EMPTY in markup — the SVG comes from CSS.
  *
- * Or via JS:
- *   document.querySelectorAll('[data-bhd-omr]').forEach(el => {
- *     el.innerHTML = BHDCurrency.formatOMR(parseFloat(el.dataset.bhdOmr));
- *   });
+ * Markup:
+ *   <span class="bhd-omr">
+ *     <span class="bhd-omr__sym" role="img" aria-label="OMR"></span>
+ *     <bdi>1,250.500</bdi>
+ *   </span>
+ *
+ * Or use the JS helper:
+ *   element.innerHTML = BHDCurrency.formatOMR(1250.5);
  */
 
 .bhd-omr {
   display: inline-flex;
   align-items: baseline;
-  gap: 0.25em;
+  gap: 0.35em;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   unicode-bidi: isolate;
 }
 
 .bhd-omr__sym {
-  /* The ﷼ glyph renders subtly differently per font. Keep it close to the
-     number, slightly smaller for visual weight balance. */
-  font-size: 0.95em;
-  opacity: 0.85;
-  font-weight: inherit;
+  display: inline-block;
+  /* Official sign aspect ratio is ~1.79:1, sized to sit at the cap height
+     of a digit. Adjust width if your typography needs a different feel. */
+  width: 1.5em;
+  height: 0.84em;
+  vertical-align: baseline;
+  align-self: center;
+  flex-shrink: 0;
+
+  /* Render the official SVG via mask so colour follows currentColor.
+     Backgrounds tinted by .dark / brand accents just work. */
+  background-color: currentColor;
+  -webkit-mask-image: url('https://design.bhd.om/omr.svg');
+          mask-image: url('https://design.bhd.om/omr.svg');
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+          mask-position: center;
+  -webkit-mask-size: contain;
+          mask-size: contain;
+
+  /* Suppress any legacy fallback character (﷼) that older templates may
+     still ship in .bhd-omr__sym — older markup keeps working without the
+     wrong glyph leaking through. */
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
 }
 
-/* When you want the symbol to read as the same color as a brand accent */
-.bhd-omr--brand .bhd-omr__sym { color: var(--primary, currentColor); opacity: 1; }
+/* Brand-coloured symbol (for hero pricing tiles, etc.) */
+.bhd-omr--brand .bhd-omr__sym { background-color: var(--primary, currentColor); }
 
-/* When you want a tight inline pill style (good for table cells) */
+/* Pill style for compact table cells */
 .bhd-omr--pill {
   background: var(--muted, #f4f4f5);
   padding: 0.1em 0.5em;
@@ -45,3 +71,25 @@
 
 /* Smaller form for sub-labels */
 .bhd-omr--xs { font-size: 0.75em; }
+
+/* Fallback if the SVG cannot load (e.g. CORS, offline). Show "OMR" text.
+   We detect via no mask support OR explicit .no-svg, but the cleanest
+   degradation is: if the SVG file 404s, the symbol shows as empty (no
+   wrong glyph), and a screen reader still gets aria-label="OMR". */
+@supports not (mask-image: url('https://design.bhd.om/omr.svg')) {
+  .bhd-omr__sym::before {
+    content: 'OMR';
+    font-size: 0.65em;
+    font-weight: 700;
+    color: currentColor;
+    letter-spacing: 0.02em;
+  }
+  .bhd-omr__sym {
+    width: auto;
+    height: auto;
+    font-size: inherit;
+    line-height: inherit;
+    color: currentColor;
+    background: none;
+  }
+}

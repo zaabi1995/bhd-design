@@ -19,7 +19,11 @@
  *   // <span class="bhd-omr"><span class="bhd-omr__sym">﷼</span> <bdi>١٠٠٫٠٠٠</bdi></span>
  */
 (function () {
-  var SYM_OMR = '﷼'; // ﷼ Arabic Ligature Rial Sign
+  // The visual glyph is the official Omani Rial sign from Central Bank of
+  // Oman (2025), rendered via CSS mask on .bhd-omr__sym. Keep this span
+  // empty in HTML so the SVG from currency.css is the ONLY visible glyph.
+  // Older code that emits the ﷼ Unicode character still works (currency.css
+  // suppresses the inner text), but new code emits an empty <span>.
 
   function escapeHtml(s) {
     return String(s)
@@ -51,7 +55,7 @@
     if (opts.pill)   classes.push('bhd-omr--pill');
     if (opts.size === 'xs') classes.push('bhd-omr--xs');
     return '<span class="' + classes.join(' ') + '">' +
-             '<span class="bhd-omr__sym" aria-label="OMR">' + SYM_OMR + '</span> ' +
+             '<span class="bhd-omr__sym" role="img" aria-label="OMR"></span>' +
              '<bdi>' + escapeHtml(n) + '</bdi>' +
            '</span>';
   }
