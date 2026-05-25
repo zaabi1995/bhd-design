@@ -23,7 +23,12 @@
   gap: 0.35em;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  unicode-bidi: isolate;
+  /* Force LTR rendering inside this container so the symbol always sits
+     on the visual LEFT of the number, regardless of the surrounding
+     direction. isolate-override prevents the parent's RTL context from
+     reordering the flex children. */
+  unicode-bidi: isolate-override;
+  direction: ltr;
 }
 
 .bhd-omr__sym {
