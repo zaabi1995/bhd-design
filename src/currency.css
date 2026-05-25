@@ -34,7 +34,7 @@
      of a digit. Adjust width if your typography needs a different feel. */
   width: 1.5em;
   height: 0.84em;
-  vertical-align: baseline;
+  vertical-align: -0.05em;
   align-self: center;
   flex-shrink: 0;
 
@@ -50,12 +50,13 @@
   -webkit-mask-size: contain;
           mask-size: contain;
 
-  /* Suppress any legacy fallback character (﷼) that older templates may
-     still ship in .bhd-omr__sym — older markup keeps working without the
-     wrong glyph leaking through. */
-  font-size: 0;
-  line-height: 0;
-  color: transparent;
+  /* Suppress any legacy fallback character (﷼ or "OMR") that older
+     templates may still ship inside the span. text-indent pushes text
+     off-screen WITHOUT collapsing the em-based width/height (font-size:0
+     would zero them out). */
+  text-indent: -9999px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 /* Brand-coloured symbol (for hero pricing tiles, etc.) */
@@ -77,19 +78,18 @@
    degradation is: if the SVG file 404s, the symbol shows as empty (no
    wrong glyph), and a screen reader still gets aria-label="OMR". */
 @supports not (mask-image: url('https://design.bhd.om/omr.svg')) {
+  .bhd-omr__sym {
+    width: auto;
+    height: auto;
+    text-indent: 0;
+    overflow: visible;
+    background: none;
+  }
   .bhd-omr__sym::before {
     content: 'OMR';
     font-size: 0.65em;
     font-weight: 700;
     color: currentColor;
     letter-spacing: 0.02em;
-  }
-  .bhd-omr__sym {
-    width: auto;
-    height: auto;
-    font-size: inherit;
-    line-height: inherit;
-    color: currentColor;
-    background: none;
   }
 }
