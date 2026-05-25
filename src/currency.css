@@ -1,0 +1,47 @@
+/*
+ * BHD Currency v1
+ * https://design.bhd.om/currency.css
+ *
+ * Canonical OMR display: ﷼ symbol always on the LEFT (before the number)
+ * in both LTR + RTL contexts. 3-decimal precision per Omani banking
+ * convention. <bdi> protects against bidi bleed.
+ *
+ * Usage:
+ *   <span class="bhd-omr"><span class="bhd-omr__sym">﷼</span> <bdi>10.500</bdi></span>
+ *
+ * Or via JS:
+ *   document.querySelectorAll('[data-bhd-omr]').forEach(el => {
+ *     el.innerHTML = BHDCurrency.formatOMR(parseFloat(el.dataset.bhdOmr));
+ *   });
+ */
+
+.bhd-omr {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  unicode-bidi: isolate;
+}
+
+.bhd-omr__sym {
+  /* The ﷼ glyph renders subtly differently per font. Keep it close to the
+     number, slightly smaller for visual weight balance. */
+  font-size: 0.95em;
+  opacity: 0.85;
+  font-weight: inherit;
+}
+
+/* When you want the symbol to read as the same color as a brand accent */
+.bhd-omr--brand .bhd-omr__sym { color: var(--primary, currentColor); opacity: 1; }
+
+/* When you want a tight inline pill style (good for table cells) */
+.bhd-omr--pill {
+  background: var(--muted, #f4f4f5);
+  padding: 0.1em 0.5em;
+  border-radius: var(--radius-sm, 4px);
+  font-size: 0.875em;
+}
+
+/* Smaller form for sub-labels */
+.bhd-omr--xs { font-size: 0.75em; }
