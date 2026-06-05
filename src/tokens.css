@@ -4,7 +4,7 @@
  *
  * Drop-in semantic + scale variables for the entire BHD-Group portfolio.
  * Model lifted from Metronic v9.4.12 (Tailwind v4 @theme inline pattern),
- * palette anchored on the BHD navy primary + neutral zinc scale.
+ * palette anchored on the BHD cyan primary (#009bc1) + neutral zinc scale.
  *
  * Works with: plain CSS, Tailwind v3 (via arbitrary values), Tailwind v4
  * (drop the @theme inline block in), Sass, any framework.
@@ -31,18 +31,18 @@
   --color-zinc-900: oklch(21.0% 0.008 286);
   --color-zinc-950: oklch(14.1% 0.006 286);
 
-  /* BHD brand primary (navy from bhd.om) */
-  --color-bhd-50:  #eef2ff;
-  --color-bhd-100: #dbe2ff;
-  --color-bhd-200: #c1cdff;
-  --color-bhd-300: #97a6ff;
-  --color-bhd-400: #6b7bff;
-  --color-bhd-500: #4f5dff;
-  --color-bhd-600: #3a44e6;
-  --color-bhd-700: #2f37b8;
-  --color-bhd-800: #2b3990;  /* BHD canonical navy */
-  --color-bhd-900: #1e2670;
-  --color-bhd-950: #131846;
+  /* BHD brand primary (cyan #009bc1 — the BHD-Group accent, matches bhd.om + BHD-ERP) */
+  --color-bhd-50:  #e6f7fb;
+  --color-bhd-100: #c2ecf4;
+  --color-bhd-200: #99dfec;
+  --color-bhd-300: #5fcbe0;
+  --color-bhd-400: #26b4d3;
+  --color-bhd-500: #009bc1;  /* BHD canonical cyan */
+  --color-bhd-600: #0086a8;
+  --color-bhd-700: #006f8c;
+  --color-bhd-800: #005a72;
+  --color-bhd-900: #094a5d;
+  --color-bhd-950: #04303d;
 
   --color-red-600: #dc2626;
   --color-green-600: #16a34a;
@@ -63,7 +63,7 @@
   --popover: var(--color-white);
   --popover-foreground: var(--color-zinc-950);
 
-  --primary: var(--color-bhd-800);
+  --primary: var(--color-bhd-500);
   --primary-foreground: var(--color-white);
 
   --secondary: var(--color-zinc-100);
@@ -86,7 +86,7 @@
 
   --border: oklch(94% 0.004 286);
   --input: var(--color-zinc-200);
-  --ring: var(--color-zinc-400);
+  --ring: var(--color-bhd-500);
 
   --radius: 0.5rem;
   --radius-xl: calc(var(--radius) + 4px);
@@ -113,8 +113,8 @@
   --popover: var(--color-zinc-950);
   --popover-foreground: var(--color-zinc-50);
 
-  --primary: var(--color-bhd-500);
-  --primary-foreground: var(--color-white);
+  --primary: var(--color-bhd-400);
+  --primary-foreground: var(--color-bhd-950);
 
   --secondary: var(--color-zinc-800);
   --secondary-foreground: var(--color-zinc-50);
@@ -136,7 +136,7 @@
 
   --border: var(--color-zinc-800);
   --input: var(--color-zinc-800);
-  --ring: var(--color-zinc-600);
+  --ring: var(--color-bhd-400);
 
   --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.4), 0 1px 3px 0 rgb(0 0 0 / 0.3);
   --shadow-pop:  0 4px 12px -2px rgb(0 0 0 / 0.5), 0 2px 4px -1px rgb(0 0 0 / 0.3);

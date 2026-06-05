@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#04303d"/>
+      <stop offset="1" stop-color="#005a72"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#009bc1"/>
+
+  <g font-family="ui-sans-serif, system-ui, 'Helvetica Neue', Arial, sans-serif" fill="#ffffff">
+    <circle cx="92" cy="96" r="11" fill="#26b4d3"/>
+    <text x="116" y="104" font-size="26" font-weight="600" fill="#c2ecf4" letter-spacing="0.5">design.bhd.om</text>
+
+    <text x="88" y="300" font-size="84" font-weight="700" letter-spacing="-2">One palette, one shell,</text>
+    <text x="88" y="396" font-size="84" font-weight="700" letter-spacing="-2">eleven sites.</text>
+
+    <text x="92" y="486" font-size="32" font-weight="400" fill="#99dfec">Drop-in CSS tokens · dark mode · Cmd+K · RTL · admin shell</text>
+  </g>
+
+  <text x="92" y="566" font-family="ui-monospace, SFMono-Regular, Menlo, monospace"
+        font-size="24" fill="#5fcbe0">BHD-Group shared design system · v1</text>
+</svg>

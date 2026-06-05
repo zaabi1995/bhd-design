@@ -64,4 +64,4 @@ Phase 2 (next): port projects on top of it. See the rollout table on the live si
 
 ## Source
 
-Pattern inventory lifted from Metronic v9.4.12 (KeenThemes, proprietary, licensed via Ali's purchase). BHD-Group adaptation: navy primary, Arabic letter-spacing guard, logical-property RTL convention, BHD-specific layout sizes.
+Pattern inventory lifted from Metronic v9.4.12 (KeenThemes, proprietary, licensed via Ali's purchase). BHD-Group adaptation: cyan primary (#009bc1), Arabic letter-spacing guard, logical-property RTL convention, BHD-specific layout sizes.

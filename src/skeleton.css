@@ -79,7 +79,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--primary, #2b3990);
+  background: var(--primary, #009bc1);
   color: var(--primary-foreground, #fff);
   border: 0;
   padding: 0.5rem 0.95rem;
