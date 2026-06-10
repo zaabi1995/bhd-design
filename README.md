@@ -33,7 +33,11 @@ CEO: **Ali Adnan Haider Darwish**. Head office: HM Tower, Ground Floor, Bousher,
 | `src/cmdk.js` + `cmdk.css` | `/cmdk.js`, `/cmdk.css` | Cmd+K command palette, vanilla. |
 | `src/cmdk.jsx` | `/cmdk.jsx` | React variant of the palette. |
 | `src/skeleton.css` | `/skeleton.css` | Skeleton loaders + empty-state pattern. |
+| `src/currency.css` + `currency.js` | `/currency.css`, `/currency.js` | Canonical OMR display, official Rial sign on the LEFT, 3 decimals, bidi-safe. |
+| `src/omr.svg` | `/omr.svg` | Official Omani Rial sign (CBO 2025), single path, `fill="currentColor"`. |
 | `src/admin-shell.html` | `/admin-shell.html` | Clone-and-edit starter for admin surfaces. |
+| `src/favicon.svg` + `og.png` | `/favicon.svg`, `/og.png` | Brand favicon + OpenGraph card. |
+| (VPS only) | `/fa/v7.2.0/` | Self-hosted FontAwesome 7.2. Core `fontawesome.min.css` first, then `light`/`solid`/`brands`. Never `all.css`. |
 | `src/index.html` | `/` | Docs + live demos. |
 
 ## Quick start

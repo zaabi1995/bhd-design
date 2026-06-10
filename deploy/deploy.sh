@@ -32,6 +32,7 @@ echo "==> Pushing src/ to VPS"
 rsync -az --delete \
   --exclude='.DS_Store' \
   --exclude='__pycache__' \
+  --exclude='fa/' \
   "$LOCAL_ROOT/src/" \
   "$VPS:$REMOTE_ROOT/" 2>&1 | tail -10
 

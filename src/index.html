@@ -187,7 +187,14 @@
       color: var(--foreground);
       display: block; padding: 0.4rem 0.55rem;
       background: var(--muted); border-radius: var(--radius-sm);
-      word-break: break-all;
+      white-space: nowrap; overflow-x: auto;
+    }
+
+    .status-live { color: var(--success); font-weight: 500; }
+
+    @media (max-width: 640px) {
+      header.site .inner { height: auto; flex-wrap: wrap; padding: 0.6rem 0; gap: 0.4rem 1rem; }
+      header.site nav { gap: 0.85rem; font-size: 0.825rem; flex-wrap: wrap; }
     }
 
     .demo-grid {
@@ -341,8 +348,18 @@
       </div>
       <div class="module">
         <h3>currency.css + .js</h3>
-        <p>Canonical OMR display: <code>﷼</code> symbol always on the LEFT in both LTR + RTL. 3-decimal precision. Use <code>data-bhd-omr="1250.5"</code> attribute or call <code>BHDCurrency.formatOMR(value)</code> in JS.</p>
+        <p>Canonical OMR display: the official Rial sign (<span class="bhd-omr__sym" role="img" aria-label="OMR" style="display:inline-flex;width:0.9em;"></span>, CBO 2025) always on the LEFT in both LTR + RTL, never the generic <code>&amp;#xFDFC;</code> ligature. 3-decimal precision. Use <code>data-bhd-omr="1250.5"</code> attribute or call <code>BHDCurrency.formatOMR(value)</code> in JS.</p>
         <span class="url">https://design.bhd.om/currency.js</span>
+      </div>
+      <div class="module">
+        <h3>omr.svg</h3>
+        <p>The official Omani Rial sign (CBO 2025) as a single-path SVG with <code>fill="currentColor"</code>. currency.js inlines it for you; embed directly only when you render server-side without JS.</p>
+        <span class="url">https://design.bhd.om/omr.svg</span>
+      </div>
+      <div class="module">
+        <h3>FontAwesome 7.2</h3>
+        <p>Self-hosted icon set for every BHD-Group surface. Load core <code>fontawesome.min.css</code> first, then <code>light</code> / <code>solid</code> / <code>brands</code> as needed. Never <code>all.css</code>, never emojis.</p>
+        <span class="url">https://design.bhd.om/fa/v7.2.0/css/fontawesome.min.css</span>
       </div>
     </div>
   </div>
@@ -399,13 +416,13 @@
       <div class="demo-card">
         <h4>RTL flip + OMR symbol</h4>
         <p class="desc">Same markup, two directions. Logical properties + bidi-isolated currency.</p>
-        <div class="rtl-demo" dir="ltr">
+        <div class="rtl-demo" dir="ltr" style="display:flex;align-items:center;">
           <strong>LTR:</strong> <span class="bhd-ms-2">Total due</span>
-          <span class="bhd-ms-auto" style="float:right"><span class="bhd-omr"><span class="bhd-omr__sym" role="img" aria-label="OMR"></span> <bdi>1,250.500</bdi></span></span>
+          <span class="bhd-ms-auto"><span class="bhd-omr"><span class="bhd-omr__sym" role="img" aria-label="OMR"></span> <bdi>1,250.500</bdi></span></span>
         </div>
-        <div class="rtl-demo" dir="rtl" lang="ar">
+        <div class="rtl-demo" dir="rtl" lang="ar" style="display:flex;align-items:center;">
           <strong>RTL:</strong> <span class="bhd-ms-2">المستحق الكلي</span>
-          <span class="bhd-ms-auto" style="float:right"><span class="bhd-omr"><span class="bhd-omr__sym" role="img" aria-label="OMR"></span> <bdi>١٬٢٥٠٫٥٠٠</bdi></span></span>
+          <span class="bhd-ms-auto"><span class="bhd-omr"><span class="bhd-omr__sym" role="img" aria-label="OMR"></span> <bdi>١٬٢٥٠٫٥٠٠</bdi></span></span>
         </div>
       </div>
 
@@ -434,7 +451,7 @@
 <section class="section" id="rollout">
   <div class="wrap">
     <h2>Portfolio rollout</h2>
-    <p class="lead">Phase 1 (this package) is live. Phase 2 ports projects on top.</p>
+    <p class="lead">The package is live and most of the portfolio is already ported. Remaining ports below.</p>
 
     <table style="width:100%; border-collapse: collapse; font-size: 0.875rem;">
       <thead>
@@ -445,16 +462,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">arabian.ceo</td><td style="padding: 0.5rem;">Full Bootstrap → Tailwind v4 + admin shell</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">Dardasha admin</td><td style="padding: 0.5rem;">RTL pass · Cmd+K · tokens</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">BHD Chat</td><td style="padding: 0.5rem;">RTL pass · tokens · dark mode</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">Cardify admin</td><td style="padding: 0.5rem;">Tokens + Cmd+K port</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">Dardasha admin</td><td style="padding: 0.5rem;">RTL pass · Cmd+K · tokens</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">BHD Chat</td><td style="padding: 0.5rem;">RTL pass · tokens · dark mode</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">Cardify admin</td><td style="padding: 0.5rem;">Tokens + Cmd+K port</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">fencing.om + Mithaq</td><td style="padding: 0.5rem;">Public pages + shared admin shell, Topbar v2</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">AlMaha Marble</td><td style="padding: 0.5rem;">Catalog + projects gallery patterns</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">bhd.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">hosn.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">paperandpen.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
         <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">BHD-ERP</td><td style="padding: 0.5rem;">AntD token alignment · Cmd+K · dark-mode script</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">fencing.om</td><td style="padding: 0.5rem;">Lift SaaS landing patterns</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">AlMaha Marble</td><td style="padding: 0.5rem;">Catalog + projects gallery patterns</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">bhd.om</td><td style="padding: 0.5rem;">Astro landing-page upgrade</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">hosn.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
-        <tr><td style="padding: 0.5rem 0.5rem 0.5rem 0;">mithaq.om, paperandpen.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">arabian.ceo</td><td style="padding: 0.5rem;">Full Bootstrap → Tailwind v4 + admin shell</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr><td style="padding: 0.5rem 0.5rem 0.5rem 0;">book.bhd.om, reachscreens.com, rabab, tfb.om</td><td style="padding: 0.5rem;">Tokens + landing patterns, per-project sessions</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
       </tbody>
     </table>
   </div>
