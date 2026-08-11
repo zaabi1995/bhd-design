@@ -235,6 +235,11 @@ void main(){
   var el = document.getElementById('kit');
   if (window.SplittyReact && window.SplittyReact.mount) {
     window.SplittyReact.mount('kit', [], el);
+    // Restate the intro for this host (see INTRO in the generator).
+    setTimeout(function () {
+      var p = el.querySelector('header p');
+      if (p) p.textContent = "All 19 primitives, verbatim, as used across BHD-Group. Demo data is the library's own. Use the toggle above to check both token sets.";
+    }, 60);
   } else {
     el.textContent = 'The kit bundle did not load.';
   }
