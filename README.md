@@ -67,7 +67,7 @@ To add optional interface sound, load `<script type="module" src="https://design
 To use the shared icon library without copying assets into a product repository:
 
 ```html
-<script src="https://design.bhd.om/icons-client.js?v=1" defer></script>
+<script src="https://design.bhd.om/icons-client.js?v=2" defer></script>
 <bhd-icon name="search"></bhd-icon>
 <bhd-icon source="drawn" name="a-3d-printer" label="3D printer"></bhd-icon>
 ```
