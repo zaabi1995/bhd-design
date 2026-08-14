@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "vendor:uisfx": "node scripts/vendor-uisfx.mjs",
-    "build": "npm run vendor:uisfx"
+    "vendor:icons": "node scripts/vendor-icon-library.mjs",
+    "mirror:drawn-icons": "node scripts/mirror-drawn-icons.mjs",
+    "build": "npm run vendor:uisfx && npm run vendor:icons"
   },
   "dependencies": {
     "uisfx": "0.4.0"

@@ -33,6 +33,7 @@ rsync -az --delete \
   --exclude='.DS_Store' \
   --exclude='__pycache__' \
   --exclude='fa/' \
+  --exclude='icons/sets/drawn/' \
   "$LOCAL_ROOT/src/" \
   "$VPS:$REMOTE_ROOT/" 2>&1 | tail -10
 

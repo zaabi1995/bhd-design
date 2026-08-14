@@ -36,6 +36,9 @@ CEO: **Ali Adnan Haider Darwish**. Head office: HM Tower, Ground Floor, Bousher,
 | `src/interactions.css` + `interactions.js` | `/interactions.css`, `/interactions.js` | Accessible tactile, action, confirmation, upload, receipt, ticket, stamp, signature, scroll, and foil patterns. |
 | `src/sfx.js` | `/sfx.js` | Optional UISFX semantic sound adapter. Silent by default with persistent user preference. |
 | `src/patterns.html` | `/patterns.html` | Live interaction reference and accessibility behavior. |
+| `src/icons.html` + `icons.css` + `icons.js` | `/icons.html` | Search, preview, copy, and download interface for 138,668 licensed design elements. |
+| `src/icons/data/` | `/icons/data/` | Search catalogs for Lucide, technology, cloud, Twemoji, BHD Mood, and the full Koboyo hand-drawn collection. |
+| `src/icons/sets/` | `/icons/sets/` | Git-managed conventional SVG collections. The hand-drawn payload is mirrored on the VPS. |
 | `src/vendor/uisfx.js` | `/vendor/uisfx.js` | Pinned UISFX 0.4.0 browser runtime, MIT. Generated sound is CC0. |
 | `src/currency.css` + `currency.js` | `/currency.css`, `/currency.js` | Canonical OMR display, official Rial sign on the LEFT, 3 decimals, bidi-safe. |
 | `src/omr.svg` | `/omr.svg` | Official Omani Rial sign (CBO 2025), single path, `fill="currentColor"`. |
@@ -68,6 +71,15 @@ bash deploy/deploy.sh --setup   # also (re)install nginx vhost + reload
 ```
 
 Reuses the apex `*.bhd.om` wildcard CF Origin cert at `/www/server/panel/vhost/cert/bhd.om/`, valid through 2041-01-09. No per-deploy cert work.
+
+The 133,464 hand-drawn SVG files are intentionally excluded from Git and preserved by the main rsync deployment. To rebuild that VPS-only mirror:
+
+```bash
+BHD_DRAWN_OUTPUT=/path/to/staging npm run mirror:drawn-icons
+rsync -az /path/to/staging/ root@147.93.20.54:/www/wwwroot/design.bhd.om/icons/sets/drawn/
+```
+
+Run `npm run vendor:icons` to regenerate the 5,204 Git-managed SVG files and their conventional catalog.
 
 ## Portfolio rollout
 

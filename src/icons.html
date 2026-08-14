@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-bhd-theme-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search, copy, and download the complete BHD licensed icon and hand-drawn image collection.">
+  <title>Icon Library | BHD Design</title>
+  <link rel="canonical" href="https://design.bhd.om/icons.html">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script src="/dark-mode.js"></script>
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="https://fonts.bhd.om/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/icons.css">
+</head>
+<body class="bhd-base">
+  <header class="library-header">
+    <a class="brand" href="/" aria-label="BHD Design home"><span class="brand-dot"></span>design.bhd.om</a>
+    <nav aria-label="Primary navigation">
+      <a href="/">System</a>
+      <a href="/patterns.html">Interactions</a>
+      <a class="active" href="/icons.html" aria-current="page">Icons</a>
+    </nav>
+    <button class="icon-button" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">
+      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">BHD Design Element Library</p>
+        <h1 id="page-title">Every icon, one place.</h1>
+        <p class="intro-copy">Search the complete licensed collection, copy clean SVG markup, or download production-ready files.</p>
+      </div>
+      <div class="collection-total"><strong id="total-count">138,668</strong><span>design elements</span></div>
+    </section>
+
+    <section class="library" aria-label="Icon browser">
+      <aside class="filters">
+        <div class="search-wrap">
+          <label for="icon-search">Search the collection</label>
+          <div class="search-field">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input id="icon-search" type="search" inputmode="search" autocomplete="off" placeholder="Try printer, people, cloud…">
+            <kbd>/</kbd>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <p class="filter-label">Collection</p>
+          <div class="source-list" id="source-list"></div>
+        </div>
+
+        <div class="filter-section" id="drawn-groups-wrap" hidden>
+          <p class="filter-label">Hand-drawn group</p>
+          <div class="group-list" id="drawn-groups"></div>
+        </div>
+
+        <a class="notice-link" href="/icons/NOTICE.md">Licenses and source notices</a>
+      </aside>
+
+      <div class="results">
+        <div class="results-bar">
+          <p id="result-status" role="status" aria-live="polite">Loading icon catalog…</p>
+          <button class="compact-button" id="clear-filters" type="button">Clear filters</button>
+        </div>
+        <div class="icon-grid" id="icon-grid" aria-busy="true"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <h2>No matching elements</h2>
+          <p>Try a broader word or clear the current filters.</p>
+        </div>
+        <button class="load-more" id="load-more" type="button" hidden>Load more</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="detail-panel" id="detail-panel" aria-labelledby="detail-title">
+    <div class="detail-head">
+      <div><p id="detail-source"></p><h2 id="detail-title"></h2></div>
+      <button class="icon-button" id="detail-close" type="button" aria-label="Close details">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="detail-preview"><img id="detail-image" alt=""></div>
+    <div class="detail-meta">
+      <span id="detail-group"></span>
+      <code id="detail-id"></code>
+    </div>
+    <div class="detail-actions">
+      <button class="action primary" id="copy-svg" type="button">Copy SVG</button>
+      <button class="action" id="copy-html" type="button">Copy HTML</button>
+      <a class="action" id="download-svg" download>Download</a>
+      <button class="action" id="copy-url" type="button">Copy URL</button>
+    </div>
+    <p class="detail-feedback" id="detail-feedback" aria-live="polite"></p>
+  </dialog>
+
+  <script type="module" src="/icons.js"></script>
+</body>
+</html>
