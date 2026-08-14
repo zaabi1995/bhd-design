@@ -23,9 +23,9 @@
     var id = String(name || '').trim();
     if (!id) return '';
     if (iconSource === 'drawn') {
-      return ORIGIN + '/icons/sets/drawn/' + shardFor(id) + '/' + encodeURIComponent(id) + '.svg';
+      return ORIGIN + '/icons/sets/drawn/' + shardFor(id) + '/' + encodeURIComponent(id) + '.svg?v=1';
     }
-    return ORIGIN + '/icons/sets/' + encodeURIComponent(iconSource) + '/' + encodeURIComponent(id) + '.svg';
+    return ORIGIN + '/icons/sets/' + encodeURIComponent(iconSource) + '/' + encodeURIComponent(id) + '.svg?v=1';
   }
 
   function renderIcon(element) {
