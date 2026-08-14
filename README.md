@@ -33,6 +33,10 @@ CEO: **Ali Adnan Haider Darwish**. Head office: HM Tower, Ground Floor, Bousher,
 | `src/cmdk.js` + `cmdk.css` | `/cmdk.js`, `/cmdk.css` | Cmd+K command palette, vanilla. |
 | `src/cmdk.jsx` | `/cmdk.jsx` | React variant of the palette. |
 | `src/skeleton.css` | `/skeleton.css` | Skeleton loaders + empty-state pattern. |
+| `src/interactions.css` + `interactions.js` | `/interactions.css`, `/interactions.js` | Accessible tactile, action, confirmation, upload, receipt, ticket, stamp, signature, scroll, and foil patterns. |
+| `src/sfx.js` | `/sfx.js` | Optional UISFX semantic sound adapter. Silent by default with persistent user preference. |
+| `src/patterns.html` | `/patterns.html` | Live interaction reference and accessibility behavior. |
+| `src/vendor/uisfx.js` | `/vendor/uisfx.js` | Pinned UISFX 0.4.0 browser runtime, MIT. Generated sound is CC0. |
 | `src/currency.css` + `currency.js` | `/currency.css`, `/currency.js` | Canonical OMR display, official Rial sign on the LEFT, 3 decimals, bidi-safe. |
 | `src/omr.svg` | `/omr.svg` | Official Omani Rial sign (CBO 2025), single path, `fill="currentColor"`. |
 | `src/admin-shell.html` | `/admin-shell.html` | Clone-and-edit starter for admin surfaces. |
@@ -45,12 +49,16 @@ CEO: **Ali Adnan Haider Darwish**. Head office: HM Tower, Ground Floor, Bousher,
 ```html
 <link rel="stylesheet" href="https://design.bhd.om/tokens.css">
 <link rel="stylesheet" href="https://design.bhd.om/cmdk.css">
+<link rel="stylesheet" href="https://design.bhd.om/interactions.css">
+<script src="https://design.bhd.om/interactions.js" defer></script>
 <script src="https://design.bhd.om/dark-mode.js"></script>
 
 <html lang="en" dir="ltr" data-bhd-theme-mode="light">
 ```
 
 For Arabic: `<html lang="ar" dir="rtl">`. Tokens enforce `letter-spacing: 0` on Arabic globally (HARD RULE, 24 May 2026).
+
+To add optional interface sound, load `<script type="module" src="https://design.bhd.om/sfx.js"></script>` and provide a user-controlled element with `data-bhd-sound-toggle`. Sound is a supplement to visible and ARIA feedback, never the only status signal.
 
 ## Deploy
 

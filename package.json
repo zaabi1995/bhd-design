@@ -1,0 +1,13 @@
+{
+  "name": "@bhd/design",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "vendor:uisfx": "node scripts/vendor-uisfx.mjs",
+    "build": "npm run vendor:uisfx"
+  },
+  "dependencies": {
+    "uisfx": "0.4.0"
+  }
+}

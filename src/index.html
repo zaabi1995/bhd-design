@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BHD Design · design.bhd.om</title>
-  <meta name="description" content="Shared design tokens, dark-mode init, Cmd+K, RTL utilities, and admin shell for the BHD-Group portfolio.">
+  <meta name="description" content="Shared tokens, interaction patterns, optional semantic sound, RTL utilities, and admin shell for the BHD Group portfolio.">
   <meta name="theme-color" content="#009bc1">
   <link rel="canonical" href="https://design.bhd.om/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://design.bhd.om/og.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BHD Design · Shared design system">
-  <meta name="twitter:description" content="One palette, one shell, eleven sites — the BHD-Group shared design system.">
+  <meta name="twitter:description" content="One palette, one shell, eleven sites: the BHD Group shared design system.">
   <meta name="twitter:image" content="https://design.bhd.om/og.png">
 
   <link rel="stylesheet" href="/tokens.css">
@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/skeleton.css">
   <link rel="stylesheet" href="/cmdk.css">
   <link rel="stylesheet" href="/currency.css">
+  <link rel="stylesheet" href="/interactions.css">
   <script src="/currency.js" defer></script>
   <link rel="stylesheet" href="https://fonts.bhd.om/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 
@@ -241,6 +242,7 @@
     <nav>
       <a href="#tokens">Tokens</a>
       <a href="#modules">Modules</a>
+      <a href="/patterns.html">Interactions</a>
       <a href="#admin-shell">Admin shell</a>
       <a href="/admin-shell.html">Preview ↗</a>
       <button class="theme-btn" onclick="BHDTheme.toggle()" aria-label="Toggle theme">
@@ -253,12 +255,13 @@
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">BHD-Group shared design system · v1</span>
+    <span class="eyebrow">BHD Group shared design system · v2</span>
     <h1>One palette, one shell, eleven sites.</h1>
-    <p>Drop-in CSS tokens, dark-mode init, Cmd+K, RTL utilities, and an admin shell that the entire BHD-Group portfolio inherits from. Hosted at design.bhd.om.</p>
+    <p>Drop-in tokens, RTL-safe interaction patterns, optional semantic sound, Cmd+K, dark mode, and an admin shell for the BHD Group portfolio.</p>
     <div class="cta">
       <a class="btn btn-primary" href="#quick-start">Quick start →</a>
       <a class="btn btn-ghost" href="/admin-shell.html">Live admin shell ↗</a>
+      <a class="btn btn-ghost bhd-tactile" href="/patterns.html" data-bhd-sfx="tap">Interaction lab ↗</a>
       <button class="btn btn-ghost" onclick="BHDCmdK.open()">Try ⌘K</button>
     </div>
   </div>
@@ -295,10 +298,12 @@
 <section class="section" id="quick-start">
   <div class="wrap">
     <h2>Quick start</h2>
-    <p class="lead">Add the foundation to any BHD-Group project in three lines.</p>
+    <p class="lead">Add the foundation to any BHD Group project. Interaction sound remains off until the user enables it.</p>
 
 <pre><code>&lt;link rel="stylesheet" href="https://design.bhd.om/tokens.css"&gt;
 &lt;link rel="stylesheet" href="https://design.bhd.om/cmdk.css"&gt;
+&lt;link rel="stylesheet" href="https://design.bhd.om/interactions.css"&gt;
+&lt;script src="https://design.bhd.om/interactions.js" defer&gt;&lt;/script&gt;
 &lt;script src="https://design.bhd.om/dark-mode.js"&gt;&lt;/script&gt;</code></pre>
 
     <p class="lead" style="margin-top: 1rem">Then on your <code>&lt;html&gt;</code>:</p>
@@ -316,6 +321,21 @@
     <p class="lead">Every BHD-Group project loads what it needs. Cache forever, version via query param.</p>
 
     <div class="modules">
+      <div class="module">
+        <h3>interactions.css + .js <span class="badge">new</span></h3>
+        <p>Tactile buttons, dynamic actions, hold confirmation, magnetic drop zones, scroll fades, receipt printing, stamps, tickets, signatures, foil, and progressive-motion safeguards.</p>
+        <span class="url">https://design.bhd.om/interactions.js</span>
+      </div>
+      <div class="module">
+        <h3>sfx.js <span class="badge">optional</span></h3>
+        <p>UISFX 0.4 semantic sound adapter. Silent by default, user-gesture enabled, persistent preference, and automatic loop cleanup. Load as an ES module.</p>
+        <span class="url">https://design.bhd.om/sfx.js</span>
+      </div>
+      <div class="module">
+        <h3>patterns.html <span class="badge">live</span></h3>
+        <p>Accessible reference implementation for the interaction patterns, including keyboard, RTL, reduced-motion, and sound behavior.</p>
+        <span class="url">https://design.bhd.om/patterns.html</span>
+      </div>
       <div class="module">
         <h3>tokens.css <span class="badge">required</span></h3>
         <p>Semantic CSS variables, light/dark, BHD palette, radius scale, shadow scale, layout sizes. Includes a hard-coded rule that strips letter-spacing on Arabic.</p>
@@ -470,7 +490,9 @@
         <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">bhd.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
         <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">hosn.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
         <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">paperandpen.om</td><td style="padding: 0.5rem;">Landing-page upgrade</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">BHD-ERP</td><td style="padding: 0.5rem;">AntD token alignment · Cmd+K · dark-mode script</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">BHD ERP</td><td style="padding: 0.5rem;">Tactile actions · hold confirm · semantic sound preference</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">CupsByAA</td><td style="padding: 0.5rem;">Receipt printer · artwork drop · soft semantic sound</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">bhdoman.com</td><td style="padding: 0.5rem;">Quote actions · upload feedback · premium foil</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
         <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">arabian.ceo</td><td style="padding: 0.5rem;">Full Bootstrap → Tailwind v4 + admin shell</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
         <tr><td style="padding: 0.5rem 0.5rem 0.5rem 0;">book.bhd.om, reachscreens.com, rabab, tfb.om</td><td style="padding: 0.5rem;">Tokens + landing patterns, per-project sessions</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
       </tbody>
@@ -480,11 +502,13 @@
 
 <footer class="site">
   <div class="wrap">
-    <p>design.bhd.om · BHD-Group shared design system · v1<br>Built on Metronic v9.4.12 patterns. Tokens MIT-equivalent internal-use, components OK to lift across BHD-Group projects.</p>
+    <p>design.bhd.om · BHD Group shared design system · v2<br>UISFX runtime MIT, generated audio CC0. Interaction components are available across BHD Group projects.</p>
   </div>
 </footer>
 
 <script src="/cmdk.js"></script>
+<script src="/interactions.js"></script>
+<script type="module" src="/sfx.js"></script>
 <script>
   BHDCmdK.init({
     commands: [

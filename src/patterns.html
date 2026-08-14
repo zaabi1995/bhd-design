@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-bhd-theme-mode="light" data-bhd-sfx-profile="minimal">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interaction patterns · BHD Design</title>
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="/interactions.css">
+  <script src="/dark-mode.js"></script>
+  <style>
+    *{box-sizing:border-box} body{margin:0;background:var(--background);color:var(--foreground);font:15px/1.5 system-ui,sans-serif}
+    main{max-width:980px;margin:auto;padding:2rem 1rem 5rem} header{display:flex;justify-content:space-between;gap:1rem;align-items:center;margin-bottom:2rem}
+    h1{font-size:clamp(2rem,6vw,4rem);line-height:1;margin:.5rem 0} h2{font-size:1rem;margin:0 0 .8rem}.lead{color:var(--muted-foreground);max-width:64ch}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}.card{border:1px solid var(--border);border-radius:var(--radius-xl);padding:1rem;background:var(--card);min-height:170px}
+    button{font:inherit;border:1px solid var(--border);border-radius:var(--radius-md);padding:.7rem 1rem;background:var(--primary);color:var(--primary-foreground);cursor:pointer}
+    .ghost{background:var(--card);color:var(--foreground)} .drop{padding:2rem;text-align:center}.list{height:125px}.list div{padding:.55rem;border-bottom:1px solid var(--border)}
+    .stamp{display:inline-block;border:3px double var(--primary);color:var(--primary);padding:.5rem;font-weight:800;text-transform:uppercase}.receipt{background:var(--muted);padding:1rem}.paper{background:var(--card);padding:1rem;font-family:monospace}
+  </style>
+</head>
+<body>
+<main>
+  <header><a href="/">← Design system</a><button class="ghost" data-bhd-sound-toggle><span class="bhd-sound-toggle__on">Sound on</span><span class="bhd-sound-toggle__off">Sound off</span></button></header>
+  <p class="lead">BHD Interaction System v2</p>
+  <h1 data-bhd-scramble="Useful motion, meaningful sound.">Useful motion, meaningful sound.</h1>
+  <p class="lead">Production-ready interaction primitives inspired by DQNamo, paired with optional UISFX cues. Every pattern preserves visible feedback, keyboard access, RTL, reduced motion, and silence by default.</p>
+  <div class="grid">
+    <section class="card"><h2>Tactile and dynamic action</h2><button class="bhd-tactile" data-bhd-action data-bhd-sfx="tap" id="save"><span class="bhd-action__label">Save changes</span></button></section>
+    <section class="card"><h2>Hold to confirm</h2><button class="bhd-hold" data-bhd-hold="900">Hold to approve</button><p class="lead" id="hold-status" aria-live="polite">Prevents accidental irreversible actions.</p></section>
+    <section class="card"><h2>Magnetic drop zone</h2><label class="bhd-dropzone drop" data-bhd-dropzone tabindex="0">Drop artwork here<input type="file" hidden></label></section>
+    <section class="card"><h2>Scroll fade</h2><div class="bhd-scroll-fade list" data-bhd-scroll-fade><div>Quotation approved</div><div>Artwork received</div><div>Proof prepared</div><div>Production scheduled</div><div>Ready for delivery</div></div></section>
+    <section class="card"><h2>Receipt printer</h2><div class="bhd-receipt receipt" data-bhd-stage="complete"><div class="bhd-receipt__paper paper">ORDER CBA-2048<br>Payment received<br>Production queued</div></div></section>
+    <section class="card"><h2>Ticket and stamp</h2><div class="bhd-ticket">Job ticket <strong>#BHD-2048</strong></div><p><span class="bhd-stamp stamp" data-bhd-stamped="true">Approved</span></p></section>
+    <section class="card"><h2>Model selector</h2><div class="bhd-model-selector"><label><input type="radio" name="model" checked> Fast</label><label><input type="radio" name="model"> Precise</label></div></section>
+    <section class="card"><h2>Iridescent foil</h2><p class="bhd-foil" data-bhd-foil style="font-size:2rem;font-weight:900">HOT FOIL</p><p class="lead">Reserved for premium print finishes and celebratory moments.</p></section>
+  </div>
+</main>
+<script src="/interactions.js"></script>
+<script type="module" src="/sfx.js"></script>
+<script>
+  const save = document.getElementById('save');
+  save.addEventListener('click', () => {
+    if (save.dataset.bhdState === 'loading') return;
+    BHDInteractions.setActionState(save, 'loading', 'Saving…');
+    setTimeout(() => BHDInteractions.setActionState(save, 'success', 'Saved'), 900);
+    setTimeout(() => BHDInteractions.setActionState(save, 'idle'), 2100);
+  });
+  document.addEventListener('bhd:confirmed', () => document.getElementById('hold-status').textContent = 'Approved.');
+</script>
+</body>
+</html>
