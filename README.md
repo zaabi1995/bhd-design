@@ -37,6 +37,7 @@ CEO: **Ali Adnan Haider Darwish**. Head office: HM Tower, Ground Floor, Bousher,
 | `src/sfx.js` | `/sfx.js` | Optional UISFX semantic sound adapter. Silent by default with persistent user preference. |
 | `src/patterns.html` | `/patterns.html` | Live interaction reference and accessibility behavior. |
 | `src/icons.html` + `icons.css` + `icons.js` | `/icons.html` | Search, preview, copy, and download interface for 138,668 licensed design elements. |
+| `src/icons-client.js` | `/icons-client.js` | Framework-neutral `<bhd-icon>` web component and shared asset URL resolver. |
 | `src/icons/data/` | `/icons/data/` | Search catalogs for Lucide, technology, cloud, Twemoji, BHD Mood, and the full Koboyo hand-drawn collection. |
 | `src/icons/sets/` | `/icons/sets/` | Git-managed conventional SVG collections. The hand-drawn payload is mirrored on the VPS. |
 | `src/vendor/uisfx.js` | `/vendor/uisfx.js` | Pinned UISFX 0.4.0 browser runtime, MIT. Generated sound is CC0. |
@@ -62,6 +63,14 @@ CEO: **Ali Adnan Haider Darwish**. Head office: HM Tower, Ground Floor, Bousher,
 For Arabic: `<html lang="ar" dir="rtl">`. Tokens enforce `letter-spacing: 0` on Arabic globally (HARD RULE, 24 May 2026).
 
 To add optional interface sound, load `<script type="module" src="https://design.bhd.om/sfx.js"></script>` and provide a user-controlled element with `data-bhd-sound-toggle`. Sound is a supplement to visible and ARIA feedback, never the only status signal.
+
+To use the shared icon library without copying assets into a product repository:
+
+```html
+<script src="https://design.bhd.om/icons-client.js?v=1" defer></script>
+<bhd-icon name="search"></bhd-icon>
+<bhd-icon source="drawn" name="a-3d-printer" label="3D printer"></bhd-icon>
+```
 
 ## Deploy
 
