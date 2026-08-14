@@ -229,7 +229,7 @@ document.querySelector('#copy-url').addEventListener('click', () => copyText(new
 
 const loadCatalogs = async () => {
   try {
-    const drawnPaths = Array.from({ length: 16 }, (_, index) => `/icons/data/drawn/${String(index).padStart(3, '0')}.json`);
+    const drawnPaths = Array.from({ length: 16 }, (_, index) => `/icons/data/drawn/${String(index).padStart(3, '0')}.json?v=2`);
     const [conventionalResponse, ...drawnResponses] = await Promise.all([
       fetch('/icons/data/catalog.json'),
       ...drawnPaths.map((path) => fetch(path)),
