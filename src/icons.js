@@ -229,13 +229,18 @@ document.querySelector('#copy-url').addEventListener('click', () => copyText(new
 
 const loadCatalogs = async () => {
   try {
-    const [conventionalResponse, drawnResponse] = await Promise.all([
+    const drawnPaths = Array.from({ length: 16 }, (_, index) => `/icons/data/drawn/${String(index).padStart(3, '0')}.json`);
+    const [conventionalResponse, ...drawnResponses] = await Promise.all([
       fetch('/icons/data/catalog.json'),
-      fetch('/icons/data/drawn-catalog.json'),
+      ...drawnPaths.map((path) => fetch(path)),
     ]);
-    if (!conventionalResponse.ok || !drawnResponse.ok) throw new Error('A catalog file could not be loaded');
-    const [conventional, drawn] = await Promise.all([conventionalResponse.json(), drawnResponse.json()]);
-    state.icons = [...drawn.icons.map(normalizeDrawn), ...conventional.icons.map(normalizeConventional)];
+    if (!conventionalResponse.ok || drawnResponses.some((response) => !response.ok)) throw new Error('A catalog file could not be loaded');
+    const [conventional, ...drawnChunks] = await Promise.all([
+      conventionalResponse.json(),
+      ...drawnResponses.map((response) => response.json()),
+    ]);
+    const drawnIcons = drawnChunks.flatMap((chunk) => chunk.icons);
+    state.icons = [...drawnIcons.map(normalizeDrawn), ...conventional.icons.map(normalizeConventional)];
     document.querySelector('#total-count').textContent = formatNumber(state.icons.length);
     els.grid.setAttribute('aria-busy', 'false');
     render();

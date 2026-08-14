@@ -1,4 +1,4 @@
 node_modules/
 .DS_Store
 .gstack/
-src/icons/sets/drawn/
+src/icons/sets/drawn

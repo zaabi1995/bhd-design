@@ -1,9 +1,9 @@
-import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const projectRoot = join(dirname(fileURLToPath(import.meta.url)), '..');
-const catalogPath = join(projectRoot, 'src', 'icons', 'data', 'drawn-catalog.json');
+const catalogRoot = join(projectRoot, 'src', 'icons', 'data', 'drawn');
 const outputRoot = process.env.BHD_DRAWN_OUTPUT;
 const concurrency = Number(process.env.BHD_DRAWN_CONCURRENCY || 64);
 
@@ -27,8 +27,10 @@ const exists = async (path) => {
   }
 };
 
-const catalog = JSON.parse(await readFile(catalogPath, 'utf8'));
-const jobs = catalog.icons.map((record) => async () => {
+const catalogFiles = (await readdir(catalogRoot)).filter((name) => name.endsWith('.json')).sort();
+const catalogChunks = await Promise.all(catalogFiles.map(async (name) => JSON.parse(await readFile(join(catalogRoot, name), 'utf8'))));
+const icons = catalogChunks.flatMap((chunk) => chunk.icons);
+const jobs = icons.map((record) => async () => {
   const id = record[0];
   const destinationDir = join(outputRoot, shardFor(id));
   const destination = join(destinationDir, `${id}.svg`);
