@@ -1,0 +1,18 @@
+/* almaha brand theme — https://design.bhd.om/themes/almaha.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/almaha.css";
+ * primary #A6843A */
+@theme {
+  --color-brand-50:#faf7f0;
+  --color-brand-100:#f2ebda;
+  --color-brand-200:#e9dfcf;
+  --color-brand-300:#d9c9a3;
+  --color-brand-400:#c2a56a;
+  --color-brand-500:#A6843A;
+  --color-brand-600:#957633;
+  --color-brand-700:#79602a;
+  --color-brand-800:#5f4c22;
+  --color-brand-900:#4a3b1b;
+  --color-brand-950:#2a2110;
+  --color-primary:#A6843A; --color-primary-foreground:#ffffff;
+  --font-sans:"The Year of The Camel",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

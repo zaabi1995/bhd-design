@@ -1,0 +1,18 @@
+/* paperandpen brand theme — https://design.bhd.om/themes/paperandpen.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/paperandpen.css";
+ * primary #172e50 */
+@theme {
+  --color-brand-50:#f3f5f6;
+  --color-brand-100:#e8eaee;
+  --color-brand-200:#c5cbd3;
+  --color-brand-300:#97a1b0;
+  --color-brand-400:#5d6d84;
+  --color-brand-500:#172e50;
+  --color-brand-600:#142846;
+  --color-brand-700:#11213a;
+  --color-brand-800:#0d1a2d;
+  --color-brand-900:#0a1322;
+  --color-brand-950:#060c15;
+  --color-primary:#172e50; --color-primary-foreground:#ffffff;
+  --font-sans:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

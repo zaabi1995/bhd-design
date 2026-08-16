@@ -1,0 +1,18 @@
+/* cardify brand theme — https://design.bhd.om/themes/cardify.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/cardify.css";
+ * primary #2563eb */
+@theme {
+  --color-brand-50:#f4f7fe;
+  --color-brand-100:#e9effd;
+  --color-brand-200:#c8d8fa;
+  --color-brand-300:#9db9f6;
+  --color-brand-400:#6692f1;
+  --color-brand-500:#2563eb;
+  --color-brand-600:#2157cf;
+  --color-brand-700:#1b47a9;
+  --color-brand-800:#153784;
+  --color-brand-900:#102a63;
+  --color-brand-950:#0a1a3d;
+  --color-primary:#2563eb; --color-primary-foreground:#ffffff;
+  --font-sans:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

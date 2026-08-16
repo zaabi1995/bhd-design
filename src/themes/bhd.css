@@ -1,0 +1,29 @@
+/* bhd brand theme — https://design.bhd.om/themes/bhd.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/bhd.css";
+ * primary #009bc1 */
+@theme {
+  --color-brand-50:#e6f7fb;
+  --color-bhd-50:#e6f7fb;
+  --color-brand-100:#c2ecf4;
+  --color-bhd-100:#c2ecf4;
+  --color-brand-200:#99dfec;
+  --color-bhd-200:#99dfec;
+  --color-brand-300:#5fcbe0;
+  --color-bhd-300:#5fcbe0;
+  --color-brand-400:#26b4d3;
+  --color-bhd-400:#26b4d3;
+  --color-brand-500:#009bc1;
+  --color-bhd-500:#009bc1;
+  --color-brand-600:#0086a8;
+  --color-bhd-600:#0086a8;
+  --color-brand-700:#006f8c;
+  --color-bhd-700:#006f8c;
+  --color-brand-800:#005a72;
+  --color-bhd-800:#005a72;
+  --color-brand-900:#094a5d;
+  --color-bhd-900:#094a5d;
+  --color-brand-950:#04303d;
+  --color-bhd-950:#04303d;
+  --color-primary:#009bc1; --color-primary-foreground:#ffffff;
+  --font-sans:"IBM Plex Sans Arabic",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

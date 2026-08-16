@@ -1,0 +1,18 @@
+/* reachscreens brand theme — https://design.bhd.om/themes/reachscreens.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/reachscreens.css";
+ * primary #1e3a5f */
+@theme {
+  --color-brand-50:#f4f5f7;
+  --color-brand-100:#e8ebef;
+  --color-brand-200:#c7ced7;
+  --color-brand-300:#9aa6b7;
+  --color-brand-400:#62758f;
+  --color-brand-500:#1e3a5f;
+  --color-brand-600:#1a3354;
+  --color-brand-700:#162a44;
+  --color-brand-800:#112035;
+  --color-brand-900:#0d1828;
+  --color-brand-950:#080f19;
+  --color-primary:#1e3a5f; --color-primary-foreground:#ffffff;
+  --font-sans:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

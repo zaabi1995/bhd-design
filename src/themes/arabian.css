@@ -1,0 +1,18 @@
+/* arabian brand theme — https://design.bhd.om/themes/arabian.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/arabian.css";
+ * primary #ff5c00 */
+@theme {
+  --color-brand-50:#fff7f2;
+  --color-brand-100:#ffefe6;
+  --color-brand-200:#ffd6bf;
+  --color-brand-300:#ffb68c;
+  --color-brand-400:#ff8d4c;
+  --color-brand-500:#ff5c00;
+  --color-brand-600:#e05100;
+  --color-brand-700:#b84200;
+  --color-brand-800:#8f3400;
+  --color-brand-900:#6b2700;
+  --color-brand-950:#421800;
+  --color-primary:#ff5c00; --color-primary-foreground:#ffffff;
+  --font-sans:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

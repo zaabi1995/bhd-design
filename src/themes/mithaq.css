@@ -1,0 +1,18 @@
+/* mithaq brand theme — https://design.bhd.om/themes/mithaq.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/mithaq.css";
+ * primary #155340 */
+@theme {
+  --color-brand-50:#f3f6f5;
+  --color-brand-100:#e8eeec;
+  --color-brand-200:#c4d4cf;
+  --color-brand-300:#96b2a9;
+  --color-brand-400:#5b8779;
+  --color-brand-500:#155340;
+  --color-brand-600:#124938;
+  --color-brand-700:#0f3c2e;
+  --color-brand-800:#0c2e24;
+  --color-brand-900:#09231b;
+  --color-brand-950:#051611;
+  --color-primary:#155340; --color-primary-foreground:#ffffff;
+  --font-sans:"IBM Plex Sans Arabic",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

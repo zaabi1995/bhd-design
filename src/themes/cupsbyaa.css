@@ -1,0 +1,18 @@
+/* cupsbyaa brand theme — https://design.bhd.om/themes/cupsbyaa.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/cupsbyaa.css";
+ * primary #E55E99 */
+@theme {
+  --color-brand-50:#fdeef5;
+  --color-brand-100:#fbd9e9;
+  --color-brand-200:#f7b3d3;
+  --color-brand-300:#f08bbb;
+  --color-brand-400:#ec74ab;
+  --color-brand-500:#E55E99;
+  --color-brand-600:#d83f82;
+  --color-brand-700:#b82d68;
+  --color-brand-800:#932454;
+  --color-brand-900:#771e45;
+  --color-brand-950:#470f29;
+  --color-primary:#E55E99; --color-primary-foreground:#ffffff;
+  --font-sans:Inter,ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

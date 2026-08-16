@@ -7,7 +7,9 @@
     "vendor:uisfx": "node scripts/vendor-uisfx.mjs",
     "vendor:icons": "node scripts/vendor-icon-library.mjs",
     "mirror:drawn-icons": "node scripts/mirror-drawn-icons.mjs",
-    "build": "npm run vendor:uisfx && npm run vendor:icons"
+    "build": "npm run vendor:uisfx && npm run vendor:icons",
+    "build:hub": "python3 scripts/build_hub.py",
+    "deploy": "npm run build:hub && bash deploy/deploy.sh"
   },
   "dependencies": {
     "uisfx": "0.4.0"

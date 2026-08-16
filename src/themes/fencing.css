@@ -1,0 +1,18 @@
+/* fencing brand theme — https://design.bhd.om/themes/fencing.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/fencing.css";
+ * primary #1e8439 */
+@theme {
+  --color-brand-50:#f4f9f5;
+  --color-brand-100:#e8f3eb;
+  --color-brand-200:#c7e0ce;
+  --color-brand-300:#9ac8a6;
+  --color-brand-400:#62a974;
+  --color-brand-500:#1e8439;
+  --color-brand-600:#1a7432;
+  --color-brand-700:#165f29;
+  --color-brand-800:#114a20;
+  --color-brand-900:#0d3718;
+  --color-brand-950:#08220f;
+  --color-primary:#1e8439; --color-primary-foreground:#ffffff;
+  --font-sans:Cairo,ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

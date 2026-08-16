@@ -1,0 +1,18 @@
+/* hosn brand theme — https://design.bhd.om/themes/hosn.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/hosn.css";
+ * primary #0F3355 */
+@theme {
+  --color-brand-50:#f3f5f6;
+  --color-brand-100:#e7ebee;
+  --color-brand-200:#c3ccd4;
+  --color-brand-300:#93a3b2;
+  --color-brand-400:#577088;
+  --color-brand-500:#0F3355;
+  --color-brand-600:#0d2d4b;
+  --color-brand-700:#0b253d;
+  --color-brand-800:#081d30;
+  --color-brand-900:#061524;
+  --color-brand-950:#040d16;
+  --color-primary:#0F3355; --color-primary-foreground:#ffffff;
+  --font-sans:"Arsenica Arabic",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

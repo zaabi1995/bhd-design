@@ -29,6 +29,18 @@ if [[ "${1:-}" == "--setup" || "${1:-}" == "--reload-nginx" ]]; then
 fi
 
 echo "==> Pushing src/ to VPS"
+# src/ is the SINGLE SOURCE OF TRUTH for this webroot. --delete is therefore
+# correct: anything on the server that is not in src/ is stale and should go.
+#
+# The Tailwind hub (tw.js, tailwind-browser.js, themes/*.css) was once generated
+# by a script that lived outside this repo and wrote straight to the server. It
+# was not in src/, so --delete removed it, twice. It is now built into src/ by
+# `npm run build:hub` and committed, which is why it needs no exclude.
+#
+# Only two excludes remain, and both are size, not ownership: these trees are too
+# large for git and are mirrored to the server by their own scripts. If you are
+# about to add a THIRD exclude, stop: that means something is being deployed from
+# outside this repo again, and the fix is to bring it into src/, not to add a line.
 rsync -az --delete \
   --exclude='.DS_Store' \
   --exclude='__pycache__' \
