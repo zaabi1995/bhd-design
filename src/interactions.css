@@ -1,9 +1,11 @@
 /* BHD Interaction System v2. DQNamo-inspired mechanics, adapted for production use. */
+/* Motion values are owned by tokens.css since 18 Aug 2026. The fallbacks keep
+ * this file standalone for anyone who loads it without tokens.css. */
 :root {
-  --bhd-motion-fast: 120ms;
-  --bhd-motion-base: 220ms;
-  --bhd-motion-slow: 480ms;
-  --bhd-spring: cubic-bezier(.2, .8, .2, 1);
+  --bhd-motion-fast: var(--duration-fast, 120ms);
+  --bhd-motion-base: var(--duration-slow, 220ms);
+  --bhd-motion-slow: var(--duration-deliberate, 480ms);
+  --bhd-spring: var(--ease-spring, cubic-bezier(.2, .8, .2, 1));
   --bhd-depth: 3px;
 }
 

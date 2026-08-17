@@ -46,7 +46,25 @@ Documentation uses a centered readable column. Tool pages may expand to a wider 
 
 ## Motion
 
-Use 150 to 220 millisecond transitions for opacity and transform only. Motion communicates selection, filtering, copying, or panel state. Respect `prefers-reduced-motion`.
+Animate opacity and transform only. Motion communicates selection, filtering, copying, or panel state. Respect `prefers-reduced-motion`, which `tokens.css` handles by collapsing every duration to 1ms.
+
+Durations and curves are tokens, not opinions. Quote them, do not retype them.
+
+| Token | Value | Use |
+|---|---|---|
+| `--duration-instant` | 90ms | State flip, checkbox, tab underline |
+| `--duration-fast` | 120ms | Hover, press, tactile depth |
+| `--duration-base` | 180ms | The default: panel, popover, copy feedback |
+| `--duration-slow` | 220ms | Drawer, sheet, page-level fade |
+| `--duration-deliberate` | 480ms | Hold to confirm, receipt print, stamp |
+| `--ease-standard` | `cubic-bezier(.2, 0, 0, 1)` | Default in and out |
+| `--ease-out` | `cubic-bezier(0, 0, .2, 1)` | Entering the screen |
+| `--ease-in` | `cubic-bezier(.4, 0, 1, 1)` | Leaving the screen |
+| `--ease-spring` | `cubic-bezier(.2, .8, .2, 1)` | Tactile, drag release |
+
+## Waiting
+
+A wait driven by a model gets a named state, never a bare spinner. Use `orb.js` and one of the nine states (working, searching, solving, listening, connecting, weaving, composing, breathing, shaping), paired with a sentence that says what is happening. Playground at `/orbs.html`.
 
 ## Accessibility
 

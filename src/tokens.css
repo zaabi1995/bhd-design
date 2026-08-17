@@ -102,6 +102,34 @@
   --sidebar-width-collapsed: 80px;
 }
 
+/* ---- Motion, canonical ----
+ * Added 18 Aug 2026. DESIGN.md carried durations in prose and no easing at all,
+ * so every project invented its own curve. These are the numbers; quote them,
+ * do not retype them. interactions.css and orb.css both read from here.
+ * Animate opacity and transform only. Always honour prefers-reduced-motion. */
+:root {
+  --duration-instant: 90ms;   /* state flip, checkbox, tab underline */
+  --duration-fast: 120ms;     /* hover, press, tactile depth */
+  --duration-base: 180ms;     /* the default: panel, popover, copy feedback */
+  --duration-slow: 220ms;     /* drawer, sheet, page-level fade */
+  --duration-deliberate: 480ms; /* hold to confirm, receipt print, stamp */
+
+  --ease-standard: cubic-bezier(.2, 0, 0, 1);   /* default in and out */
+  --ease-out: cubic-bezier(0, 0, .2, 1);        /* entering the screen */
+  --ease-in: cubic-bezier(.4, 0, 1, 1);         /* leaving the screen */
+  --ease-spring: cubic-bezier(.2, .8, .2, 1);   /* tactile, drag release */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 1ms;
+    --duration-fast: 1ms;
+    --duration-base: 1ms;
+    --duration-slow: 1ms;
+    --duration-deliberate: 1ms;
+  }
+}
+
 /* ---- Semantic tokens, DARK ---- */
 .dark {
   --background: var(--color-zinc-950);

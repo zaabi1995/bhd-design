@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand guidelines · BHD Design</title>
+<meta name="description" content="The BHD Group brand, as a live page instead of a PDF. Colour, typography, motion and assets, every value copyable, generated from tokens.css.">
+<link rel="canonical" href="https://design.bhd.om/brand.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/orb.css">
+<link rel="stylesheet" href="https://fonts.bhd.om/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<script src="/dark-mode.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
+
+  header.site {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--background) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: var(--header-height); }
+  .brand { display: inline-flex; align-items: center; gap: .5rem; font-weight: 600; font-size: .95rem; }
+  .brand .dot { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--primary); }
+  header nav { display: flex; gap: .25rem; flex-wrap: wrap; align-items: center; }
+  header nav a, .ghost-btn {
+    font: inherit; font-size: .825rem; color: var(--muted-foreground);
+    text-decoration: none; padding: .4rem .6rem; border-radius: var(--radius-md);
+    border: 1px solid transparent; background: none; cursor: pointer;
+    transition: color var(--duration-fast) var(--ease-standard), background-color var(--duration-fast) var(--ease-standard);
+  }
+  header nav a:hover, .ghost-btn:hover { color: var(--foreground); background: var(--muted); }
+  .ghost-btn { border-color: var(--border); color: var(--foreground); }
+
+  section { border-bottom: 1px solid var(--border); padding: 3.25rem 0; }
+  section:last-of-type { border-bottom: 0; }
+  .eyebrow {
+    display: inline-block; font-size: .72rem; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--primary); font-weight: 600; margin-bottom: .6rem;
+  }
+  h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); line-height: 1.05; margin: 0 0 1rem; letter-spacing: -.02em; }
+  h2 { font-size: 1.35rem; margin: 0 0 .6rem; letter-spacing: -.01em; }
+  h3 { font-size: .95rem; margin: 2rem 0 .75rem; }
+  p { margin: 0 0 1rem; }
+  .lead { color: var(--muted-foreground); max-width: 68ch; }
+  a { color: var(--primary); }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace; font-size: .82em; }
+
+  .grid { display: grid; gap: .75rem; }
+  .cols-4 { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .cols-3 { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .cols-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+  .card { border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--card); padding: 1rem; }
+
+  /* Every value on this page copies on click. That is the whole point of a live
+     brand page: nobody should be retyping a hex out of a PDF. */
+  .copy {
+    position: relative; text-align: start; width: 100%;
+    border: 1px solid var(--border); border-radius: var(--radius-lg);
+    background: var(--card); color: inherit; font: inherit; padding: 0; cursor: copy;
+    overflow: hidden;
+    transition: border-color var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+  }
+  .copy:hover { border-color: var(--primary); }
+  .copy:active { transform: scale(.99); }
+  .copy:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+  .copy[data-copied="true"]::after {
+    content: "Copied";
+    position: absolute; inset-block-start: .4rem; inset-inline-end: .4rem;
+    background: var(--primary); color: var(--primary-foreground);
+    font-size: .68rem; font-weight: 600; padding: .15rem .4rem; border-radius: var(--radius-sm);
+  }
+  .swatch__chip { block-size: 74px; border-bottom: 1px solid var(--border); }
+  .swatch__meta { padding: .55rem .65rem; display: grid; gap: .15rem; }
+  .swatch__name { font-size: .8rem; font-weight: 500; }
+  .swatch__value { font-size: .72rem; color: var(--muted-foreground); overflow-wrap: anywhere; }
+
+  .rowline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .7rem .8rem; }
+  .rowline + .rowline { border-top: 1px solid var(--border); }
+  .stack { border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--card); overflow: hidden; }
+
+  .specimen { font-size: clamp(1.6rem, 5vw, 2.6rem); line-height: 1.25; margin: 0; }
+  .specimen.ar { direction: rtl; }
+  .scale-row { display: flex; align-items: baseline; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--border); }
+  .scale-row span:first-child { color: var(--muted-foreground); font-size: .72rem; min-inline-size: 5.5rem; }
+
+  .demo-box {
+    inline-size: 44px; block-size: 44px; border-radius: var(--radius-md);
+    background: var(--primary); flex: none;
+  }
+  .demo-track { border: 1px dashed var(--border); border-radius: var(--radius-lg); padding: .6rem; overflow: hidden; }
+  .demo-box.run { transform: translateX(calc(100% + 1rem)); }
+
+  .principle { border-inline-start: 3px solid var(--primary); padding: .2rem 0 .2rem .9rem; }
+  .principle strong { display: block; margin-bottom: .2rem; }
+  .principle span { color: var(--muted-foreground); font-size: .875rem; }
+
+  table { inline-size: 100%; border-collapse: collapse; font-size: .875rem; }
+  th { text-align: start; font-weight: 600; color: var(--muted-foreground); font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; padding: .5rem .6rem; }
+  td { padding: .6rem; border-top: 1px solid var(--border); }
+  .pill { font-size: .7rem; padding: .1rem .45rem; border-radius: 999px; background: var(--muted); color: var(--muted-foreground); }
+  .pill.live { background: color-mix(in srgb, var(--success) 16%, transparent); color: var(--success); }
+
+  .note { font-size: .82rem; color: var(--muted-foreground); }
+  footer { padding: 2.5rem 0 4rem; color: var(--muted-foreground); font-size: .82rem; }
+
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+</style>
+</head>
+<body class="bhd-base">
+
+<header class="site">
+  <div class="wrap">
+    <span class="brand"><span class="dot"></span> BHD brand</span>
+    <nav>
+      <a href="#colour">Colour</a>
+      <a href="#typography">Type</a>
+      <a href="#motion">Motion</a>
+      <a href="#applications">Applications</a>
+      <a href="#assets">Assets</a>
+      <a href="/">Design system</a>
+      <button class="ghost-btn" onclick="BHDTheme.toggle()">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<!-- 1. INTRODUCTION -->
+<section id="introduction">
+  <div class="wrap">
+    <span class="eyebrow">BHD Group brand guidelines</span>
+    <h1>The brand, as a page that stays current.</h1>
+    <p class="lead">
+      Not a PDF in someone's downloads folder. Every colour, size and curve on this page is read live from
+      <a href="/tokens.json"><code>tokens.json</code></a>, which is generated from
+      <code>tokens.css</code>. Change the CSS, redeploy, and this page changes with it. Click any value to copy it.
+    </p>
+    <p class="lead">
+      Machines get the same file. Point an agent at <code>https://design.bhd.om/tokens.json</code> and it stops
+      guessing our colours.
+    </p>
+    <div class="grid cols-2" style="margin-top:1.5rem">
+      <div class="principle"><strong>Restraint is the system</strong><span>Cyan marks action, focus, selection or live status. It is never decoration.</span></div>
+      <div class="principle"><strong>Arabic is a first language</strong><span>One family covers Latin and Arabic. Arabic is never letter-spaced.</span></div>
+      <div class="principle"><strong>Borders before shadows</strong><span>Elevation is reserved for overlays, popovers and sticky controls.</span></div>
+      <div class="principle"><strong>Say what the wait is</strong><span>A model-driven wait gets a named state, not a generic spinner.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. LOGO -->
+<section id="logo">
+  <div class="wrap">
+    <h2>Logo</h2>
+    <p class="lead">The hosted mark, used for favicons, share cards and app tiles across the group.</p>
+    <div class="grid cols-3">
+      <div class="card" style="display:grid;place-items:center;gap:.75rem;padding:1.5rem">
+        <img src="/favicon.svg" alt="BHD mark" width="72" height="72">
+        <span class="note">favicon.svg · on light</span>
+      </div>
+      <div class="card" style="display:grid;place-items:center;gap:.75rem;padding:1.5rem;background:var(--color-zinc-950)">
+        <img src="/favicon.svg" alt="BHD mark on dark" width="72" height="72">
+        <span class="note">favicon.svg · on dark</span>
+      </div>
+      <div class="card" style="display:grid;place-items:center;gap:.75rem;padding:1.5rem">
+        <img src="/og.svg" alt="BHD share card" style="inline-size:100%;height:auto;border-radius:var(--radius-md)">
+        <span class="note">og.svg · 1200×630 share card</span>
+      </div>
+    </div>
+    <h3>Rules</h3>
+    <div class="stack">
+      <div class="rowline"><span>Colour</span><span class="note">Cyan on light or dark. Never recolour, never gradient, never add a shadow.</span></div>
+      <div class="rowline"><span>Clear space</span><span class="note">Keep clear space equal to the height of the mark's stem on all four sides.</span></div>
+      <div class="rowline"><span>Minimum size</span><span class="note">16px for a favicon, 24px anywhere else. Below that use the wordmark instead.</span></div>
+      <div class="rowline"><span>Do not</span><span class="note">Stretch, rotate, outline, or place on a busy photograph.</span></div>
+    </div>
+    <p class="note" style="margin-top:.9rem">
+      Not hosted here yet: the full BHD lockups and the per-brand logo masters (Cardify, CupsByAA, Hosn, Mithaq and the rest).
+      They live in the brand archive on Drive. Ask before pulling a logo from anywhere else.
+    </p>
+  </div>
+</section>
+
+<!-- 3. COLOUR -->
+<section id="colour">
+  <div class="wrap">
+    <h2>Colour</h2>
+    <p class="lead">Rendered from <code>tokens.json</code>. Click a swatch to copy its value. Toggle the theme to see the dark set.</p>
+
+    <h3>Semantic</h3>
+    <div class="grid cols-4" id="semantic-swatches"></div>
+
+    <h3>BHD cyan ramp</h3>
+    <div class="grid cols-4" id="brand-ramp"></div>
+
+    <h3>Radius</h3>
+    <div class="grid cols-4" id="radius-list"></div>
+  </div>
+</section>
+
+<!-- 4. TYPOGRAPHY -->
+<section id="typography">
+  <div class="wrap">
+    <h2>Typography</h2>
+    <p class="lead">
+      IBM Plex Sans Arabic, one variable family for Latin and Arabic, served from
+      <a href="https://fonts.bhd.om">fonts.bhd.om</a>. Never load it from Google's hosts.
+    </p>
+    <div class="card">
+      <p class="specimen">Print, package, ship. 0123456789</p>
+      <p class="specimen ar">بن حيدر درويش ش.م.م، مسقط</p>
+    </div>
+    <h3>Scale</h3>
+    <div>
+      <div class="scale-row"><span>Display</span><span style="font-size:2.6rem;font-weight:600;line-height:1.1">Aa</span><span class="note">clamp(2.1rem, 6vw, 3.4rem) · 600 · -0.02em</span></div>
+      <div class="scale-row"><span>Section</span><span style="font-size:1.35rem;font-weight:600">Aa</span><span class="note">1.35rem · 600 · -0.01em</span></div>
+      <div class="scale-row"><span>Body</span><span style="font-size:1rem">Aa</span><span class="note">1rem · 400 · capped near 70 characters</span></div>
+      <div class="scale-row"><span>Note</span><span style="font-size:.82rem;color:var(--muted-foreground)">Aa</span><span class="note">0.82rem · muted-foreground</span></div>
+      <div class="scale-row"><span>Mono</span><span class="mono" style="font-size:1rem">Aa</span><span class="note">system monospace stack, for values and code</span></div>
+    </div>
+    <h3>The hard Arabic rule</h3>
+    <div class="grid cols-2">
+      <div class="card">
+        <p class="specimen ar" style="font-size:1.6rem;margin:0">للرخام</p>
+        <p class="note" style="margin:.6rem 0 0">Correct. No letter-spacing, the cursive join holds.</p>
+      </div>
+      <div class="card" style="border-color:var(--destructive)">
+        <!-- Inline !important on purpose: tokens.css zeroes letter-spacing on Arabic
+             with !important, so the wrong example needs to out-rank it to be visible. -->
+        <p class="specimen ar" style="font-size:1.6rem;margin:0;letter-spacing:.2em !important">للرخام</p>
+        <p class="note" style="margin:.6rem 0 0;color:var(--destructive)">Wrong. Tracking breaks the join and reads as illiterate. For emphasis use kashida (U+0640), never tracking.</p>
+      </div>
+    </div>
+    <p class="note"><code>tokens.css</code> enforces this with a global rule on <code>:lang(ar)</code>, <code>[dir="rtl"]</code> and <code>.ar</code>.</p>
+  </div>
+</section>
+
+<!-- 5. MOTION -->
+<section id="motion">
+  <div class="wrap">
+    <h2>Motion</h2>
+    <p class="lead">
+      Opacity and transform only. Pick a duration and a curve below, watch it, copy it. Values come from
+      <code>tokens.json</code>. Every duration collapses to 1ms under <code>prefers-reduced-motion</code>.
+    </p>
+
+    <div class="card">
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;margin-bottom:.9rem">
+        <label style="font-size:.82rem">Duration
+          <select id="dur-select" style="font:inherit;font-size:.82rem;margin-inline-start:.4rem;padding:.3rem;border-radius:var(--radius-md);border:1px solid var(--input);background:var(--background);color:var(--foreground)"></select>
+        </label>
+        <label style="font-size:.82rem">Easing
+          <select id="ease-select" style="font:inherit;font-size:.82rem;margin-inline-start:.4rem;padding:.3rem;border-radius:var(--radius-md);border:1px solid var(--input);background:var(--background);color:var(--foreground)"></select>
+        </label>
+        <button class="ghost-btn" id="play-motion">Play</button>
+      </div>
+      <div class="demo-track"><div class="demo-box" id="demo-box"></div></div>
+      <button class="copy" id="motion-copy" style="margin-top:.9rem;padding:.6rem .7rem"><span class="mono" id="motion-code">transition: transform 180ms cubic-bezier(.2, 0, 0, 1);</span></button>
+    </div>
+
+    <h3>Durations</h3>
+    <div class="grid cols-4" id="duration-list"></div>
+
+    <h3>Easings</h3>
+    <div class="grid cols-4" id="easing-list"></div>
+
+    <h3>Waiting states</h3>
+    <p class="lead">
+      A model-driven wait says what it is doing. Nine named states, one component, same names on web and native.
+      Full playground on <a href="/orbs.html">the orb page</a>.
+    </p>
+    <div class="card" style="display:flex;gap:2rem;flex-wrap:wrap;align-items:center">
+      <span class="bhd-orb-row"><span data-bhd-orb="listening" data-bhd-orb-size="44"></span> Listening</span>
+      <span class="bhd-orb-row"><span data-bhd-orb="searching" data-bhd-orb-size="44"></span> Searching</span>
+      <span class="bhd-orb-row"><span data-bhd-orb="solving" data-bhd-orb-size="44"></span> Solving</span>
+    </div>
+  </div>
+</section>
+
+<!-- 6. MOODBOARD -->
+<section id="moodboard">
+  <div class="wrap">
+    <h2>Moodboard</h2>
+    <p class="lead">What the system should feel like, and what it must never feel like. No stock photography, on purpose.</p>
+    <div class="grid cols-3">
+      <div class="card" style="background:var(--color-bhd-950);color:var(--color-bhd-50);min-block-size:150px;display:flex;align-items:flex-end">
+        <div><strong>Ink on paper</strong><br><span class="note" style="color:var(--color-bhd-200)">A print shop's product. Dense, exact, no wasted surface.</span></div>
+      </div>
+      <div class="card" style="min-block-size:150px;display:flex;align-items:flex-end;background:var(--muted)">
+        <div><strong>Workshop, not showroom</strong><br><span class="note">Built for a team that uses it all day. Compact controls, keyboard first.</span></div>
+      </div>
+      <div class="card" style="min-block-size:150px;display:flex;align-items:flex-end;border-color:var(--primary)">
+        <div><strong>One accent, earned</strong><br><span class="note">Cyan appears where something is live or actionable. Nowhere else.</span></div>
+      </div>
+      <div class="card" style="min-block-size:150px;display:flex;align-items:flex-end">
+        <div><strong>Bilingual by default</strong><br><span class="note">Arabic is not a translation layer bolted on at the end. Logical properties everywhere.</span></div>
+      </div>
+      <div class="card" style="min-block-size:150px;display:flex;align-items:flex-end">
+        <div><strong>Quiet motion</strong><br><span class="note">Movement explains a change. It never performs.</span></div>
+      </div>
+      <div class="card" style="min-block-size:150px;display:flex;align-items:flex-end;border-style:dashed">
+        <div><strong>Never</strong><br><span class="note">Purple to cyan gradients, glassmorphism, emoji as icons, three shadows on one card, a spinner with no words.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. APPLICATIONS -->
+<section id="applications">
+  <div class="wrap">
+    <h2>Applications</h2>
+    <p class="lead">Where the system runs today, and the brand themes that recolour it.</p>
+    <div class="stack">
+      <table>
+        <thead><tr><th>Surface</th><th>What it uses</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>BHD-ERP</td><td>Tokens, tactile actions, hold to confirm, sound preference</td><td><span class="pill live">live</span></td></tr>
+          <tr><td>Cardify admin</td><td>Tokens, Cmd+K</td><td><span class="pill live">live</span></td></tr>
+          <tr><td>CupsByAA</td><td>Receipt printer, artwork drop, soft semantic sound</td><td><span class="pill live">live</span></td></tr>
+          <tr><td>fencing.om, Mithaq</td><td>Public pages, shared admin shell, Topbar v2</td><td><span class="pill live">live</span></td></tr>
+          <tr><td>hosn.om</td><td>Landing page</td><td><span class="pill live">live</span></td></tr>
+          <tr><td>arabian.ceo</td><td>Bootstrap to Tailwind v4, admin shell</td><td><span class="pill">pending</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Brand themes</h3>
+    <p class="note">Each file recolours the same tokens for one brand: <code>themes/&lt;brand&gt;.css</code>.</p>
+    <div class="grid cols-4" id="theme-list"></div>
+  </div>
+</section>
+
+<!-- 8. ASSETS -->
+<section id="assets">
+  <div class="wrap">
+    <h2>Assets</h2>
+    <p class="lead">Everything hosted on this domain. Click to copy the URL.</p>
+    <div class="grid cols-3" id="asset-list"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Generated from <code>tokens.css</code>. Structure follows the section order used by Vessa
+    (Introduction, Logo, Colour, Typography, Motion, Moodboard, Applications, Assets), built on our own domain
+    instead of a per-brand subscription. See <code>docs/learnings.md</code> in the repo.
+  </div>
+</footer>
+
+<script src="/orb.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ---- click to copy, the whole reason this page exists ---- */
+  document.addEventListener('click', function (event) {
+    var target = event.target.closest('[data-copy]');
+    if (!target) return;
+    var value = target.getAttribute('data-copy');
+    var write = navigator.clipboard
+      ? navigator.clipboard.writeText(value)
+      : Promise.reject();
+    write.then(function () {
+      target.dataset.copied = 'true';
+      setTimeout(function () { delete target.dataset.copied; }, 1200);
+    }).catch(function () {
+      window.prompt('Copy this value', value);
+    });
+  });
+
+  function swatch(name, value, chipStyle) {
+    return '<button class="copy" data-copy="' + value + '" title="Copy ' + value + '">' +
+      '<div class="swatch__chip" style="' + chipStyle + '"></div>' +
+      '<div class="swatch__meta"><span class="swatch__name">' + name + '</span>' +
+      '<span class="swatch__value mono">' + value + '</span></div></button>';
+  }
+
+  function row(name, value) {
+    return '<button class="copy" data-copy="' + value + '" style="padding:.65rem .7rem">' +
+      '<span class="swatch__name">' + name + '</span><br>' +
+      '<span class="swatch__value mono">' + value + '</span></button>';
+  }
+
+  var THEMES = ['bhd', 'cardify', 'cupsbyaa', 'dardasha', 'fencing', 'hosn', 'mithaq',
+                'paperandpen', 'reachscreens', 'splitty', 'almaha', 'arabian'];
+
+  var ASSETS = [
+    ['tokens.css', 'Semantic variables, light and dark'],
+    ['tokens.json', 'The same values, machine readable'],
+    ['cmdk.css', 'Command palette styles'],
+    ['cmdk.js', 'Command palette (⌘K)'],
+    ['dark-mode.js', 'BHDTheme, no flash of wrong theme'],
+    ['skeleton.css', 'Layout-matched loading skeletons'],
+    ['interactions.css', 'Interaction system v2 styles'],
+    ['interactions.js', 'Tactile, hold to confirm, dropzone'],
+    ['orb.css', 'Wait-state orb styles'],
+    ['orb.js', 'Nine named model wait states'],
+    ['currency.css', 'OMR sign styles'],
+    ['currency.js', 'Official rial sign, 3 decimals'],
+    ['rtl.css', 'Logical-property RTL utilities'],
+    ['icons.js', 'Shared icon client'],
+    ['favicon.svg', 'The mark'],
+    ['og.svg', 'Share card, 1200×630']
+  ];
+
+  function renderStatic() {
+    /* Show the short path, copy the full URL. The full URL overflowed the card. */
+    document.getElementById('theme-list').innerHTML = THEMES.map(function (t) {
+      return '<button class="copy" data-copy="https://design.bhd.om/themes/' + t + '.css" style="padding:.65rem .7rem">' +
+        '<span class="swatch__name">' + t + '</span><br>' +
+        '<span class="swatch__value mono">themes/' + t + '.css</span></button>';
+    }).join('');
+
+    document.getElementById('asset-list').innerHTML = ASSETS.map(function (a) {
+      return '<button class="copy" data-copy="https://design.bhd.om/' + a[0] + '" style="padding:.65rem .7rem">' +
+        '<span class="swatch__name mono">' + a[0] + '</span><br>' +
+        '<span class="swatch__value">' + a[1] + '</span></button>';
+    }).join('');
+  }
+
+  function renderTokens(tokens) {
+    var mode = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    var semantic = tokens.semantic[mode];
+    var order = ['background', 'foreground', 'primary', 'muted', 'muted-foreground',
+                 'accent', 'border', 'ring', 'destructive', 'success', 'warning', 'card'];
+
+    document.getElementById('semantic-swatches').innerHTML = order
+      .filter(function (n) { return semantic[n]; })
+      .map(function (n) {
+        return swatch(n, semantic[n], 'background:' + semantic[n] + ';');
+      }).join('');
+
+    var ramp = tokens.palette.bhd;
+    document.getElementById('brand-ramp').innerHTML = Object.keys(ramp).map(function (step) {
+      return swatch('bhd-' + step, ramp[step], 'background:' + ramp[step] + ';');
+    }).join('');
+
+    document.getElementById('radius-list').innerHTML = Object.keys(tokens.radius).map(function (k) {
+      return '<button class="copy" data-copy="var(--radius' + (k === 'base' ? '' : '-' + k) + ')" style="padding:.7rem">' +
+        '<div style="block-size:44px;background:var(--muted);border-radius:var(--radius' + (k === 'base' ? '' : '-' + k) + ')"></div>' +
+        '<div class="swatch__meta"><span class="swatch__name">' + k + '</span>' +
+        '<span class="swatch__value mono">' + tokens.radius[k] + '</span></div></button>';
+    }).join('');
+
+    var durations = tokens.motion.duration;
+    var easings = tokens.motion.easing;
+
+    document.getElementById('duration-list').innerHTML = Object.keys(durations).map(function (k) {
+      return row(k, durations[k]);
+    }).join('');
+    document.getElementById('easing-list').innerHTML = Object.keys(easings).map(function (k) {
+      return row(k, easings[k]);
+    }).join('');
+
+    var durSelect = document.getElementById('dur-select');
+    var easeSelect = document.getElementById('ease-select');
+    durSelect.innerHTML = Object.keys(durations).map(function (k) {
+      return '<option value="' + durations[k] + '"' + (k === 'base' ? ' selected' : '') + '>' + k + ' · ' + durations[k] + '</option>';
+    }).join('');
+    easeSelect.innerHTML = Object.keys(easings).map(function (k) {
+      return '<option value="' + easings[k] + '"' + (k === 'standard' ? ' selected' : '') + '>' + k + '</option>';
+    }).join('');
+
+    var box = document.getElementById('demo-box');
+    var code = document.getElementById('motion-code');
+    var copyBtn = document.getElementById('motion-copy');
+
+    function sync() {
+      var css = 'transition: transform ' + durSelect.value + ' ' + easeSelect.value + ';';
+      box.style.transition = 'transform ' + durSelect.value + ' ' + easeSelect.value;
+      code.textContent = css;
+      copyBtn.setAttribute('data-copy', css);
+    }
+    function play() {
+      box.classList.toggle('run');
+    }
+    durSelect.addEventListener('change', sync);
+    easeSelect.addEventListener('change', sync);
+    document.getElementById('play-motion').addEventListener('click', play);
+    sync();
+  }
+
+  renderStatic();
+
+  fetch('/tokens.json')
+    .then(function (r) { return r.json(); })
+    .then(function (tokens) {
+      renderTokens(tokens);
+      document.addEventListener('bhd:theme-change', function () { renderTokens(tokens); });
+      var observer = new MutationObserver(function () { renderTokens(tokens); });
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    })
+    .catch(function () {
+      document.getElementById('semantic-swatches').innerHTML =
+        '<p class="note">tokens.json did not load. Run <code>npm run build:tokens</code> and redeploy.</p>';
+    });
+})();
+</script>
+</body>
+</html>

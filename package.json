@@ -9,7 +9,9 @@
     "mirror:drawn-icons": "node scripts/mirror-drawn-icons.mjs",
     "build": "npm run vendor:uisfx && npm run vendor:icons",
     "build:hub": "python3 scripts/build_hub.py",
-    "deploy": "npm run build:hub && bash deploy/deploy.sh"
+    "build:tokens": "python3 scripts/build_tokens_json.py",
+    "check:tokens": "python3 scripts/build_tokens_json.py --check",
+    "deploy": "npm run build:hub && npm run build:tokens && bash deploy/deploy.sh"
   },
   "dependencies": {
     "uisfx": "0.4.0"
