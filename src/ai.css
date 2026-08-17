@@ -1,0 +1,479 @@
+/*
+ * BHD AI Blocks v1
+ * https://design.bhd.om/ai.css
+ *
+ * Everything an agent shows mid-conversation: thinking, tool calls, streamed
+ * text, citations, code, to-dos, tables and the composer. Thirteen blocks,
+ * plus the wait orb in orb.css.
+ *
+ * The component vocabulary follows AIcss (aicss.dev), which publishes the same
+ * set as copy-paste React, Vue and Svelte. This is our own implementation:
+ * vanilla CSS on BHD tokens, logical properties so it mirrors in Arabic, both
+ * themes with no dark-mode branch, and no emoji anywhere.
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="https://design.bhd.om/tokens.css">
+ *   <link rel="stylesheet" href="https://design.bhd.om/ai.css">
+ *   <script src="https://design.bhd.om/ai.js"></script>
+ *
+ * Every block is a plain element with a class. ai.js is only needed for the
+ * behavioural ones (streaming, collapse, copy, composer).
+ */
+
+/* ---- shared ---- */
+.bhd-ai {
+  --bhd-ai-gap: 0.65rem;
+  font-family: inherit;
+  color: var(--foreground);
+  max-inline-size: 100%;
+}
+.bhd-ai + .bhd-ai { margin-block-start: 1rem; }
+
+.bhd-ai-surface {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  overflow: hidden;
+}
+
+.bhd-ai-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border-block-end: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  min-inline-size: 0;
+}
+.bhd-ai-head__name { color: var(--foreground); font-weight: 500; overflow-wrap: anywhere; }
+.bhd-ai-head__spacer { margin-inline-start: auto; }
+
+.bhd-ai-icon { inline-size: 14px; block-size: 14px; flex: none; }
+
+.bhd-ai-btn {
+  font: inherit;
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.2rem 0.45rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color var(--duration-fast) var(--ease-standard),
+              background-color var(--duration-fast) var(--ease-standard);
+}
+.bhd-ai-btn:hover { color: var(--foreground); background: var(--muted); }
+.bhd-ai-btn:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+/* ---- 1. Thinking state ---- */
+.bhd-ai-thinking {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--muted-foreground);
+  font-size: 0.9rem;
+}
+.bhd-ai-thinking__label {
+  background: linear-gradient(
+    90deg,
+    var(--muted-foreground) 0%,
+    var(--foreground) 45%,
+    var(--muted-foreground) 90%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: bhd-ai-shimmer 2.4s linear infinite;
+}
+.bhd-ai-thinking__time {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  color: var(--muted-foreground);
+}
+@keyframes bhd-ai-shimmer {
+  from { background-position: 120% 0; }
+  to { background-position: -80% 0; }
+}
+
+/* ---- 2. Thinking + reasoning ---- */
+.bhd-ai-reasoning__toggle {
+  font: inherit;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted-foreground);
+  background: none;
+  border: 0;
+  padding: 0.2rem 0;
+  cursor: pointer;
+}
+.bhd-ai-reasoning__toggle:hover { color: var(--foreground); }
+.bhd-ai-reasoning__toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
+.bhd-ai-reasoning__chevron {
+  inline-size: 12px;
+  block-size: 12px;
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+.bhd-ai-reasoning[data-open="true"] .bhd-ai-reasoning__chevron { transform: rotate(90deg); }
+[dir="rtl"] .bhd-ai-reasoning__chevron { transform: scaleX(-1); }
+[dir="rtl"] .bhd-ai-reasoning[data-open="true"] .bhd-ai-reasoning__chevron { transform: scaleX(-1) rotate(90deg); }
+
+.bhd-ai-reasoning__body { display: none; margin-block-start: 0.6rem; }
+.bhd-ai-reasoning[data-open="true"] .bhd-ai-reasoning__body { display: block; }
+
+.bhd-ai-reasoning__step {
+  position: relative;
+  padding-inline-start: 1.1rem;
+  padding-block: 0.35rem;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+.bhd-ai-reasoning__step::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0.28rem;
+  inset-block-start: 0.85rem;
+  inline-size: 5px;
+  block-size: 5px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.bhd-ai-reasoning__step::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0.5rem;
+  inset-block: 1.35rem 0;
+  inline-size: 1px;
+  background: var(--border);
+}
+.bhd-ai-reasoning__step:last-child::after { display: none; }
+.bhd-ai-reasoning__step[data-active="true"] { color: var(--foreground); }
+.bhd-ai-reasoning__step[data-active="true"]::before { background: var(--primary); }
+
+/* ---- 3. Web search ---- */
+.bhd-ai-search__query {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  padding-block-end: 0.6rem;
+}
+.bhd-ai-search__query b { color: var(--foreground); font-weight: 500; }
+.bhd-ai-search__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.1rem; }
+.bhd-ai-search__item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.42rem 0.5rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  min-inline-size: 0;
+}
+.bhd-ai-search__item:hover { background: var(--muted); }
+.bhd-ai-search__item .bhd-ai-icon { align-self: center; color: var(--success); }
+.bhd-ai-search__title { color: var(--foreground); text-decoration: none; overflow-wrap: anywhere; }
+.bhd-ai-search__title:hover { text-decoration: underline; }
+.bhd-ai-search__host {
+  color: var(--muted-foreground);
+  font-size: 0.78rem;
+  margin-inline-start: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-inline-size: 45%;
+  direction: ltr;
+}
+
+/* ---- 4. File diff ---- */
+.bhd-ai-diff__counts { display: inline-flex; gap: 0.45rem; font-variant-numeric: tabular-nums; font-size: 0.78rem; }
+.bhd-ai-diff__add { color: var(--success); }
+.bhd-ai-diff__del { color: var(--destructive); }
+
+.bhd-ai-diff__code {
+  margin: 0;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  line-height: 1.65;
+  direction: ltr;
+  text-align: start;
+}
+.bhd-ai-diff__line { display: flex; white-space: pre; }
+.bhd-ai-diff__no {
+  flex: none;
+  inline-size: 2.4rem;
+  padding-inline: 0.4rem;
+  text-align: end;
+  color: var(--muted-foreground);
+  opacity: 0.7;
+  user-select: none;
+}
+.bhd-ai-diff__mark { flex: none; inline-size: 1.1rem; text-align: center; user-select: none; color: var(--muted-foreground); }
+.bhd-ai-diff__text { padding-inline-end: 0.75rem; }
+.bhd-ai-diff__line[data-kind="add"] { background: color-mix(in srgb, var(--success) 13%, transparent); }
+.bhd-ai-diff__line[data-kind="add"] .bhd-ai-diff__mark { color: var(--success); }
+.bhd-ai-diff__line[data-kind="del"] { background: color-mix(in srgb, var(--destructive) 12%, transparent); }
+.bhd-ai-diff__line[data-kind="del"] .bhd-ai-diff__mark { color: var(--destructive); }
+
+/* ---- 5. Image generation ---- */
+.bhd-ai-image__frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 1;
+  max-inline-size: 260px;
+  margin-inline: auto;
+  background: var(--muted);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.bhd-ai-image__frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 35%,
+    color-mix(in srgb, var(--foreground) 7%, transparent) 50%,
+    transparent 65%
+  );
+  background-size: 300% 100%;
+  animation: bhd-ai-shimmer 2.2s linear infinite;
+}
+.bhd-ai-image__frame img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.bhd-ai-image__size {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--muted-foreground);
+  font-variant-numeric: tabular-nums;
+  z-index: 1;
+}
+.bhd-ai-image__meta { padding: 0.7rem 0.75rem 0.75rem; text-align: center; }
+.bhd-ai-image__state { font-size: 0.85rem; }
+.bhd-ai-image__prompt { font-size: 0.8rem; color: var(--muted-foreground); margin-block-start: 0.15rem; }
+
+/* ---- 6. Text response ---- */
+.bhd-ai-response { font-size: 0.95rem; line-height: 1.65; max-inline-size: 70ch; }
+.bhd-ai-response p { margin: 0 0 0.75rem; }
+.bhd-ai-response p:last-child { margin-block-end: 0; }
+.bhd-ai-response strong { font-weight: 600; }
+.bhd-ai-response code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+  background: var(--muted);
+  border-radius: var(--radius-sm);
+  padding: 0.08em 0.3em;
+}
+
+/* ---- 7. Streaming text ---- */
+.bhd-ai-stream { font-size: 0.95rem; line-height: 1.65; max-inline-size: 70ch; }
+.bhd-ai-stream__caret {
+  display: inline-block;
+  inline-size: 0.5em;
+  block-size: 1.05em;
+  vertical-align: text-bottom;
+  background: var(--primary);
+  margin-inline-start: 0.12em;
+  animation: bhd-ai-blink 1.05s steps(2, start) infinite;
+}
+.bhd-ai-stream[data-done="true"] .bhd-ai-stream__caret { display: none; }
+@keyframes bhd-ai-blink { 50% { opacity: 0; } }
+
+/* ---- 8. Inline citations ---- */
+.bhd-ai-cite {
+  font-size: 0.62em;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--primary);
+  text-decoration: none;
+  padding-inline: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+.bhd-ai-cite:hover { text-decoration: underline; }
+.bhd-ai-sources {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0.75rem 0 0;
+  border-block-start: 1px solid var(--border);
+  display: grid;
+  gap: 0.35rem;
+  counter-reset: bhd-ai-source;
+}
+.bhd-ai-sources li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  min-inline-size: 0;
+}
+.bhd-ai-sources li::before {
+  counter-increment: bhd-ai-source;
+  content: counter(bhd-ai-source);
+  flex: none;
+  inline-size: 1.05rem;
+  block-size: 1.05rem;
+  border-radius: 50%;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 0.65rem;
+  display: grid;
+  place-items: center;
+  align-self: center;
+}
+.bhd-ai-sources a { color: var(--foreground); text-decoration: none; overflow-wrap: anywhere; }
+.bhd-ai-sources a:hover { text-decoration: underline; }
+.bhd-ai-sources span { color: var(--muted-foreground); margin-inline-start: auto; direction: ltr; white-space: nowrap; }
+
+/* ---- 9. Code block ---- */
+.bhd-ai-code__body {
+  margin: 0;
+  padding: 0.6rem 0;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  line-height: 1.7;
+  direction: ltr;
+  text-align: start;
+}
+.bhd-ai-code__line { display: flex; white-space: pre; }
+.bhd-ai-code__no {
+  flex: none;
+  inline-size: 2.4rem;
+  padding-inline: 0.5rem;
+  text-align: end;
+  color: var(--muted-foreground);
+  opacity: 0.65;
+  user-select: none;
+}
+.bhd-ai-code__text { padding-inline-end: 0.9rem; }
+
+/* ---- 10. To-do list ---- */
+.bhd-ai-todo__count { font-variant-numeric: tabular-nums; }
+.bhd-ai-todo__list { list-style: none; margin: 0; padding: 0.4rem 0.35rem; display: grid; gap: 0.05rem; }
+.bhd-ai-todo__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.45rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+}
+.bhd-ai-todo__box {
+  flex: none;
+  inline-size: 15px;
+  block-size: 15px;
+  border: 1.5px solid var(--input);
+  border-radius: var(--radius-sm);
+  display: grid;
+  place-items: center;
+  color: transparent;
+  transition: background-color var(--duration-base) var(--ease-standard),
+              border-color var(--duration-base) var(--ease-standard);
+}
+.bhd-ai-todo__item[data-state="done"] .bhd-ai-todo__box {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.bhd-ai-todo__item[data-state="done"] .bhd-ai-todo__text { color: var(--muted-foreground); text-decoration: line-through; }
+.bhd-ai-todo__item[data-state="active"] .bhd-ai-todo__box { border-color: var(--primary); }
+.bhd-ai-todo__item[data-state="active"] .bhd-ai-todo__text { color: var(--foreground); font-weight: 500; }
+.bhd-ai-todo__text { color: var(--muted-foreground); overflow-wrap: anywhere; }
+
+/* ---- 11 + 12. Data table and comparison table ---- */
+.bhd-ai-table { inline-size: 100%; overflow-x: auto; }
+.bhd-ai-table table { inline-size: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.bhd-ai-table th {
+  text-align: start;
+  font-weight: 500;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  padding: 0.5rem 0.75rem;
+  border-block-end: 1px solid var(--border);
+  white-space: nowrap;
+}
+.bhd-ai-table td { padding: 0.55rem 0.75rem; border-block-end: 1px solid var(--border); }
+.bhd-ai-table tbody tr:last-child td { border-block-end: 0; }
+.bhd-ai-table tbody tr:hover td { background: var(--muted); }
+.bhd-ai-table .num { text-align: end; font-variant-numeric: tabular-nums; direction: ltr; }
+.bhd-ai-table .yes { color: var(--success); }
+.bhd-ai-table .no { color: var(--muted-foreground); }
+.bhd-ai-compare th:not(:first-child), .bhd-ai-compare td:not(:first-child) { text-align: center; }
+.bhd-ai-compare tbody th { text-transform: none; font-size: 0.85rem; letter-spacing: 0; color: var(--foreground); font-weight: 400; }
+
+/* ---- 13. Agent input ---- */
+.bhd-ai-input {
+  border: 1px solid var(--input);
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  padding: 0.6rem 0.65rem 0.5rem;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard);
+}
+.bhd-ai-input:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 18%, transparent);
+}
+.bhd-ai-input__field {
+  inline-size: 100%;
+  border: 0;
+  outline: 0;
+  resize: none;
+  background: none;
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-block-size: 12rem;
+  overflow-y: auto;
+}
+.bhd-ai-input__field::placeholder { color: var(--muted-foreground); }
+.bhd-ai-input__bar { display: flex; align-items: center; gap: 0.35rem; margin-block-start: 0.45rem; }
+.bhd-ai-input__send {
+  margin-inline-start: auto;
+  inline-size: 30px;
+  block-size: 30px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+.bhd-ai-input__send:disabled { opacity: 0.4; cursor: not-allowed; }
+.bhd-ai-input__send:not(:disabled):active { transform: scale(0.94); }
+.bhd-ai-input__send:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+[dir="rtl"] .bhd-ai-input__send svg { transform: scaleX(-1); }
+.bhd-ai-input__chip {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+.bhd-ai-input__chip:hover { color: var(--foreground); background: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bhd-ai-thinking__label,
+  .bhd-ai-image__frame::after,
+  .bhd-ai-stream__caret { animation: none; }
+  .bhd-ai-thinking__label { color: var(--foreground); -webkit-text-fill-color: currentColor; }
+}

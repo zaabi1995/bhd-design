@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI blocks · BHD Design</title>
+<meta name="description" content="Thirteen blocks for everything an agent shows mid-conversation: thinking, tool calls, streaming text, citations, code, to-dos, tables and the composer. Vanilla CSS on BHD tokens, RTL-safe.">
+<link rel="canonical" href="https://design.bhd.om/ai.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/orb.css">
+<link rel="stylesheet" href="/ai.css">
+<link rel="stylesheet" href="https://fonts.bhd.om/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<script src="/dark-mode.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--background); color: var(--foreground);
+    font-family: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.25rem; }
+  header.site { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--background) 88%, transparent); backdrop-filter: blur(8px); }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; height: var(--header-height); gap: 1rem; }
+  .brand { display: inline-flex; align-items: center; gap: .5rem; font-weight: 600; font-size: .95rem; }
+  .brand .dot { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--primary); }
+  nav { display: flex; gap: .25rem; align-items: center; flex-wrap: wrap; }
+  nav a, .ghost-btn { font: inherit; font-size: .825rem; color: var(--muted-foreground); text-decoration: none;
+    padding: .4rem .6rem; border-radius: var(--radius-md); border: 1px solid transparent; background: none; cursor: pointer; }
+  nav a:hover, .ghost-btn:hover { color: var(--foreground); background: var(--muted); }
+  .ghost-btn { border-color: var(--border); color: var(--foreground); }
+
+  section.band { padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.05; margin: .4rem 0 1rem; letter-spacing: -.02em; }
+  h2 { font-size: 1.2rem; margin: 0 0 .35rem; }
+  .eyebrow { font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; color: var(--primary); font-weight: 600; }
+  .lead { color: var(--muted-foreground); max-width: 70ch; margin: 0 0 1rem; }
+  a { color: var(--primary); }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .82em; }
+
+  .demos { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; margin-top: 1.25rem; }
+  .demo { border: 1px solid var(--border); border-radius: var(--radius-xl); overflow: hidden; background: var(--card); display: flex; flex-direction: column; }
+  .demo__stage { padding: 1.1rem; flex: 1; display: flex; align-items: center; justify-content: center; min-block-size: 150px; background: var(--background); }
+  .demo__stage > * { inline-size: 100%; }
+  .demo__foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: .55rem .75rem; border-top: 1px solid var(--border); }
+  .demo__name { font-size: .85rem; font-weight: 500; }
+  .demo__cat { font-size: .72rem; color: var(--muted-foreground); }
+  footer { padding: 2rem 0 4rem; color: var(--muted-foreground); font-size: .82rem; }
+  .note { font-size: .82rem; color: var(--muted-foreground); }
+</style>
+</head>
+<body class="bhd-base">
+
+<header class="site">
+  <div class="wrap">
+    <span class="brand"><span class="dot"></span> AI blocks</span>
+    <nav>
+      <a href="/">Design system</a>
+      <a href="/brand.html">Brand</a>
+      <a href="/orbs.html">Wait states</a>
+      <a href="/patterns.html">Interactions</a>
+      <button class="ghost-btn" id="rtl-toggle">RTL</button>
+      <button class="ghost-btn" onclick="BHDTheme.toggle()">Theme</button>
+    </nav>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <span class="eyebrow">BHD AI blocks v1</span>
+    <h1>Everything an agent shows mid-conversation.</h1>
+    <p class="lead">
+      Thirteen blocks plus the <a href="/orbs.html">wait orb</a>. Vanilla CSS on BHD tokens, so they inherit both
+      themes and every brand recolour. Logical properties throughout, so they mirror in Arabic: press RTL above
+      and watch. No emoji, icons are inline SVG.
+    </p>
+    <p class="lead">
+      Each card copies its own markup. Load <code>tokens.css</code>, <code>ai.css</code> and <code>ai.js</code>,
+      then paste.
+    </p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Thinking and reasoning</h2>
+    <p class="lead">What the model is doing before it has an answer.</p>
+    <div class="demos">
+
+      <div class="demo" data-name="Thinking state" data-cat="Thinking">
+        <div class="demo__stage"><div class="bhd-ai">
+          <span class="bhd-ai-thinking" data-bhd-ai-thinking>
+            <span class="bhd-orb" data-bhd-orb="solving" data-bhd-orb-size="22"></span>
+            <span class="bhd-ai-thinking__label">Costing the quote</span>
+            <span class="bhd-ai-thinking__time">0s</span>
+          </span>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="Thinking + reasoning" data-cat="Thinking">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-reasoning" data-bhd-ai-reasoning data-open="true">
+            <button class="bhd-ai-reasoning__toggle" type="button">
+              <svg class="bhd-ai-reasoning__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+              Thought for 5s
+            </button>
+            <div class="bhd-ai-reasoning__body">
+              <div class="bhd-ai-reasoning__step">Reading the quote lines and the customer's price level.</div>
+              <div class="bhd-ai-reasoning__step">The 6.5oz cup is costing at the 8oz paper yield, so the margin is understated.</div>
+              <div class="bhd-ai-reasoning__step" data-active="true">Recomputing at 6-up and checking the royalty line.</div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="Orbs" data-cat="Thinking">
+        <div class="demo__stage" style="gap:1.5rem"><div class="bhd-ai" style="display:flex;gap:1.75rem;justify-content:center">
+          <span class="bhd-orb-row"><span data-bhd-orb="searching" data-bhd-orb-size="38"></span></span>
+          <span class="bhd-orb-row"><span data-bhd-orb="weaving" data-bhd-orb-size="38"></span></span>
+          <span class="bhd-orb-row"><span data-bhd-orb="composing" data-bhd-orb-size="38"></span></span>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Tool and action states</h2>
+    <p class="lead">What a tool call looks like while it runs and after it lands.</p>
+    <div class="demos">
+
+      <div class="demo" data-name="Web search" data-cat="Tool state">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-search__query">
+            <svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            Searching <b>Oman VAT on printed matter</b>
+          </div>
+          <ul class="bhd-ai-search__list">
+            <li class="bhd-ai-search__item">
+              <svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+              <a class="bhd-ai-search__title" href="#">VAT rates and exemptions</a>
+              <span class="bhd-ai-search__host">tms.taxoman.gov.om</span>
+            </li>
+            <li class="bhd-ai-search__item">
+              <svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>
+              <a class="bhd-ai-search__title" href="#">Executive Regulations, Article 92</a>
+              <span class="bhd-ai-search__host">taxoman.gov.om</span>
+            </li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="File diff" data-cat="Tool state">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-surface bhd-ai-diff">
+            <div class="bhd-ai-head">
+              <svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></svg>
+              <span class="bhd-ai-head__name">costEngine.js</span>
+              <span class="bhd-ai-head__spacer bhd-ai-diff__counts"><span class="bhd-ai-diff__add">+2</span><span class="bhd-ai-diff__del">-1</span></span>
+            </div>
+            <div class="bhd-ai-diff__code">
+              <div class="bhd-ai-diff__line"><span class="bhd-ai-diff__no">41</span><span class="bhd-ai-diff__mark"> </span><span class="bhd-ai-diff__text">const yield = map[size];</span></div>
+              <div class="bhd-ai-diff__line" data-kind="del"><span class="bhd-ai-diff__no">42</span><span class="bhd-ai-diff__mark">-</span><span class="bhd-ai-diff__text">return sheet / 6;</span></div>
+              <div class="bhd-ai-diff__line" data-kind="add"><span class="bhd-ai-diff__no">42</span><span class="bhd-ai-diff__mark">+</span><span class="bhd-ai-diff__text">if (!yield) throw new Error('no yield');</span></div>
+              <div class="bhd-ai-diff__line" data-kind="add"><span class="bhd-ai-diff__no">43</span><span class="bhd-ai-diff__mark">+</span><span class="bhd-ai-diff__text">return sheet / yield;</span></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="Image generation" data-cat="Tool state">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-surface bhd-ai-image">
+            <div class="bhd-ai-image__frame"><span class="bhd-ai-image__size">1024 × 1024</span></div>
+            <div class="bhd-ai-image__meta">
+              <div class="bhd-ai-image__state">Generating image</div>
+              <div class="bhd-ai-image__prompt">“8oz cup on a white studio backdrop”</div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Text outputs</h2>
+    <p class="lead">The answer itself, while it arrives and once it has.</p>
+    <div class="demos">
+
+      <div class="demo" data-name="Text response" data-cat="Text output">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-response">
+            <p>The July loss is not real. Five posting defects explain it, and <strong>inventory 1200</strong> is the largest.</p>
+            <p>Purchases are expensed on payment and never enter stock, so <code>closingStock</code> lands negative.</p>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="Streaming text" data-cat="Text output">
+        <div class="demo__stage"><div class="bhd-ai">
+          <p class="bhd-ai-stream" id="stream-demo" data-bhd-ai-stream></p>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="Inline citations" data-cat="Text output">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-response">
+            <p>Printed matter is standard rated at 5%<a class="bhd-ai-cite" href="#">1</a>, and the E and T levy sits inside the VAT base since 15 July<a class="bhd-ai-cite" href="#">2</a>.</p>
+            <ol class="bhd-ai-sources">
+              <li><a href="#">VAT Law, Royal Decree 121/2020</a><span>taxoman.gov.om</span></li>
+              <li><a href="#">Asyad levy circular</a><span>asyadgroup.com</span></li>
+            </ol>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="Code block" data-cat="Text output">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-surface bhd-ai-code">
+            <div class="bhd-ai-head">
+              <svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 8l-4 4 4 4"/><path d="M15 8l4 4-4 4"/></svg>
+              <span class="bhd-ai-head__name">omr.js</span>
+              <button class="bhd-ai-btn bhd-ai-head__spacer" type="button" data-bhd-ai-copy>
+                <svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5h10"/></svg>
+                <span class="bhd-ai-btn__label">Copy</span>
+              </button>
+            </div>
+            <div class="bhd-ai-code__body">
+              <div class="bhd-ai-code__line"><span class="bhd-ai-code__no">1</span><span class="bhd-ai-code__text">// OMR carries 3 decimals, always.</span></div>
+              <div class="bhd-ai-code__line"><span class="bhd-ai-code__no">2</span><span class="bhd-ai-code__text">export const omr = (n) =&gt; n.toFixed(3);</span></div>
+            </div>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Structured outputs</h2>
+    <p class="lead">Work the agent is tracking, and numbers it is comparing.</p>
+    <div class="demos">
+
+      <div class="demo" data-name="To-do list" data-cat="Structured">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-surface" data-bhd-ai-todo id="todo-demo">
+            <div class="bhd-ai-head">
+              <span class="bhd-ai-head__name">Quote QUO-05524</span>
+              <span class="bhd-ai-head__spacer bhd-ai-todo__count">2 / 5</span>
+            </div>
+            <ul class="bhd-ai-todo__list">
+              <li class="bhd-ai-todo__item" data-state="done"><span class="bhd-ai-todo__box"><svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="bhd-ai-todo__text">Price the cup lines</span></li>
+              <li class="bhd-ai-todo__item" data-state="done"><span class="bhd-ai-todo__box"><svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="bhd-ai-todo__text">Check the customer's price level</span></li>
+              <li class="bhd-ai-todo__item" data-state="active"><span class="bhd-ai-todo__box"><svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="bhd-ai-todo__text">Attach the artwork proof</span></li>
+              <li class="bhd-ai-todo__item"><span class="bhd-ai-todo__box"><svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="bhd-ai-todo__text">Send for approval</span></li>
+              <li class="bhd-ai-todo__item"><span class="bhd-ai-todo__box"><svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span class="bhd-ai-todo__text">Convert to a sale order</span></li>
+            </ul>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="Data table" data-cat="Structured">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-surface bhd-ai-table">
+            <table>
+              <thead><tr><th>Size</th><th>Up</th><th class="num">Cost</th></tr></thead>
+              <tbody>
+                <tr><td>4oz</td><td>8</td><td class="num">0.012</td></tr>
+                <tr><td>6.5oz</td><td>6</td><td class="num">0.017</td></tr>
+                <tr><td>8oz</td><td>6</td><td class="num">0.019</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div></div>
+      </div>
+
+      <div class="demo" data-name="Comparison table" data-cat="Structured">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-surface bhd-ai-table bhd-ai-compare">
+            <table>
+              <thead><tr><th>Route</th><th>In house</th><th>Outsourced</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Set-up cost</th><td class="yes">Low</td><td class="no">None</td></tr>
+                <tr><th scope="row">Lead time</th><td class="yes">2 days</td><td class="no">9 days</td></tr>
+                <tr><th scope="row">Min order</th><td class="yes">1,000</td><td class="no">10,000</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Rich and interactive</h2>
+    <p class="lead">Where the person types back.</p>
+    <div class="demos">
+
+      <div class="demo" data-name="AI agent input" data-cat="Interactive">
+        <div class="demo__stage"><div class="bhd-ai">
+          <div class="bhd-ai-input" data-bhd-ai-input id="input-demo">
+            <textarea class="bhd-ai-input__field" rows="1" placeholder="Ask about a quote, a cost or an invoice"></textarea>
+            <div class="bhd-ai-input__bar">
+              <button class="bhd-ai-input__chip" type="button">Opus 5</button>
+              <button class="bhd-ai-input__chip" type="button">Attach</button>
+              <button class="bhd-ai-input__send" type="button" aria-label="Send" disabled>
+                <svg class="bhd-ai-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h13"/><path d="M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+          <p class="note" id="input-echo" style="margin:.6rem 0 0">Enter sends. Shift and Enter break the line.</p>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Component vocabulary follows <a href="https://www.aicss.dev/">AIcss</a> by Kevin (@kvnkld), which publishes the
+    same set as copy-paste React, Vue and Svelte and states it is free to use. No licence is published there, so
+    none of their code is used here: these are our own implementations on BHD tokens. See
+    <code>docs/learnings.md</code> in the repo.
+  </div>
+</footer>
+
+<script src="/orb.js"></script>
+<script src="/ai.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* Every demo copies its own markup, so the page cannot document markup it is
+     not actually rendering. */
+  document.querySelectorAll('.demo').forEach(function (demo) {
+    var foot = document.createElement('div');
+    foot.className = 'demo__foot';
+    foot.innerHTML = '<span><span class="demo__name"></span><br><span class="demo__cat"></span></span>' +
+      '<button class="ghost-btn" type="button">Copy markup</button>';
+    foot.querySelector('.demo__name').textContent = demo.dataset.name;
+    foot.querySelector('.demo__cat').textContent = demo.dataset.cat;
+    demo.appendChild(foot);
+
+    foot.querySelector('button').addEventListener('click', function (event) {
+      var btn = event.currentTarget;
+      var block = demo.querySelector('.demo__stage > .bhd-ai');
+      var clone = block.cloneNode(true);
+      clone.querySelectorAll('canvas, .bhd-orb__label').forEach(function (n) { n.remove(); });
+      clone.querySelectorAll('[data-bhd-ai-ready], [data-copied], [style*="--bhd-orb-size"]').forEach(function (n) {
+        n.removeAttribute('data-bhd-ai-ready');
+        n.removeAttribute('data-copied');
+      });
+      var markup = clone.innerHTML
+        .replace(/\n\s*\n/g, '\n')
+        .replace(/^\s+/gm, function (m) { return m.replace(/ {10}/g, ''); })
+        .trim();
+      navigator.clipboard.writeText(markup).then(function () {
+        btn.textContent = 'Copied';
+        setTimeout(function () { btn.textContent = 'Copy markup'; }, 1200);
+      }).catch(function () { window.prompt('Copy this markup', markup); });
+    });
+  });
+
+  /* Streaming demo, looped so the page always shows the behaviour. */
+  var streamText = 'Reading the July ledger, then grouping the postings by account so the ' +
+    'inventory movement can be separated from the expensed purchases.';
+  function loopStream() {
+    BHDAI.stream(document.getElementById('stream-demo'), streamText, { cps: 34 })
+      .then(function () { setTimeout(loopStream, 2600); });
+  }
+  loopStream();
+
+  /* To-do demo advances so the progress count is visibly live.
+     Resolved lazily: ai.js binds on DOMContentLoaded, which is after this script
+     runs during parse, so reading el.bhdAiTodo up front gets undefined. */
+  setInterval(function () {
+    var todo = document.getElementById('todo-demo').bhdAiTodo;
+    if (!todo) return;
+    if (!todo.advance()) {
+      document.querySelectorAll('#todo-demo .bhd-ai-todo__item').forEach(function (item, i) {
+        item.dataset.state = i < 2 ? 'done' : (i === 2 ? 'active' : '');
+      });
+      todo.sync();
+    }
+  }, 3200);
+
+  document.getElementById('input-demo').addEventListener('bhd-ai:submit', function (event) {
+    document.getElementById('input-echo').textContent = 'Submitted: ' + event.detail.value;
+  });
+
+  /* RTL toggle: the blocks use logical properties, so this is the proof. */
+  document.getElementById('rtl-toggle').addEventListener('click', function () {
+    var rtl = document.documentElement.getAttribute('dir') === 'rtl';
+    document.documentElement.setAttribute('dir', rtl ? 'ltr' : 'rtl');
+    document.documentElement.setAttribute('lang', rtl ? 'en' : 'ar');
+  });
+})();
+</script>
+</body>
+</html>

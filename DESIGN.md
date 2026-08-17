@@ -66,6 +66,12 @@ Durations and curves are tokens, not opinions. Quote them, do not retype them.
 
 A wait driven by a model gets a named state, never a bare spinner. Use `orb.js` and one of the nine states (working, searching, solving, listening, connecting, weaving, composing, breathing, shaping), paired with a sentence that says what is happening. Playground at `/orbs.html`.
 
+## AI surfaces
+
+Anything an agent shows mid-conversation comes from `ai.css` and `ai.js`, not from a one-off in the consuming project. Thirteen blocks: thinking, thinking with reasoning, web search, file diff, image generation, text response, streaming text, inline citations, code block, to-do list, data table, comparison table and the composer. Gallery at `/ai.html`.
+
+Rules that hold across all of them. Name the wait. Show the tool call rather than hiding it. Cite the source next to the claim, not only at the end. Stream text, never reveal a wall of it. Keep numbers tabular and code left-to-right even in an Arabic layout. Never use an emoji as an icon.
+
 ## Accessibility
 
 Target WCAG 2.2 AA. Maintain visible focus, sufficient contrast, 44 pixel touch targets on mobile, semantic headings, keyboard-operable search and filters, and RTL-safe logical properties.
