@@ -101,9 +101,15 @@
   .demo-track { border: 1px dashed var(--border); border-radius: var(--radius-lg); padding: .6rem; overflow: hidden; }
   .demo-box.run { transform: translateX(calc(100% + 1rem)); }
 
-  .principle { border-inline-start: 3px solid var(--primary); padding: .2rem 0 .2rem .9rem; }
-  .principle strong { display: block; margin-bottom: .2rem; }
-  .principle span { color: var(--muted-foreground); font-size: .875rem; }
+  /* A 3px cyan bar down the side of each card would contradict the first principle
+     written inside it. The accent is one small dot, and the type does the rest. */
+  .principle { padding: .2rem 0; }
+  .principle strong { display: flex; align-items: center; gap: .5rem; margin-bottom: .25rem; }
+  .principle strong::before {
+    content: ""; inline-size: 6px; block-size: 6px; border-radius: 50%;
+    background: var(--primary); flex: none;
+  }
+  .principle span { display: block; color: var(--muted-foreground); font-size: .875rem; padding-inline-start: 1rem; }
 
   table { inline-size: 100%; border-collapse: collapse; font-size: .875rem; }
   th { text-align: start; font-weight: 600; color: var(--muted-foreground); font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; padding: .5rem .6rem; }
