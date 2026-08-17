@@ -1,0 +1,18 @@
+/* splitty brand theme — https://design.bhd.om/themes/splitty.css
+ * @import "tailwindcss"; @import "https://design.bhd.om/themes/splitty.css";
+ * primary #0B72D8 */
+@theme {
+  --color-brand-50:#f3f8fd;
+  --color-brand-100:#e7f1fb;
+  --color-brand-200:#c2dcf5;
+  --color-brand-300:#91c0ed;
+  --color-brand-400:#549ce4;
+  --color-brand-500:#0B72D8;
+  --color-brand-600:#0a64be;
+  --color-brand-700:#08529c;
+  --color-brand-800:#064079;
+  --color-brand-900:#05305b;
+  --color-brand-950:#031e38;
+  --color-primary:#0B72D8; --color-primary-foreground:#ffffff;
+  --font-sans:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+}

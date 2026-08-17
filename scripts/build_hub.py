@@ -34,6 +34,8 @@ BRANDS = {
   "dardasha":    {"p":"#00d4ff","font":stack("Inter"),"fontUrl":fu("Inter")},
   "cardify":     {"p":"#2563eb","font":stack('"Plus Jakarta Sans"'),"fontUrl":fu("Plus Jakarta Sans")},
   "reachscreens":{"p":"#1e3a5f","font":stack('"DM Sans"'),"fontUrl":fu("DM Sans")},
+  # splitty.om: theme-color #0B72D8, Plus Jakarta Sans (headings pair with Fraunces).
+  "splitty":     {"p":"#0B72D8","font":stack('"Plus Jakarta Sans"'),"fontUrl":fu("Plus Jakarta Sans")},
   "almaha":      {"p":"#A6843A","font":stack('"The Year of The Camel"'),"fontUrl":fu("The Year of The Camel"),
                   # Hand-tuned: the ramp runs through the brand's own earth tones
                   # (sand, cream) rather than a flat mix toward white, and 700+
