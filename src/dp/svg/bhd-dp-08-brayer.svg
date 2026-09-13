@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+<defs>
+<filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="7" result="n"/>
+  <feColorMatrix in="n" type="matrix"
+     values="0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.16 0"/>
+</filter>
+<filter id="tear" x="-4%" y="-18%" width="108%" height="136%"
+        color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.010 0.055" numOctaves="4"
+                seed="23" result="n"/>
+  <feDisplacementMap in="SourceGraphic" in2="n" scale="46"
+                     xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+<filter id="streak" x="0" y="0" width="100%" height="100%"
+        color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.0035 0.75" numOctaves="3"
+                seed="5" result="n"/>
+  <feColorMatrix in="n" type="matrix"
+     values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.34 -0.07"/>
+</filter>
+<clipPath id="bandClip"><rect x="0" y="150" width="1080" height="792"/></clipPath></defs>
+<rect width="1080" height="1080" fill="#f3efe5"/><rect width="1080" height="1080" filter="url(#grain)"/><g filter="url(#tear)"><rect x="-300" y="168" width="1680" height="744" fill="#0f181d"/></g><g clip-path="url(#bandClip)"><rect x="0" y="150" width="1080" height="792" filter="url(#streak)"/></g><g transform="translate(220.000,235.974) scale(2.104571)"><polygon fill="#ffbb00" points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24"/><path fill="#009bc1" d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z"/><polygon fill="#824598" points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87"/></g>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+<defs>
+<filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="7" result="n"/>
+  <feColorMatrix in="n" type="matrix"
+     values="0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.16 0"/>
+</filter>
+<filter id="lpDark" x="-30%" y="-30%" width="160%" height="160%"
+        color-interpolation-filters="sRGB">
+  <feOffset in="SourceAlpha" dx="0" dy="6" result="o"/>
+  <feGaussianBlur in="o" stdDeviation="3.2" result="b"/>
+  <feColorMatrix in="b" type="matrix"
+     values="0 0 0 0 0.1647  0 0 0 0 0.1294  0 0 0 0 0.0627  0 0 0 -0.62 0.62"
+     result="inv"/>
+  <feComposite in="inv" in2="SourceAlpha" operator="in"/>
+</filter>
+<filter id="lpLite" x="-30%" y="-30%" width="160%" height="160%"
+        color-interpolation-filters="sRGB">
+  <feOffset in="SourceAlpha" dx="0" dy="-4" result="o"/>
+  <feGaussianBlur in="o" stdDeviation="2.6" result="b"/>
+  <feColorMatrix in="b" type="matrix"
+     values="0 0 0 0 1.0000  0 0 0 0 0.9922  0 0 0 0 0.9569  0 0 0 -0.42 0.42"
+     result="inv"/>
+  <feComposite in="inv" in2="SourceAlpha" operator="in"/>
+</filter>
+<filter id="lpLip" x="-30%" y="-30%" width="160%" height="160%"
+        color-interpolation-filters="sRGB">
+  <feOffset in="SourceAlpha" dx="0" dy="5" result="o"/>
+  <feGaussianBlur in="o" stdDeviation="5.0" result="b"/>
+  <feColorMatrix in="b" type="matrix"
+     values="0 0 0 0 0.3686  0 0 0 0 0.3020  0 0 0 0 0.1804  0 0 0 0.44 0"
+     result="tint"/>
+  <feComposite in="tint" in2="SourceAlpha" operator="out"/>
+</filter></defs>
+<rect width="1080" height="1080" fill="#ece1cc"/><rect width="1080" height="1080" filter="url(#grain)"/><g transform="translate(216.000,232.173) scale(2.130878)" filter="url(#lpLip)"><polygon fill="#6b5a3a" points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24"/><path fill="#6b5a3a" d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z"/><polygon fill="#6b5a3a" points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87"/></g><g transform="translate(216.000,232.173) scale(2.130878)"><polygon fill="#ffbb00" points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24"/><path fill="#009bc1" d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z"/><polygon fill="#824598" points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87"/></g><g transform="translate(216.000,232.173) scale(2.130878)" filter="url(#lpDark)"><polygon fill="#000" points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24"/><path fill="#000" d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z"/><polygon fill="#000" points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87"/></g><g transform="translate(216.000,232.173) scale(2.130878)" filter="url(#lpLite)"><polygon fill="#000" points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24"/><path fill="#000" d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z"/><polygon fill="#000" points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87"/></g>
+</svg>

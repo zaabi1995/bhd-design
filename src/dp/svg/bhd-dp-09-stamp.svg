@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+<defs>
+<filter id="board" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="1.05" numOctaves="5" seed="3" result="n"/>
+  <feColorMatrix in="n" type="matrix"
+     values="0 0 0 0 0.31  0 0 0 0 0.21  0 0 0 0 0.10  0 0 0 0.24 0"/>
+</filter>
+<filter id="strike" x="-12%" y="-12%" width="124%" height="124%"
+        color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.030" numOctaves="3" seed="17" result="w"/>
+  <feDisplacementMap in="SourceGraphic" in2="w" scale="5"
+                     xChannelSelector="R" yChannelSelector="G" result="wob"/>
+  <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" seed="41" result="sp"/>
+  <feColorMatrix in="sp" type="matrix"
+     values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.85 0.85 0.85 0 -0.94" result="spa"/>
+  <feComposite in="wob" in2="spa" operator="out"/>
+</filter></defs>
+<rect width="1080" height="1080" fill="#d9b98e"/><rect width="1080" height="1080" filter="url(#board)"/><g filter="url(#strike)"><circle cx="540.0" cy="540.0" r="462" fill="none" stroke="#00657f" stroke-width="22"/><g transform="translate(221.000,236.924) scale(2.097994)"><polygon fill="#6a3480" points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24"/><path fill="#00657f" d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z"/><polygon fill="#00657f" points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87"/></g></g>
+</svg>

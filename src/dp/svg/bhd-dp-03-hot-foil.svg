@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+<defs>
+<filter id="linen" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.42 0.9" numOctaves="3" seed="11" result="n"/>
+  <feColorMatrix in="n" type="matrix"
+     values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.07 0"/>
+</filter><linearGradient id="fGold" x1="0.08" y1="0" x2="0.92" y2="1"><stop offset="0" stop-color="#7a5410"/><stop offset="0.22" stop-color="#d9a53c"/><stop offset="0.44" stop-color="#ffe9a8"/><stop offset="0.58" stop-color="#f0bf4e"/><stop offset="0.80" stop-color="#9c6c17"/><stop offset="1" stop-color="#e0b155"/></linearGradient><linearGradient id="fCyan" x1="0.08" y1="0" x2="0.92" y2="1"><stop offset="0" stop-color="#053f52"/><stop offset="0.22" stop-color="#0b91b5"/><stop offset="0.44" stop-color="#b8ecf8"/><stop offset="0.58" stop-color="#18a7c9"/><stop offset="0.80" stop-color="#06576f"/><stop offset="1" stop-color="#3fbcd8"/></linearGradient><linearGradient id="fViol" x1="0.08" y1="0" x2="0.92" y2="1"><stop offset="0" stop-color="#3d1c4a"/><stop offset="0.45" stop-color="#c48fd8"/><stop offset="1" stop-color="#6b3480"/></linearGradient>
+<filter id="fEdge" x="-12%" y="-12%" width="124%" height="124%"
+        color-interpolation-filters="sRGB">
+  <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.55"/>
+</filter></defs>
+<rect width="1080" height="1080" fill="#0d1418"/><rect width="1080" height="1080" filter="url(#linen)"/><g transform="translate(216.000,232.173) scale(2.130878)" filter="url(#fEdge)"><polygon fill="url(#fGold)" points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24"/><path fill="url(#fCyan)" d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z"/><polygon fill="url(#fViol)" points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87"/></g>
+</svg>

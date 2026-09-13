@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bhd-theme-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BHD Display Pictures · design.bhd.om</title>
+  <meta name="description" content="Ten WhatsApp display pictures built on the official BHD Printing &amp; Designing mark. 1080 x 1080 PNG, checked at 40, 64 and 128 pixels through a circular crop.">
+  <meta name="theme-color" content="#009bc1">
+  <link rel="canonical" href="https://design.bhd.om/dp">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="BHD Display Pictures">
+  <meta property="og:description" content="Ten WhatsApp display pictures on the official BHD mark. Square art, circular preview, one-click PNG.">
+  <meta property="og:url" content="https://design.bhd.om/dp">
+  <meta property="og:image" content="https://design.bhd.om/dp/web/06-reverse-lg.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BHD Display Pictures">
+  <meta name="twitter:description" content="Ten WhatsApp display pictures on the official BHD mark.">
+  <meta name="twitter:image" content="https://design.bhd.om/dp/web/06-reverse-lg.webp">
+
+  <link rel="stylesheet" href="/tokens.css">
+  <link rel="stylesheet" href="https://fonts.bhd.om/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/fa/v7.2.0/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/fa/v7.2.0/css/light.min.css">
+  <script src="/dark-mode.js"></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'IBM Plex Sans Arabic', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.25rem 5rem; }
+
+  /* ---- focus: one visible ring everywhere, never removed ---- */
+  :where(a, button, [tabindex]):focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--primary); color: var(--primary-foreground);
+    padding: .7rem 1rem; z-index: 100; border-radius: 0 0 var(--radius-md) 0;
+  }
+  .skip:focus { left: 0; }
+
+  /* ---- header ---- */
+  header { border-bottom: 1px solid var(--border); margin-bottom: 2.25rem; }
+  .bar {
+    max-width: 1120px; margin: 0 auto; padding: .9rem 1.25rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .home {
+    font-size: .85rem; color: var(--muted-foreground); text-decoration: none;
+    display: inline-flex; align-items: center; gap: .45rem;
+    min-height: 2.2rem; padding: .25rem .1rem;
+  }
+  .home:hover { color: var(--foreground); }
+  .bar .spacer { margin-inline-start: auto; }
+  .theme {
+    background: transparent; border: 1px solid var(--border); color: var(--foreground);
+    width: 2.2rem; height: 2.2rem; border-radius: var(--radius-md); cursor: pointer;
+    display: grid; place-items: center; font-size: .9rem;
+  }
+  .theme:hover { background: var(--muted); }
+
+  h1 { font-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.4rem); margin: 0 0 .45rem; letter-spacing: -0.02em; }
+  .lede { color: var(--muted-foreground); max-width: 62ch; margin: 0 0 1.25rem; }
+  .lede strong { color: var(--foreground); font-weight: 600; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.5rem; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font: inherit; font-size: .9rem; font-weight: 500;
+    padding: .62rem 1rem; border-radius: var(--radius-md);
+    border: 1px solid var(--border); background: var(--card); color: var(--foreground);
+    cursor: pointer; text-decoration: none; transition: background .15s, border-color .15s;
+  }
+  .btn:hover { background: var(--muted); text-decoration: none; }
+  /* White on --primary (#009bc1) is 3.25:1, under the 4.5:1 AA needs for text
+     this size. --color-bhd-700 is already in the shared ramp and gives 5.7:1,
+     so the fix stays on this page instead of altering the tokens every BHD
+     site loads. */
+  .btn-primary {
+    background: var(--color-bhd-700); color: #fff; border-color: transparent;
+  }
+  .btn-primary:hover { background: var(--color-bhd-800); }
+  .dark .btn-primary { background: var(--color-bhd-400); color: #04222c; }
+  .dark .btn-primary:hover { background: var(--color-bhd-300); }
+
+  /* In dark mode the shared --muted-foreground (zinc-500) lands at 4.12:1 on
+     zinc-950, just under AA for body text. Lift it here; the token itself is
+     left alone because eleven other surfaces read it. */
+  .dark .lede,
+  .dark .meta p,
+  .dark footer,
+  .dark .home,
+  .dark .caps,
+  .dark .sizes figcaption,
+  .dark .dlg-body p,
+  .dark .dlg-body .num,
+  .dark .facts { color: var(--color-zinc-400); }
+  .btn i { font-size: .95em; }
+
+  /* ---- grid ---- */
+  .grid {
+    display: grid; gap: 1.1rem;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  }
+  .card {
+    border: 1px solid var(--border); border-radius: var(--radius-xl);
+    background: var(--card); overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .shot {
+    display: block; width: 100%; padding: 0; border: 0; background: none;
+    cursor: pointer; position: relative; line-height: 0;
+  }
+  .shot img {
+    width: 100%; height: auto; display: block; aspect-ratio: 1;
+    background: var(--muted);
+  }
+  .shot:hover img { filter: brightness(.96); }
+  .meta { padding: .8rem .9rem 1rem; display: flex; flex-direction: column; gap: .55rem; flex: 1; }
+  /* The circular preview is the product, so it gets its own place in the row
+     rather than sitting on top of the artwork and hiding part of the mark. */
+  .head { display: flex; align-items: center; gap: .6rem; }
+  .head img {
+    width: 42px; height: 42px; flex: none; border-radius: 50%;
+    background: var(--muted); box-shadow: 0 1px 5px rgb(0 0 0 / .18);
+  }
+  .meta h2 { font-size: .95rem; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+  .meta p { margin: 0; font-size: .8rem; color: var(--muted-foreground); flex: 1; }
+  .row { display: flex; gap: .4rem; }
+  .row .btn { flex: 1; justify-content: center; padding: .48rem .6rem; font-size: .82rem; }
+
+  /* ---- detail dialog ---- */
+  dialog {
+    border: 1px solid var(--border); border-radius: var(--radius-xl);
+    padding: 0; background: var(--card); color: var(--foreground);
+    max-width: min(940px, calc(100vw - 1.5rem));
+    width: 100%; max-height: calc(100dvh - 1.5rem);
+  }
+  dialog::backdrop { background: rgb(9 12 14 / .68); }
+  .dlg { display: grid; grid-template-columns: 1.05fr .95fr; }
+  .dlg-art {
+    padding: 1.4rem; display: flex; flex-direction: column; gap: 1rem;
+    align-items: center; background: var(--muted); min-width: 0;
+  }
+  .dlg-art .pair { display: flex; gap: 1rem; align-items: center; width: 100%; }
+  .dlg-art .pair img { min-width: 0; background: var(--card); }
+  .dlg-art .sq { width: 58%; height: auto; aspect-ratio: 1; border-radius: var(--radius-md); }
+  .dlg-art .ci { width: 42%; height: auto; aspect-ratio: 1; border-radius: 50%;
+                 box-shadow: 0 3px 14px rgb(0 0 0 / .22); }
+  .caps { display: flex; gap: .4rem; width: 100%; font-size: .68rem;
+          color: var(--muted-foreground); }
+  .caps span { flex: 1; text-align: center; }
+
+  .sizes { display: flex; align-items: flex-end; gap: 1.1rem; }
+  .sizes figure { margin: 0; text-align: center; }
+  .sizes img { border-radius: 50%; display: block; margin: 0 auto .3rem; }
+  .sizes figcaption { font-size: .68rem; color: var(--muted-foreground); }
+
+  .dlg-body { padding: 1.5rem 1.5rem 1.4rem; display: flex; flex-direction: column;
+              gap: .85rem; overflow-y: auto; }
+  .dlg-body h2 { margin: 0; font-size: 1.35rem; letter-spacing: -0.02em; }
+  .dlg-body .num { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+                   color: var(--muted-foreground); }
+  .dlg-body p { margin: 0; color: var(--muted-foreground); font-size: .9rem; }
+  .facts { margin: .2rem 0 0; padding: 0; list-style: none; font-size: .8rem;
+           color: var(--muted-foreground); display: flex; flex-direction: column; gap: .3rem; }
+  .facts i { color: var(--primary); width: 1.1em; }
+  .dlg-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .6rem; }
+  .close {
+    position: absolute; top: .6rem; inset-inline-end: .6rem;
+    width: 2.1rem; height: 2.1rem; border-radius: 50%;
+    border: 1px solid var(--border); background: var(--card); color: var(--foreground);
+    cursor: pointer; display: grid; place-items: center; z-index: 2;
+  }
+  .close:hover { background: var(--muted); }
+
+  .live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+  footer { margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--border);
+           font-size: .8rem; color: var(--muted-foreground); }
+  footer a { color: var(--primary); }
+
+  @media (max-width: 760px) {
+    .dlg { grid-template-columns: 1fr; }
+    .dlg-art { padding: 1.1rem; }
+    .dlg-body { padding: 1.1rem 1.15rem 1.3rem; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .8rem; }
+    .actions .btn { flex: 1; justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#gallery">Skip to the designs</a>
+
+<header>
+  <div class="bar">
+    <a class="home" href="/"><i class="fa-light fa-arrow-left" aria-hidden="true"></i> BHD Design</a>
+    <span class="spacer"></span>
+    <button class="theme" id="theme" type="button" aria-label="Toggle dark mode">
+      <i class="fa-light fa-circle-half-stroke" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>WhatsApp display pictures</h1>
+  <p class="lede">
+    Ten directions on the official BHD Printing &amp; Designing mark. Every one is
+    <strong>1080 &times; 1080</strong>, laid out for a circular crop, and checked at
+    <strong>40, 64 and 128&nbsp;px</strong> before it was kept.
+  </p>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="bhd-whatsapp-dp-pack.zip" download>
+      <i class="fa-light fa-folder-arrow-down" aria-hidden="true"></i>
+      Download all 10 (ZIP)
+    </a>
+    <a class="btn" href="#how">
+      <i class="fa-light fa-circle-info" aria-hidden="true"></i>
+      How to set one
+    </a>
+  </div>
+
+  <div class="grid" id="gallery"></div>
+
+  <section id="how" style="margin-top:3rem">
+    <h2 style="font-size:1.1rem;margin:0 0 .5rem">Setting one on WhatsApp</h2>
+    <p class="lede" style="margin:0">
+      Download the PNG, then in WhatsApp open <em>Settings</em>, tap your photo,
+      choose <em>Gallery</em> or <em>Photos</em>, pick the file and confirm without
+      zooming. The art is already positioned for the circle, so any crop you add
+      will eat into the breathing room around the mark.
+    </p>
+  </section>
+
+  <footer>
+    Built on the official mark from the BHD brand assets. Colours are the canonical
+    trio: cyan <code>#009bc1</code>, yellow <code>#ffbb00</code>, purple <code>#824598</code>.
+    Part of <a href="/">design.bhd.om</a>.
+  </footer>
+</main>
+
+<dialog id="dlg" aria-labelledby="dlg-name">
+  <button class="close" id="dlg-close" type="button" aria-label="Close">
+    <i class="fa-light fa-xmark" aria-hidden="true"></i>
+  </button>
+  <div class="dlg">
+    <div class="dlg-art">
+      <div class="pair">
+        <img class="sq" id="dlg-sq" alt="" width="760" height="760" hidden>
+        <img class="ci" id="dlg-ci" alt="" width="760" height="760" hidden>
+      </div>
+      <div class="caps"><span>Square artwork</span><span>Circular crop</span></div>
+      <div class="sizes" id="dlg-sizes"></div>
+    </div>
+    <div class="dlg-body">
+      <span class="num" id="dlg-num"></span>
+      <h2 id="dlg-name"></h2>
+      <p id="dlg-blurb"></p>
+      <ul class="facts" id="dlg-facts"></ul>
+      <div class="dlg-actions">
+        <a class="btn btn-primary" id="dlg-png" download>
+          <i class="fa-light fa-arrow-down-to-line" aria-hidden="true"></i> Download PNG
+        </a>
+        <a class="btn" id="dlg-svg" download>
+          <i class="fa-light fa-bezier-curve" aria-hidden="true"></i> Source SVG
+        </a>
+        <button class="btn" id="dlg-link" type="button">
+          <i class="fa-light fa-link" aria-hidden="true"></i> Copy link
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<p class="live" id="live" role="status" aria-live="polite"></p>
+
+<script>
+(function () {
+  'use strict';
+  var grid = document.getElementById('gallery');
+  var dlg  = document.getElementById('dlg');
+  var live = document.getElementById('live');
+  var items = [];
+  var openSlug = null;
+  var lastFocus = null;
+
+  document.getElementById('theme').addEventListener('click', function () {
+    if (window.BHDTheme && BHDTheme.toggle) BHDTheme.toggle();
+  });
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function render(list) {
+    grid.innerHTML = list.map(function (d, i) {
+      var n = String(i + 1).padStart(2, '0');
+      return '<article class="card">' +
+        '<button class="shot" type="button" data-slug="' + esc(d.slug) + '" ' +
+          'aria-label="Open ' + esc(d.name) + ' at a larger size">' +
+          '<img src="' + esc(d.sm) + '" alt="' + esc(d.name) +
+            ' display picture, square artwork" width="400" height="400" loading="lazy" decoding="async">' +
+        '</button>' +
+        '<div class="meta">' +
+          '<div class="head">' +
+            '<img src="' + esc(d.sm) + '" alt="' + esc(d.name) +
+              ' shown through the circular crop WhatsApp applies" ' +
+              'width="42" height="42" loading="lazy" decoding="async">' +
+            '<h2>' + n + ' &middot; ' + esc(d.name) + '</h2>' +
+          '</div>' +
+          '<p>' + esc(d.blurb) + '</p>' +
+          '<div class="row">' +
+            '<a class="btn btn-primary" href="' + esc(d.png) + '" download>' +
+              '<i class="fa-light fa-arrow-down-to-line" aria-hidden="true"></i> PNG</a>' +
+            '<button class="btn" type="button" data-open="' + esc(d.slug) + '">' +
+              '<i class="fa-light fa-expand" aria-hidden="true"></i> View</button>' +
+          '</div>' +
+        '</div>' +
+      '</article>';
+    }).join('');
+  }
+
+  function find(slug) {
+    for (var i = 0; i < items.length; i++) if (items[i].slug === slug) return { d: items[i], i: i };
+    return null;
+  }
+
+  function open(slug, push) {
+    var hit = find(slug);
+    if (!hit) return;
+    var d = hit.d;
+    openSlug = slug;
+    lastFocus = document.activeElement;
+
+    document.getElementById('dlg-num').textContent =
+      'Design ' + String(hit.i + 1).padStart(2, '0') + ' of ' + items.length;
+    document.getElementById('dlg-name').textContent = d.name;
+    document.getElementById('dlg-blurb').textContent = d.blurb;
+
+    var sq = document.getElementById('dlg-sq');
+    var ci = document.getElementById('dlg-ci');
+    sq.src = d.lg; sq.alt = d.name + ' display picture, square artwork'; sq.hidden = false;
+    ci.src = d.lg; ci.alt = d.name + ' display picture as WhatsApp shows it, circular crop'; ci.hidden = false;
+
+    document.getElementById('dlg-sizes').innerHTML = [40, 64, 128].map(function (px) {
+      return '<figure><img src="' + esc(d.sm) + '" alt="' + esc(d.name) +
+        ' at ' + px + ' pixels" width="' + px + '" height="' + px + '" loading="lazy">' +
+        '<figcaption>' + px + ' px</figcaption></figure>';
+    }).join('');
+
+    document.getElementById('dlg-facts').innerHTML =
+      '<li><i class="fa-light fa-image" aria-hidden="true"></i> 1080 &times; 1080 PNG, ' +
+        Math.round(d.bytes / 1024) + ' KB</li>' +
+      '<li><i class="fa-light fa-bezier-curve" aria-hidden="true"></i> ' +
+        (d.filters
+          ? 'SVG source uses SVG filters, so it renders exactly in a browser'
+          : 'SVG source is plain vector, portable to any editor') + '</li>' +
+      '<li><i class="fa-light fa-circle-check" aria-hidden="true"></i> ' +
+        'Mark clears the circular crop by at least 45 px</li>';
+
+    document.getElementById('dlg-png').href = d.png;
+    document.getElementById('dlg-svg').href = d.svg;
+
+    if (!dlg.open) dlg.showModal();
+    if (push !== false) {
+      history.pushState({ slug: slug }, '', '?d=' + encodeURIComponent(slug));
+    }
+  }
+
+  function close(push) {
+    openSlug = null;
+    if (dlg.open) dlg.close();
+    if (push !== false) history.pushState({}, '', location.pathname);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  grid.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-slug], [data-open]');
+    if (!t) return;
+    open(t.getAttribute('data-slug') || t.getAttribute('data-open'));
+  });
+
+  document.getElementById('dlg-close').addEventListener('click', function () { close(); });
+  // clicking the backdrop (outside the panel) closes
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+  // Esc fires dialog's own cancel; keep the URL in step
+  dlg.addEventListener('close', function () { if (openSlug) close(); });
+
+  document.getElementById('dlg-link').addEventListener('click', function () {
+    var url = location.origin + location.pathname + '?d=' + encodeURIComponent(openSlug);
+    var done = function () { live.textContent = 'Link copied'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link', url); });
+    } else {
+      window.prompt('Copy this link', url);
+    }
+  });
+
+  window.addEventListener('popstate', function () {
+    var slug = new URLSearchParams(location.search).get('d');
+    if (slug) open(slug, false); else close(false);
+  });
+
+  fetch('designs.json')
+    .then(function (r) { return r.json(); })
+    .then(function (list) {
+      items = list;
+      render(list);
+      var slug = new URLSearchParams(location.search).get('d');
+      if (slug) open(slug, false);
+    })
+    .catch(function () {
+      grid.innerHTML = '<p>The design list could not be loaded. ' +
+        '<a href="bhd-whatsapp-dp-pack.zip">Download the ZIP</a> instead.</p>';
+    });
+})();
+</script>
+</body>
+</html>

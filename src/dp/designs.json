@@ -1,0 +1,112 @@
+[
+  {
+    "slug": "01-press-sheet",
+    "name": "Press Sheet",
+    "blurb": "Straight off the press, over the one piece of production furniture that still reads at thumbnail size: the ink bar.",
+    "png": "png/bhd-dp-01-press-sheet.png",
+    "svg": "svg/bhd-dp-01-press-sheet.svg",
+    "lg": "web/01-press-sheet-lg.webp",
+    "sm": "web/01-press-sheet-sm.webp",
+    "bytes": 469031,
+    "filters": true
+  },
+  {
+    "slug": "02-letterpress",
+    "name": "Letterpress",
+    "blurb": "Ink and impression. The plate struck deep into cotton stock, paper lipping up around the bite.",
+    "png": "png/bhd-dp-02-letterpress.png",
+    "svg": "svg/bhd-dp-02-letterpress.svg",
+    "lg": "web/02-letterpress-lg.webp",
+    "sm": "web/02-letterpress-sm.webp",
+    "bytes": 575545,
+    "filters": true
+  },
+  {
+    "slug": "03-hot-foil",
+    "name": "Hot Foil",
+    "blurb": "Stamped in metal on dark linen board. Each half keeps its own hue, translated into a single directional foil sweep.",
+    "png": "png/bhd-dp-03-hot-foil.png",
+    "svg": "svg/bhd-dp-03-hot-foil.svg",
+    "lg": "web/03-hot-foil-lg.webp",
+    "sm": "web/03-hot-foil-sm.webp",
+    "bytes": 594337,
+    "filters": true
+  },
+  {
+    "slug": "04-ben-day",
+    "name": "Ben Day",
+    "blurb": "A coarse mechanical dot screen run edge to edge, clearing around the mark's own silhouette.",
+    "png": "png/bhd-dp-04-ben-day.png",
+    "svg": "svg/bhd-dp-04-ben-day.svg",
+    "lg": "web/04-ben-day-lg.webp",
+    "sm": "web/04-ben-day-sm.webp",
+    "bytes": 34833,
+    "filters": true
+  },
+  {
+    "slug": "05-die-cut",
+    "name": "Die Cut",
+    "blurb": "The mark cut clean through a paper disc, with a two-tone board underneath returning the brand colours.",
+    "png": "png/bhd-dp-05-die-cut.png",
+    "svg": "svg/bhd-dp-05-die-cut.svg",
+    "lg": "web/05-die-cut-lg.webp",
+    "sm": "web/05-die-cut-sm.webp",
+    "bytes": 67010,
+    "filters": true
+  },
+  {
+    "slug": "06-reverse",
+    "name": "Reverse",
+    "blurb": "A solid flood of BHD cyan with the mark lifted straight out of it to bare stock, and a yellow trap along one edge.",
+    "png": "png/bhd-dp-06-reverse.png",
+    "svg": "svg/bhd-dp-06-reverse.svg",
+    "lg": "web/06-reverse-lg.webp",
+    "sm": "web/06-reverse-sm.webp",
+    "bytes": 269074,
+    "filters": true
+  },
+  {
+    "slug": "07-module",
+    "name": "Module",
+    "blurb": "The mark is drawn on a 30.41-unit square grid. This lays that grid back over the sheet and fills four of its cells.",
+    "png": "png/bhd-dp-07-module.png",
+    "svg": "svg/bhd-dp-07-module.svg",
+    "lg": "web/07-module-lg.webp",
+    "sm": "web/07-module-sm.webp",
+    "bytes": 8966,
+    "filters": false
+  },
+  {
+    "slug": "08-brayer",
+    "name": "Brayer",
+    "blurb": "One pass of a hand roller. The band runs off both sides, so only its torn top and bottom edges are in frame.",
+    "png": "png/bhd-dp-08-brayer.png",
+    "svg": "svg/bhd-dp-08-brayer.svg",
+    "lg": "web/08-brayer-lg.webp",
+    "sm": "web/08-brayer-sm.webp",
+    "bytes": 152775,
+    "filters": true
+  },
+  {
+    "slug": "09-stamp",
+    "name": "Stamp",
+    "blurb": "A two-pad rubber stamp struck once on kraft. Two pads, because one ink fuses the Arabic and Latin blocks.",
+    "png": "png/bhd-dp-09-stamp.png",
+    "svg": "svg/bhd-dp-09-stamp.svg",
+    "lg": "web/09-stamp-lg.webp",
+    "sm": "web/09-stamp-sm.webp",
+    "bytes": 830713,
+    "filters": true
+  },
+  {
+    "slug": "10-midnight",
+    "name": "Midnight",
+    "blurb": "Nothing but the mark, full colour, on tinted near-black, inside one hairline that echoes the circular crop.",
+    "png": "png/bhd-dp-10-midnight.png",
+    "svg": "svg/bhd-dp-10-midnight.svg",
+    "lg": "web/10-midnight-lg.webp",
+    "sm": "web/10-midnight-sm.webp",
+    "bytes": 40497,
+    "filters": false
+  }
+]
