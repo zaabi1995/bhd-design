@@ -1,13 +1,13 @@
 [
   {
-    "slug": "01-accounts-bhd",
-    "name": "Accounts - BHD",
-    "blurb": "Finance group. Label: ACCOUNTS · BHD FINANCE.",
-    "png": "png/bhd-group-01-accounts-bhd.png",
-    "svg": "png/bhd-group-01-accounts-bhd.png",
-    "lg": "web/01-accounts-bhd-lg.webp",
-    "sm": "web/01-accounts-bhd-sm.webp",
-    "bytes": 625276,
+    "slug": "01-bhd-production",
+    "name": "BHD - Production (was Accounts - BHD)",
+    "blurb": "Production group. Label: PRODUCTION · BHD TEAM.",
+    "png": "png/bhd-group-01-bhd-production.png",
+    "svg": "png/bhd-group-01-bhd-production.png",
+    "lg": "web/01-bhd-production-lg.webp",
+    "sm": "web/01-bhd-production-sm.webp",
+    "bytes": 463369,
     "filters": false
   },
   {
@@ -77,14 +77,14 @@
     "filters": false
   },
   {
-    "slug": "08-bdh-printing-jobs",
+    "slug": "08-bdh-print-jobs",
     "name": "BDH Printing jobs",
-    "blurb": "Production group. Label: PRODUCTION · PRINTING JOBS.",
-    "png": "png/bhd-group-08-bdh-printing-jobs.png",
-    "svg": "png/bhd-group-08-bdh-printing-jobs.png",
-    "lg": "web/08-bdh-printing-jobs-lg.webp",
-    "sm": "web/08-bdh-printing-jobs-sm.webp",
-    "bytes": 483368,
+    "blurb": "Production group. Label: PRINT JOBS · PRODUCTION.",
+    "png": "png/bhd-group-08-bdh-print-jobs.png",
+    "svg": "png/bhd-group-08-bdh-print-jobs.png",
+    "lg": "web/08-bdh-print-jobs-lg.webp",
+    "sm": "web/08-bdh-print-jobs-sm.webp",
+    "bytes": 469230,
     "filters": false
   },
   {
