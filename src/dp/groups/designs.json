@@ -1,8 +1,8 @@
 [
   {
     "slug": "01-bhd-production-green",
-    "name": "BHD - Production (was Accounts - BHD)",
-    "blurb": "Production group. Kept close to the group's current green picture: one white BHD mark on flat green.",
+    "name": "BHD - Production",
+    "blurb": "Production group. One white BHD mark on flat green, close to the group's previous picture.",
     "png": "png/bhd-group-01-bhd-production-green.png",
     "svg": "png/bhd-group-01-bhd-production-green.png",
     "lg": "web/01-bhd-production-green-lg.webp",
@@ -12,7 +12,7 @@
   },
   {
     "slug": "02-audit-bhd-team-accounts",
-    "name": "Audit BHD - TEAM Accounts",
+    "name": "BHD - Accounts & Audit",
     "blurb": "Finance group. Label: AUDIT · TEAM ACCOUNTS.",
     "png": "png/bhd-group-02-audit-bhd-team-accounts.png",
     "svg": "png/bhd-group-02-audit-bhd-team-accounts.png",
@@ -23,7 +23,7 @@
   },
   {
     "slug": "03-bhd-vat-tax-filing",
-    "name": "BHD - VAT / TAX Filing",
+    "name": "BHD - VAT & Tax Filing",
     "blurb": "Finance group. Label: VAT · TAX · FILING.",
     "png": "png/bhd-group-03-bhd-vat-tax-filing.png",
     "svg": "png/bhd-group-03-bhd-vat-tax-filing.png",
@@ -34,7 +34,7 @@
   },
   {
     "slug": "04-bhd-with-auditor-sathish",
-    "name": "BHD with Auditor Sathish",
+    "name": "BHD x Auditor Sathish",
     "blurb": "Finance group. Label: AUDITOR · SATHISH.",
     "png": "png/bhd-group-04-bhd-with-auditor-sathish.png",
     "svg": "png/bhd-group-04-bhd-with-auditor-sathish.png",
@@ -45,7 +45,7 @@
   },
   {
     "slug": "05-ahmed-x-bhd-audit",
-    "name": "Ahmed x BHD Audit",
+    "name": "BHD x Ahmed Audit",
     "blurb": "Finance group. Label: AUDIT · AHMED × BHD.",
     "png": "png/bhd-group-05-ahmed-x-bhd-audit.png",
     "svg": "png/bhd-group-05-ahmed-x-bhd-audit.png",
@@ -56,7 +56,7 @@
   },
   {
     "slug": "06-dar-x-bhd-account",
-    "name": "Dar x BHD Account",
+    "name": "BHD x Dar Accounts",
     "blurb": "Finance group. Label: DAR · ACCOUNT × BHD.",
     "png": "png/bhd-group-06-dar-x-bhd-account.png",
     "svg": "png/bhd-group-06-dar-x-bhd-account.png",
@@ -67,7 +67,7 @@
   },
   {
     "slug": "07-finance-bhd-x-colourline",
-    "name": "Finance - BHD x Colourline",
+    "name": "BHD x Colorline Finance",
     "blurb": "Finance group. Label: COLOURLINE · FINANCE × BHD.",
     "png": "png/bhd-group-07-finance-bhd-x-colourline.png",
     "svg": "png/bhd-group-07-finance-bhd-x-colourline.png",
@@ -77,19 +77,19 @@
     "filters": false
   },
   {
-    "slug": "08-bdh-print-jobs",
-    "name": "BDH Printing jobs",
-    "blurb": "Production group. Label: PRINT JOBS · PRODUCTION.",
-    "png": "png/bhd-group-08-bdh-print-jobs.png",
-    "svg": "png/bhd-group-08-bdh-print-jobs.png",
-    "lg": "web/08-bdh-print-jobs-lg.webp",
-    "sm": "web/08-bdh-print-jobs-sm.webp",
-    "bytes": 469230,
+    "slug": "08-bdh-print-jobs-v2",
+    "name": "BHD x SPP Dubai Printing",
+    "blurb": "Partner group. Label: SPP DUBAI · PRINTING × BHD.",
+    "png": "png/bhd-group-08-bdh-print-jobs-v2.png",
+    "svg": "png/bhd-group-08-bdh-print-jobs-v2.png",
+    "lg": "web/08-bdh-print-jobs-v2-lg.webp",
+    "sm": "web/08-bdh-print-jobs-v2-sm.webp",
+    "bytes": 475722,
     "filters": false
   },
   {
     "slug": "09-bhd-service-uv-group",
-    "name": "BHD service uv group",
+    "name": "BHD x UV Printer Service",
     "blurb": "Production group. Label: UV PRINT · SERVICE.",
     "png": "png/bhd-group-09-bhd-service-uv-group.png",
     "svg": "png/bhd-group-09-bhd-service-uv-group.png",
@@ -100,7 +100,7 @@
   },
   {
     "slug": "10-bhd-clothes-order",
-    "name": "BHD Clothes Order",
+    "name": "BHD x Shameer Clothes",
     "blurb": "Production group. Label: APPAREL · CLOTHES ORDERS.",
     "png": "png/bhd-group-10-bhd-clothes-order.png",
     "svg": "png/bhd-group-10-bhd-clothes-order.png",
@@ -111,7 +111,7 @@
   },
   {
     "slug": "11-bhd-lift-manufacture",
-    "name": "BHD - Lift Manufacture",
+    "name": "BHD x Lift Manufacturer",
     "blurb": "Production group. Label: LIFT · MANUFACTURE.",
     "png": "png/bhd-group-11-bhd-lift-manufacture.png",
     "svg": "png/bhd-group-11-bhd-lift-manufacture.png",
@@ -122,7 +122,7 @@
   },
   {
     "slug": "12-bhd-x-dar-al-yaqeen-cup-printing",
-    "name": "BHD X DAR AL YAQEEN CUP PRINTING",
+    "name": "BHD x Dar Al Yaqeen Cup Printing",
     "blurb": "Production group. Label: DAR AL YAQEEN · CUP PRINTING.",
     "png": "png/bhd-group-12-bhd-x-dar-al-yaqeen-cup-printing.png",
     "svg": "png/bhd-group-12-bhd-x-dar-al-yaqeen-cup-printing.png",
@@ -133,7 +133,7 @@
   },
   {
     "slug": "13-om-bhd61",
-    "name": "OM-BHD61",
+    "name": "BHD x OM-BHD61 Shipments",
     "blurb": "Production group. Label: OM-BHD61.",
     "png": "png/bhd-group-13-om-bhd61.png",
     "svg": "png/bhd-group-13-om-bhd61.png",
@@ -144,7 +144,7 @@
   },
   {
     "slug": "14-bhd-reels-stories",
-    "name": "BHD Reels/Stories",
+    "name": "BHD - Reels & Stories",
     "blurb": "Marketing group. Label: REELS · & STORIES.",
     "png": "png/bhd-group-14-bhd-reels-stories.png",
     "svg": "png/bhd-group-14-bhd-reels-stories.png",
@@ -155,7 +155,7 @@
   },
   {
     "slug": "15-vip-cupsbyaa-x-bhd",
-    "name": "VIP Cupsbyaa x BHD",
+    "name": "CupsByAA x BHD - VIP",
     "blurb": "CupsByAA group. Label: VIP · CUPSBYAA × BHD.",
     "png": "png/bhd-group-15-vip-cupsbyaa-x-bhd.png",
     "svg": "png/bhd-group-15-vip-cupsbyaa-x-bhd.png",
@@ -166,7 +166,7 @@
   },
   {
     "slug": "16-audit-cups-by-aa",
-    "name": "Audit - Cups by AA",
+    "name": "CupsByAA - Accounts & Audit",
     "blurb": "CupsByAA group. Label: FINANCE · AUDIT.",
     "png": "png/bhd-group-16-audit-cups-by-aa.png",
     "svg": "png/bhd-group-16-audit-cups-by-aa.png",
@@ -177,7 +177,7 @@
   },
   {
     "slug": "17-cupsbyaa-marketing",
-    "name": "CupsByAA marketing",
+    "name": "CupsByAA - Marketing",
     "blurb": "CupsByAA group. Label: MARKETING.",
     "png": "png/bhd-group-17-cupsbyaa-marketing.png",
     "svg": "png/bhd-group-17-cupsbyaa-marketing.png",
@@ -188,7 +188,7 @@
   },
   {
     "slug": "18-cupsbyaa-order-boxes",
-    "name": "CUPSBYAA ORDER BOXES",
+    "name": "CupsByAA - Order Boxes",
     "blurb": "CupsByAA group. Label: ORDER BOXES.",
     "png": "png/bhd-group-18-cupsbyaa-order-boxes.png",
     "svg": "png/bhd-group-18-cupsbyaa-order-boxes.png",
@@ -199,7 +199,7 @@
   },
   {
     "slug": "19-bhd-cups-x-btb",
-    "name": "BHD.CUPS x BTB",
+    "name": "CupsByAA x BTB",
     "blurb": "CupsByAA group. Label: BTB · CUPS × BTB.",
     "png": "png/bhd-group-19-bhd-cups-x-btb.png",
     "svg": "png/bhd-group-19-bhd-cups-x-btb.png",
@@ -210,7 +210,7 @@
   },
   {
     "slug": "20-bin-mirza-x-cups",
-    "name": "Bin Mirza x CUPS",
+    "name": "CupsByAA x Bin Mirza",
     "blurb": "CupsByAA group. Label: BIN MIRZA · × CUPS.",
     "png": "png/bhd-group-20-bin-mirza-x-cups.png",
     "svg": "png/bhd-group-20-bin-mirza-x-cups.png",
@@ -221,7 +221,7 @@
   },
   {
     "slug": "21-plastic-cup-manufacturer-cn",
-    "name": "奶茶杯子工作群 - Plastic Cup Manufacturer",
+    "name": "BHD x Hanqi Plastic Cups",
     "blurb": "Cup supply group. Label: PLASTIC CUPS · MANUFACTURER.",
     "png": "png/bhd-group-21-plastic-cup-manufacturer-cn.png",
     "svg": "png/bhd-group-21-plastic-cup-manufacturer-cn.png",
@@ -232,7 +232,7 @@
   },
   {
     "slug": "22-cup-lids-bayader",
-    "name": "Cup Lids - Bayader",
+    "name": "BHD x Bayader Cup Lids",
     "blurb": "Cup supply group. Label: CUP LIDS · BAYADER.",
     "png": "png/bhd-group-22-cup-lids-bayader.png",
     "svg": "png/bhd-group-22-cup-lids-bayader.png",
@@ -243,7 +243,7 @@
   },
   {
     "slug": "23-om005cup-machine-oman",
-    "name": "OM005Cup Machine - Oman",
+    "name": "BHD x Mingyuan Cup Machine",
     "blurb": "Cup supply group. Label: CUP MACHINE · OM005 · OMAN.",
     "png": "png/bhd-group-23-om005cup-machine-oman.png",
     "svg": "png/bhd-group-23-om005cup-machine-oman.png",
@@ -254,7 +254,7 @@
   },
   {
     "slug": "24-cup-machine-factory",
-    "name": "CUP MACHINE FACTORY",
+    "name": "BHD x Cup Machine Factory",
     "blurb": "Cup supply group. Label: MACHINE · CUP FACTORY.",
     "png": "png/bhd-group-24-cup-machine-factory.png",
     "svg": "png/bhd-group-24-cup-machine-factory.png",
@@ -265,7 +265,7 @@
   },
   {
     "slug": "25-plastic-cups-manufacturer",
-    "name": "Plastic Cups - Manufacturer",
+    "name": "BHD x Plastic Cups Manufacturer",
     "blurb": "Cup supply group. Label: PLASTIC CUPS · SUPPLIER.",
     "png": "png/bhd-group-25-plastic-cups-manufacturer.png",
     "svg": "png/bhd-group-25-plastic-cups-manufacturer.png",
@@ -276,7 +276,7 @@
   },
   {
     "slug": "26-plastic-cup-machine-factory-3",
-    "name": "Plastic Cup Machine Factory 3",
+    "name": "BHD x Plastic Cup Machine Factory 3",
     "blurb": "Cup supply group. Label: FACTORY 3 · CUP MACHINE.",
     "png": "png/bhd-group-26-plastic-cup-machine-factory-3.png",
     "svg": "png/bhd-group-26-plastic-cup-machine-factory-3.png",
@@ -286,19 +286,19 @@
     "filters": false
   },
   {
-    "slug": "27-milky-tea-plastic-cup",
-    "name": "Milky Tea Plastic Cup",
-    "blurb": "Cup supply group. Label: MILKY TEA · PLASTIC CUP.",
-    "png": "png/bhd-group-27-milky-tea-plastic-cup.png",
-    "svg": "png/bhd-group-27-milky-tea-plastic-cup.png",
-    "lg": "web/27-milky-tea-plastic-cup-lg.webp",
-    "sm": "web/27-milky-tea-plastic-cup-sm.webp",
-    "bytes": 491177,
+    "slug": "27-milky-tea-plastic-cup-v2",
+    "name": "BHD x Milky Tea",
+    "blurb": "Partner group. Label: MILKY TEA · × BHD.",
+    "png": "png/bhd-group-27-milky-tea-plastic-cup-v2.png",
+    "svg": "png/bhd-group-27-milky-tea-plastic-cup-v2.png",
+    "lg": "web/27-milky-tea-plastic-cup-v2-lg.webp",
+    "sm": "web/27-milky-tea-plastic-cup-v2-sm.webp",
+    "bytes": 481452,
     "filters": false
   },
   {
     "slug": "28-cup-ordering-china-factory",
-    "name": "Cup Ordering China Factory of Cups",
+    "name": "BHD x China Paper Cup Factory",
     "blurb": "Cup supply group. Label: CHINA ORDERS · CUP FACTORY.",
     "png": "png/bhd-group-28-cup-ordering-china-factory.png",
     "svg": "png/bhd-group-28-cup-ordering-china-factory.png",
@@ -308,19 +308,19 @@
     "filters": false
   },
   {
-    "slug": "29-plastic-cups-machine",
-    "name": "Plastic Cups Machine",
-    "blurb": "Cup supply group. Label: CUPS MACHINE · PLASTIC.",
-    "png": "png/bhd-group-29-plastic-cups-machine.png",
-    "svg": "png/bhd-group-29-plastic-cups-machine.png",
-    "lg": "web/29-plastic-cups-machine-lg.webp",
-    "sm": "web/29-plastic-cups-machine-sm.webp",
-    "bytes": 483269,
+    "slug": "29-plastic-cups-machine-v2",
+    "name": "BHD - Plastic Cup Machine",
+    "blurb": "Production group. Label: CUP MACHINE · PLASTIC · IN-HOUSE.",
+    "png": "png/bhd-group-29-plastic-cups-machine-v2.png",
+    "svg": "png/bhd-group-29-plastic-cups-machine-v2.png",
+    "lg": "web/29-plastic-cups-machine-v2-lg.webp",
+    "sm": "web/29-plastic-cups-machine-v2-sm.webp",
+    "bytes": 477635,
     "filters": false
   },
   {
     "slug": "30-enclave-x-bhd",
-    "name": "Enclave x BHD",
+    "name": "BHD x Enclave",
     "blurb": "Partner group. Label: ENCLAVE · × BHD.",
     "png": "png/bhd-group-30-enclave-x-bhd.png",
     "svg": "png/bhd-group-30-enclave-x-bhd.png",
@@ -331,7 +331,7 @@
   },
   {
     "slug": "31-smartway-x-bhd",
-    "name": "Smartway X BHD",
+    "name": "BHD x Smartway",
     "blurb": "Partner group. Label: SMARTWAY · × BHD.",
     "png": "png/bhd-group-31-smartway-x-bhd.png",
     "svg": "png/bhd-group-31-smartway-x-bhd.png",
@@ -342,7 +342,7 @@
   },
   {
     "slug": "32-caika-orders-x-bhd",
-    "name": "Caika Orders x BHD",
+    "name": "BHD x Caika Orders",
     "blurb": "Partner group. Label: CAIKA · ORDERS × BHD.",
     "png": "png/bhd-group-32-caika-orders-x-bhd.png",
     "svg": "png/bhd-group-32-caika-orders-x-bhd.png",
@@ -353,7 +353,7 @@
   },
   {
     "slug": "33-koa-x-bhd",
-    "name": "KOA x BHD",
+    "name": "BHD x KOA",
     "blurb": "Partner group. Label: KOA · × BHD.",
     "png": "png/bhd-group-33-koa-x-bhd.png",
     "svg": "png/bhd-group-33-koa-x-bhd.png",
@@ -364,7 +364,7 @@
   },
   {
     "slug": "34-swa-x-bhd",
-    "name": "Swa x BHD",
+    "name": "BHD x Swa",
     "blurb": "Partner group. Label: SWA · × BHD.",
     "png": "png/bhd-group-34-swa-x-bhd.png",
     "svg": "png/bhd-group-34-swa-x-bhd.png",
@@ -386,7 +386,7 @@
   },
   {
     "slug": "36-8-by-the-twins-x-bhd",
-    "name": "8 by The Twins X BHD",
+    "name": "BHD x 8 by The Twins",
     "blurb": "Partner group. Label: THE TWINS · 8 BY · × BHD.",
     "png": "png/bhd-group-36-8-by-the-twins-x-bhd.png",
     "svg": "png/bhd-group-36-8-by-the-twins-x-bhd.png",
@@ -397,7 +397,7 @@
   },
   {
     "slug": "37-bhd-amwal-pay",
-    "name": "BHD <> Amwal Pay",
+    "name": "BHD x Amwal Pay",
     "blurb": "Partner group. Label: AMWAL PAY · BHD ×.",
     "png": "png/bhd-group-37-bhd-amwal-pay.png",
     "svg": "png/bhd-group-37-bhd-amwal-pay.png",
@@ -408,7 +408,7 @@
   },
   {
     "slug": "38-colorline-x-bindarwish",
-    "name": "COLORLINE x BINDARWISH",
+    "name": "BHD x Colorline",
     "blurb": "Partner group. Label: COLORLINE · × BIN DARWISH.",
     "png": "png/bhd-group-38-colorline-x-bindarwish.png",
     "svg": "png/bhd-group-38-colorline-x-bindarwish.png",
@@ -419,7 +419,7 @@
   },
   {
     "slug": "39-bin-haider-darwish-hak",
-    "name": "Bin haider Darwish oman / HAK",
+    "name": "BHD x HAK",
     "blurb": "Partner group. Label: HAK · BIN HAIDER DARWISH.",
     "png": "png/bhd-group-39-bin-haider-darwish-hak.png",
     "svg": "png/bhd-group-39-bin-haider-darwish-hak.png",
@@ -430,7 +430,7 @@
   },
   {
     "slug": "40-bhd-falcon-express-uae",
-    "name": "BHD -Falcon Express UAE x MCT",
+    "name": "BHD x Falcon Express UAE-MCT",
     "blurb": "Partner group. Label: FALCON · EXPRESS · UAE × MCT.",
     "png": "png/bhd-group-40-bhd-falcon-express-uae.png",
     "svg": "png/bhd-group-40-bhd-falcon-express-uae.png",
@@ -452,7 +452,7 @@
   },
   {
     "slug": "42-dxb-to-bhd-paper-and-pen",
-    "name": "Dxb to BHD Paper & Pen Company",
+    "name": "BHD x Paper & Pen Dubai",
     "blurb": "Paper & Pen group. Label: PAPER & PEN · DXB × BHD.",
     "png": "png/bhd-group-42-dxb-to-bhd-paper-and-pen.png",
     "svg": "png/bhd-group-42-dxb-to-bhd-paper-and-pen.png",
@@ -462,14 +462,14 @@
     "filters": false
   },
   {
-    "slug": "43-bhd",
-    "name": "BHD",
-    "blurb": "BHD group. Label: BHD · TEAM.",
-    "png": "png/bhd-group-43-bhd.png",
-    "svg": "png/bhd-group-43-bhd.png",
-    "lg": "web/43-bhd-lg.webp",
-    "sm": "web/43-bhd-sm.webp",
-    "bytes": 274044,
+    "slug": "43-bhd-v2",
+    "name": "BHD - Sales",
+    "blurb": "BHD group. Label: SALES · BHD.",
+    "png": "png/bhd-group-43-bhd-v2.png",
+    "svg": "png/bhd-group-43-bhd-v2.png",
+    "lg": "web/43-bhd-v2-lg.webp",
+    "sm": "web/43-bhd-v2-sm.webp",
+    "bytes": 268357,
     "filters": false
   },
   {
@@ -496,7 +496,7 @@
   },
   {
     "slug": "46-yuzu-bhd-stickers",
-    "name": "YUZU + BHD Stickers",
+    "name": "BHD x YUZU Stickers",
     "blurb": "Partner group. Label: YUZU · STICKERS × BHD.",
     "png": "png/bhd-group-46-yuzu-bhd-stickers.png",
     "svg": "png/bhd-group-46-yuzu-bhd-stickers.png",
