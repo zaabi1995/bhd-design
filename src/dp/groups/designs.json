@@ -1,13 +1,13 @@
 [
   {
-    "slug": "01-bhd-production",
+    "slug": "01-bhd-production-green",
     "name": "BHD - Production (was Accounts - BHD)",
-    "blurb": "Production group. Label: PRODUCTION · BHD TEAM.",
-    "png": "png/bhd-group-01-bhd-production.png",
-    "svg": "png/bhd-group-01-bhd-production.png",
-    "lg": "web/01-bhd-production-lg.webp",
-    "sm": "web/01-bhd-production-sm.webp",
-    "bytes": 463369,
+    "blurb": "Production group. Kept close to the group's current green picture: one white BHD mark on flat green.",
+    "png": "png/bhd-group-01-bhd-production-green.png",
+    "svg": "png/bhd-group-01-bhd-production-green.png",
+    "lg": "web/01-bhd-production-green-lg.webp",
+    "sm": "web/01-bhd-production-green-sm.webp",
+    "bytes": 14697,
     "filters": false
   },
   {
