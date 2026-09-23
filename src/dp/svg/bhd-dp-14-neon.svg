@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+<defs><radialGradient id="bg" cx=".5" cy=".5" r=".7"><stop offset="0" stop-color="#2a0845"/>
+      <stop offset="1" stop-color="#0a0014"/></radialGradient>
+      <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="a"/><feGaussianBlur stdDeviation="22" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="a"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<rect width="1080" height="1080" fill="url(#bg)"/><g transform="translate(220.000,235.974) scale(2.104571)" filter="url(#glow)" stroke-linejoin="round"><polygon points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24" fill="#ff2bd6" fill-opacity=".22" stroke="#ff7ae8" stroke-width="3.326"/><path d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z" fill="#00e5ff" fill-opacity=".22" stroke="#8cf6ff" stroke-width="3.326"/><polygon points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87" fill="#fff35c"/></g>
+</svg>

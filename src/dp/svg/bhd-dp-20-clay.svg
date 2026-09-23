@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+<defs><filter id="clay" x="-20%" y="-20%" width="140%" height="160%">
+      <feOffset in="SourceAlpha" dx="-2.2" dy="-2.6" result="o1"/><feGaussianBlur in="o1" stdDeviation="1.6" result="b1"/>
+      <feComposite in="SourceAlpha" in2="b1" operator="out" result="hl"/>
+      <feColorMatrix in="hl" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0" result="hlc"/>
+      <feOffset in="SourceAlpha" dx="2.6" dy="3.2" result="o2"/><feGaussianBlur in="o2" stdDeviation="2" result="b2"/>
+      <feComposite in="SourceAlpha" in2="b2" operator="out" result="sd"/>
+      <feColorMatrix in="sd" type="matrix" values="0 0 0 0 .15 0 0 0 0 .05 0 0 0 0 .3 0 0 0 .45 0" result="sdc"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="5"/><feOffset dy="8" result="d"/>
+      <feColorMatrix in="d" type="matrix" values="0 0 0 0 .25 0 0 0 0 .12 0 0 0 0 .4 0 0 0 .4 0" result="ds"/>
+      <feMerge><feMergeNode in="ds"/><feMergeNode in="SourceGraphic"/><feMergeNode in="sdc"/><feMergeNode in="hlc"/></feMerge></filter>
+      <radialGradient id="bg" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#e4d3f5"/><stop offset="1" stop-color="#b79ce0"/></radialGradient></defs>
+<rect width="1080" height="1080" fill="url(#bg)"/><g transform="translate(220.000,235.974) scale(2.104571)" filter="url(#clay)"><polygon fill="#ff7aa2" points="136.83 91.24 136.83 106.45 258.45 106.45 258.45 136.86 136.83 136.86 106.42 106.45 106.42 91.24 91.21 91.24 91.21 136.86 0 136.86 0 106.45 60.8 106.45 60.8 30.41 30.41 30.41 30.41 91.24 0 91.24 0 0 91.21 0 91.21 60.83 182.45 60.83 182.45 30.41 121.62 30.41 121.62 0 182.45 0 212.86 30.41 212.86 60.83 273.69 60.83 273.69 0 304.1 30.41 304.1 91.24 136.83 91.24"/><path fill="#4b3fc4" d="M273.69,136.86H167.25v60.82H136.83V136.86H106.41V258.52H91.21V167.28L60.79,136.86H0V288.92H136.83V228.1h30.42v60.82h30.4V167.28h15.21V288.92H304.1V167.28ZM60.79,258.52H30.41V228.1H60.79Zm0-60.84H30.41v-30.4H60.79Zm212.9,60.84H243.27V167.28h30.42Z"/><polygon fill="#ffcf56" points="273.68 136.87 273.68 106.46 304.09 106.46 273.68 136.87"/></g>
+</svg>

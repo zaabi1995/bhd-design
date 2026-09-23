@@ -108,5 +108,137 @@
     "sm": "web/10-midnight-sm.webp",
     "bytes": 40497,
     "filters": false
+  },
+  {
+    "slug": "11-sunset",
+    "name": "Sunset",
+    "blurb": "Dusk over the Gulf: indigo sky into rose and amber, cream Arabic over deep-indigo BHD.",
+    "png": "png/bhd-dp-11-sunset.png",
+    "svg": "svg/bhd-dp-11-sunset.svg",
+    "lg": "web/11-sunset-lg.webp",
+    "sm": "web/11-sunset-sm.webp",
+    "bytes": 239521,
+    "filters": true
+  },
+  {
+    "slug": "12-riso",
+    "name": "Riso",
+    "blurb": "A two-drum risograph print in fluorescent pink and blue, laid slightly off register over yellow.",
+    "png": "png/bhd-dp-12-riso.png",
+    "svg": "svg/bhd-dp-12-riso.svg",
+    "lg": "web/12-riso-lg.webp",
+    "sm": "web/12-riso-sm.webp",
+    "bytes": 513143,
+    "filters": true
+  },
+  {
+    "slug": "13-emerald-gold",
+    "name": "Emerald & Gold",
+    "blurb": "Gold-leaf Arabic and ivory BHD on jewel green, inside a thin gold ring.",
+    "png": "png/bhd-dp-13-emerald-gold.png",
+    "svg": "svg/bhd-dp-13-emerald-gold.svg",
+    "lg": "web/13-emerald-gold-lg.webp",
+    "sm": "web/13-emerald-gold-sm.webp",
+    "bytes": 573310,
+    "filters": true
+  },
+  {
+    "slug": "14-neon",
+    "name": "Neon",
+    "blurb": "Tube signage at night: pink Arabic and cyan BHD glowing on deep violet.",
+    "png": "png/bhd-dp-14-neon.png",
+    "svg": "svg/bhd-dp-14-neon.svg",
+    "lg": "web/14-neon-lg.webp",
+    "sm": "web/14-neon-sm.webp",
+    "bytes": 157196,
+    "filters": true
+  },
+  {
+    "slug": "15-extrude",
+    "name": "Extrude",
+    "blurb": "The mark cut as a solid block of type, casting a long shadow across coral.",
+    "png": "png/bhd-dp-15-extrude.png",
+    "svg": "svg/bhd-dp-15-extrude.svg",
+    "lg": "web/15-extrude-lg.webp",
+    "sm": "web/15-extrude-sm.webp",
+    "bytes": 203104,
+    "filters": true
+  },
+  {
+    "slug": "16-split",
+    "name": "Split",
+    "blurb": "Navy and tangerine halves. The Arabic swaps ink as it crosses the seam.",
+    "png": "png/bhd-dp-16-split.png",
+    "svg": "svg/bhd-dp-16-split.svg",
+    "lg": "web/16-split-lg.webp",
+    "sm": "web/16-split-sm.webp",
+    "bytes": 273676,
+    "filters": true
+  },
+  {
+    "slug": "17-aurora",
+    "name": "Aurora",
+    "blurb": "Soft fields of purple, teal, pink and amber drifting behind a white and yellow mark.",
+    "png": "png/bhd-dp-17-aurora.png",
+    "svg": "svg/bhd-dp-17-aurora.svg",
+    "lg": "web/17-aurora-lg.webp",
+    "sm": "web/17-aurora-sm.webp",
+    "bytes": 245917,
+    "filters": true
+  },
+  {
+    "slug": "18-terrazzo",
+    "name": "Terrazzo",
+    "blurb": "Omani sand stone with chips of terracotta, teal, mustard and slate.",
+    "png": "png/bhd-dp-18-terrazzo.png",
+    "svg": "svg/bhd-dp-18-terrazzo.svg",
+    "lg": "web/18-terrazzo-lg.webp",
+    "sm": "web/18-terrazzo-sm.webp",
+    "bytes": 353397,
+    "filters": true
+  },
+  {
+    "slug": "19-sticker",
+    "name": "Sticker",
+    "blurb": "A die-cut vinyl sticker, white-bordered, on a pink pop sunburst.",
+    "png": "png/bhd-dp-19-sticker.png",
+    "svg": "svg/bhd-dp-19-sticker.svg",
+    "lg": "web/19-sticker-lg.webp",
+    "sm": "web/19-sticker-sm.webp",
+    "bytes": 43433,
+    "filters": true
+  },
+  {
+    "slug": "20-clay",
+    "name": "Clay",
+    "blurb": "The mark sculpted in soft pink and violet clay on a lilac ground.",
+    "png": "png/bhd-dp-20-clay.png",
+    "svg": "svg/bhd-dp-20-clay.svg",
+    "lg": "web/20-clay-lg.webp",
+    "sm": "web/20-clay-sm.webp",
+    "bytes": 105966,
+    "filters": true
+  },
+  {
+    "slug": "21-paper-rings",
+    "name": "Paper Rings",
+    "blurb": "Stacked paper discs in a warm red to gold spectrum around a cream centre.",
+    "png": "png/bhd-dp-21-paper-rings.png",
+    "svg": "svg/bhd-dp-21-paper-rings.svg",
+    "lg": "web/21-paper-rings-lg.webp",
+    "sm": "web/21-paper-rings-sm.webp",
+    "bytes": 46194,
+    "filters": true
+  },
+  {
+    "slug": "22-holo",
+    "name": "Holo",
+    "blurb": "An iridescent foil sweep behind a dark violet and ink mark.",
+    "png": "png/bhd-dp-22-holo.png",
+    "svg": "svg/bhd-dp-22-holo.svg",
+    "lg": "web/22-holo-lg.webp",
+    "sm": "web/22-holo-sm.webp",
+    "bytes": 199363,
+    "filters": true
   }
 ]
