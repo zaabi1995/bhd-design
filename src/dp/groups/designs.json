@@ -471,5 +471,49 @@
     "sm": "web/43-bhd-sm.webp",
     "bytes": 274044,
     "filters": false
+  },
+  {
+    "slug": "44-bhd-x-vicut-dealership",
+    "name": "BHD x Vicut Dealership",
+    "blurb": "Partner group. Label: VICUT · DEALERSHIP × BHD.",
+    "png": "png/bhd-group-44-bhd-x-vicut-dealership.png",
+    "svg": "png/bhd-group-44-bhd-x-vicut-dealership.png",
+    "lg": "web/44-bhd-x-vicut-dealership-lg.webp",
+    "sm": "web/44-bhd-x-vicut-dealership-sm.webp",
+    "bytes": 468627,
+    "filters": false
+  },
+  {
+    "slug": "45-bin-haider-darwish-bhd",
+    "name": "Bin Haider Darwish - BHD",
+    "blurb": "BHD group. Label: BHD · BIN HAIDER DARWISH.",
+    "png": "png/bhd-group-45-bin-haider-darwish-bhd.png",
+    "svg": "png/bhd-group-45-bin-haider-darwish-bhd.png",
+    "lg": "web/45-bin-haider-darwish-bhd-lg.webp",
+    "sm": "web/45-bin-haider-darwish-bhd-sm.webp",
+    "bytes": 255356,
+    "filters": false
+  },
+  {
+    "slug": "46-yuzu-bhd-stickers",
+    "name": "YUZU + BHD Stickers",
+    "blurb": "Partner group. Label: YUZU · STICKERS × BHD.",
+    "png": "png/bhd-group-46-yuzu-bhd-stickers.png",
+    "svg": "png/bhd-group-46-yuzu-bhd-stickers.png",
+    "lg": "web/46-yuzu-bhd-stickers-lg.webp",
+    "sm": "web/46-yuzu-bhd-stickers-sm.webp",
+    "bytes": 509473,
+    "filters": false
+  },
+  {
+    "slug": "47-bhd-x-fast-digital",
+    "name": "BHD x Fast Digital",
+    "blurb": "Partner group. Label: FAST DIGITAL · BHD ×.",
+    "png": "png/bhd-group-47-bhd-x-fast-digital.png",
+    "svg": "png/bhd-group-47-bhd-x-fast-digital.png",
+    "lg": "web/47-bhd-x-fast-digital-lg.webp",
+    "sm": "web/47-bhd-x-fast-digital-sm.webp",
+    "bytes": 468520,
+    "filters": false
   }
 ]
