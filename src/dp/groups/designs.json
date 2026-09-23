@@ -515,5 +515,16 @@
     "sm": "web/47-bhd-x-fast-digital-sm.webp",
     "bytes": 468520,
     "filters": false
+  },
+  {
+    "slug": "48-bhd-x-jasani",
+    "name": "BHD x Jasani",
+    "blurb": "Partner group. Label: JASANI · GIFTS × BHD.",
+    "png": "png/bhd-group-48-bhd-x-jasani.png",
+    "svg": "png/bhd-group-48-bhd-x-jasani.png",
+    "lg": "web/48-bhd-x-jasani-lg.webp",
+    "sm": "web/48-bhd-x-jasani-sm.webp",
+    "bytes": 301257,
+    "filters": false
   }
 ]
