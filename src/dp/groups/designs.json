@@ -526,5 +526,16 @@
     "sm": "web/48-bhd-x-jasani-sm.webp",
     "bytes": 301257,
     "filters": false
+  },
+  {
+    "slug": "49-bhd-x-ohb-cards",
+    "name": "BHD x OHB Cards",
+    "blurb": "Partner group. Label: OHB · CARDS × BHD.",
+    "png": "png/bhd-group-49-bhd-x-ohb-cards.png",
+    "svg": "png/bhd-group-49-bhd-x-ohb-cards.png",
+    "lg": "web/49-bhd-x-ohb-cards-lg.webp",
+    "sm": "web/49-bhd-x-ohb-cards-sm.webp",
+    "bytes": 326964,
+    "filters": false
   }
 ]
