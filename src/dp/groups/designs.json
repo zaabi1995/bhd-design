@@ -183,7 +183,7 @@
     "svg": "png/bhd-group-17-cupsbyaa-marketing.png",
     "lg": "web/17-cupsbyaa-marketing-lg.webp",
     "sm": "web/17-cupsbyaa-marketing-sm.webp",
-    "bytes": 111814,
+    "bytes": 113999,
     "filters": false
   },
   {
@@ -530,12 +530,12 @@
   {
     "slug": "49-bhd-x-ohb-cards",
     "name": "BHD x OHB Cards",
-    "blurb": "Its own colours on a diamond. Label: OHB · CARDS × BHD.",
+    "blurb": "Its own colours on a check. Label: OHB · CARDS × BHD.",
     "png": "png/bhd-group-49-bhd-x-ohb-cards.png",
     "svg": "png/bhd-group-49-bhd-x-ohb-cards.png",
     "lg": "web/49-bhd-x-ohb-cards-lg.webp",
     "sm": "web/49-bhd-x-ohb-cards-sm.webp",
-    "bytes": 53520,
+    "bytes": 55051,
     "filters": false
   }
 ]
