@@ -33,14 +33,14 @@
     "filters": false
   },
   {
-    "slug": "04-hamid",
-    "name": "Hamid",
-    "blurb": "Label: HAMID · SENIOR DESIGN.",
-    "png": "png/bhd-team-04-hamid.png",
-    "svg": "png/bhd-team-04-hamid.png",
-    "lg": "web/04-hamid-lg.webp",
-    "sm": "web/04-hamid-sm.webp",
-    "bytes": 85330,
+    "slug": "04-hussain",
+    "name": "Hussain",
+    "blurb": "Label: HUSSAIN · SENIOR DESIGN.",
+    "png": "png/bhd-team-04-hussain.png",
+    "svg": "png/bhd-team-04-hussain.png",
+    "lg": "web/04-hussain-lg.webp",
+    "sm": "web/04-hussain-sm.webp",
+    "bytes": 47415,
     "filters": false
   },
   {
