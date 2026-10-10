@@ -1,0 +1,211 @@
+[
+  {
+    "slug": "01-ali",
+    "name": "Ali",
+    "blurb": "Label: ALI · CEO.",
+    "png": "png/bhd-team-01-ali.png",
+    "svg": "png/bhd-team-01-ali.png",
+    "lg": "web/01-ali-lg.webp",
+    "sm": "web/01-ali-sm.webp",
+    "bytes": 60633,
+    "filters": false
+  },
+  {
+    "slug": "02-ansar",
+    "name": "Ansar",
+    "blurb": "Label: ANSAR · PRODUCTION & OPS.",
+    "png": "png/bhd-team-02-ansar.png",
+    "svg": "png/bhd-team-02-ansar.png",
+    "lg": "web/02-ansar-lg.webp",
+    "sm": "web/02-ansar-sm.webp",
+    "bytes": 81041,
+    "filters": false
+  },
+  {
+    "slug": "03-arshad",
+    "name": "Arshad",
+    "blurb": "Label: ARSHAD · DESIGN & CREATIVE.",
+    "png": "png/bhd-team-03-arshad.png",
+    "svg": "png/bhd-team-03-arshad.png",
+    "lg": "web/03-arshad-lg.webp",
+    "sm": "web/03-arshad-sm.webp",
+    "bytes": 87935,
+    "filters": false
+  },
+  {
+    "slug": "04-hamid",
+    "name": "Hamid",
+    "blurb": "Label: HAMID · SENIOR DESIGN.",
+    "png": "png/bhd-team-04-hamid.png",
+    "svg": "png/bhd-team-04-hamid.png",
+    "lg": "web/04-hamid-lg.webp",
+    "sm": "web/04-hamid-sm.webp",
+    "bytes": 85330,
+    "filters": false
+  },
+  {
+    "slug": "05-muneer",
+    "name": "Muneer",
+    "blurb": "Label: MUNEER · SUPERVISOR.",
+    "png": "png/bhd-team-05-muneer.png",
+    "svg": "png/bhd-team-05-muneer.png",
+    "lg": "web/05-muneer-lg.webp",
+    "sm": "web/05-muneer-sm.webp",
+    "bytes": 74686,
+    "filters": false
+  },
+  {
+    "slug": "06-nasir",
+    "name": "Nasir",
+    "blurb": "Label: NASIR · SENIOR PRODUCTION.",
+    "png": "png/bhd-team-06-nasir.png",
+    "svg": "png/bhd-team-06-nasir.png",
+    "lg": "web/06-nasir-lg.webp",
+    "sm": "web/06-nasir-sm.webp",
+    "bytes": 74922,
+    "filters": false
+  },
+  {
+    "slug": "07-iftikhar",
+    "name": "Iftikhar",
+    "blurb": "Label: IFTIKHAR · PRODUCTION.",
+    "png": "png/bhd-team-07-iftikhar.png",
+    "svg": "png/bhd-team-07-iftikhar.png",
+    "lg": "web/07-iftikhar-lg.webp",
+    "sm": "web/07-iftikhar-sm.webp",
+    "bytes": 78858,
+    "filters": false
+  },
+  {
+    "slug": "08-alamin",
+    "name": "Alamin",
+    "blurb": "Label: ALAMIN · PRODUCTION.",
+    "png": "png/bhd-team-08-alamin.png",
+    "svg": "png/bhd-team-08-alamin.png",
+    "lg": "web/08-alamin-lg.webp",
+    "sm": "web/08-alamin-sm.webp",
+    "bytes": 69704,
+    "filters": false
+  },
+  {
+    "slug": "09-nurul",
+    "name": "Nurul Alam",
+    "blurb": "Label: NURUL ALAM · PRODUCTION.",
+    "png": "png/bhd-team-09-nurul.png",
+    "svg": "png/bhd-team-09-nurul.png",
+    "lg": "web/09-nurul-lg.webp",
+    "sm": "web/09-nurul-sm.webp",
+    "bytes": 68023,
+    "filters": false
+  },
+  {
+    "slug": "10-kaiyum",
+    "name": "Kaiyum",
+    "blurb": "Label: KAIYUM · PRODUCTION.",
+    "png": "png/bhd-team-10-kaiyum.png",
+    "svg": "png/bhd-team-10-kaiyum.png",
+    "lg": "web/10-kaiyum-lg.webp",
+    "sm": "web/10-kaiyum-sm.webp",
+    "bytes": 83103,
+    "filters": false
+  },
+  {
+    "slug": "11-rehan",
+    "name": "Rehan",
+    "blurb": "Label: REHAN · OPERATOR & SUPPORT.",
+    "png": "png/bhd-team-11-rehan.png",
+    "svg": "png/bhd-team-11-rehan.png",
+    "lg": "web/11-rehan-lg.webp",
+    "sm": "web/11-rehan-sm.webp",
+    "bytes": 72006,
+    "filters": false
+  },
+  {
+    "slug": "12-buthaina",
+    "name": "Buthaina",
+    "blurb": "Label: BUTHAINA · PRINTING.",
+    "png": "png/bhd-team-12-buthaina.png",
+    "svg": "png/bhd-team-12-buthaina.png",
+    "lg": "web/12-buthaina-lg.webp",
+    "sm": "web/12-buthaina-sm.webp",
+    "bytes": 78929,
+    "filters": false
+  },
+  {
+    "slug": "13-abdullah",
+    "name": "Abdullah",
+    "blurb": "Label: ABDULLAH · SALES & BUSINESS DEV.",
+    "png": "png/bhd-team-13-abdullah.png",
+    "svg": "png/bhd-team-13-abdullah.png",
+    "lg": "web/13-abdullah-lg.webp",
+    "sm": "web/13-abdullah-sm.webp",
+    "bytes": 94292,
+    "filters": false
+  },
+  {
+    "slug": "14-abees",
+    "name": "Abees",
+    "blurb": "Label: ABEES · SALES.",
+    "png": "png/bhd-team-14-abees.png",
+    "svg": "png/bhd-team-14-abees.png",
+    "lg": "web/14-abees-lg.webp",
+    "sm": "web/14-abees-sm.webp",
+    "bytes": 99346,
+    "filters": false
+  },
+  {
+    "slug": "16-taslima",
+    "name": "Taslima",
+    "blurb": "Label: TASLIMA · CUSTOMER SERVICE.",
+    "png": "png/bhd-team-16-taslima.png",
+    "svg": "png/bhd-team-16-taslima.png",
+    "lg": "web/16-taslima-lg.webp",
+    "sm": "web/16-taslima-sm.webp",
+    "bytes": 81369,
+    "filters": false
+  },
+  {
+    "slug": "17-anisa",
+    "name": "Anisa",
+    "blurb": "Label: ANISA · DATA ENTRY.",
+    "png": "png/bhd-team-17-anisa.png",
+    "svg": "png/bhd-team-17-anisa.png",
+    "lg": "web/17-anisa-lg.webp",
+    "sm": "web/17-anisa-sm.webp",
+    "bytes": 60298,
+    "filters": false
+  },
+  {
+    "slug": "18-rua",
+    "name": "Rua",
+    "blurb": "Label: RUA · PUBLIC RELATIONS.",
+    "png": "png/bhd-team-18-rua.png",
+    "svg": "png/bhd-team-18-rua.png",
+    "lg": "web/18-rua-lg.webp",
+    "sm": "web/18-rua-sm.webp",
+    "bytes": 61293,
+    "filters": false
+  },
+  {
+    "slug": "19-alaa",
+    "name": "Alaa",
+    "blurb": "Label: ALAA · OWNER · CUPSBYAA.",
+    "png": "png/bhd-team-19-alaa.png",
+    "svg": "png/bhd-team-19-alaa.png",
+    "lg": "web/19-alaa-lg.webp",
+    "sm": "web/19-alaa-sm.webp",
+    "bytes": 129662,
+    "filters": false
+  },
+  {
+    "slug": "20-anna",
+    "name": "Anna",
+    "blurb": "Label: ANNA · AI DESK.",
+    "png": "png/bhd-team-20-anna.png",
+    "svg": "png/bhd-team-20-anna.png",
+    "lg": "web/20-anna-lg.webp",
+    "sm": "web/20-anna-sm.webp",
+    "bytes": 55873,
+    "filters": false
+  }
+]
