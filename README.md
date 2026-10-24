@@ -21,7 +21,7 @@ Shared design system for the **BHD Group** portfolio. Hosted at **https://design
 | **The Flower Bar** | [tfb.om](https://tfb.om) | Oman's best florist in Muscat. For love, we bloom. |
 | **BHD Group hub** | [bhd.om](https://bhd.om) | Holding company portfolio site. |
 
-CEO: **Ali Adnan Haider Darwish**. Head office: HM Tower, Ground Floor, Bousher, Muscat 100, Oman. Phone/WhatsApp: +968 98899100. Email: info@bhd.om.
+CEO: **Ali Adnan Haider Darwish**. Head office: BHD Tower, Ground Floor, Bousher, Muscat 100, Oman. Phone/WhatsApp: +968 98899100. Email: info@bhd.om.
 
 ## What lives here
 
