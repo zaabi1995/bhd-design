@@ -346,3 +346,54 @@ practical notes:
 `npm test` fails on `tests/unit/documentIndex.test.ts` with `missingLanguages:
 ['ara']` (no tesseract Arabic pack locally). Confirmed pre-existing by stashing
 the change and reproducing the identical failure.
+
+---
+
+## Elements adopter #3 — cupsbyaa.com (done, verified live)
+
+**The cheapest adoption type: one line, zero alias.** cupsbyaa.com already ships
+the semantic token contract through `cups-ui.css` + `public-shadcn.css`
+(`--primary: #c83f7d`, `--background`, `--border`, `--muted`, `--radius`), so
+`elements.css` inherited the brand immediately and nothing had to be mapped.
+
+```blade
+<link rel="stylesheet" href="https://design.bhd.om/elements.css?v=1">
+```
+
+Added to **all three** public layouts — `shop`, `app`, `admin` — not just the
+one the homepage renders through, because the previous adoption lost a surface by
+assuming a single layout reached everything (`Base.astro` did not cover
+`MithaqMarketing.astro`).
+
+### Deployment note: cupsbyaa.com is Docker
+
+Not a bare webroot. `cupsbyaa.com` proxies to `127.0.0.1:18080`, a Docker service
+(`cupsbyaa-app`) whose app source is **volume-mounted** from
+`/www/wwwroot/custom.cupsbyaa.com`. So a template change is:
+
+1. verify the VPS blades are byte-identical to `HEAD` (drift check — done, all three matched),
+2. `scp` the changed blades,
+3. `docker exec cupsbyaa-app php artisan view:clear` **and** `config:clear`.
+
+Skipping step 3 serves the stale compiled Blade. Blade compiles at runtime, so no
+image rebuild is needed.
+
+### Verified (production)
+
+| Surface | `--primary` | badge | switch | progress | dir | errors |
+| --- | --- | --- | --- | --- | --- | --- |
+| `cupsbyaa.com/` | `#c83f7d` | `rgb(200,63,125)` | 44px | 768px | — | none |
+| `cupsbyaa.com/ar` | `#c83f7d` | `rgb(200,63,125)` | 44px | 768px | rtl | none |
+| `cupsbyaa.com/shop` | `#c83f7d` | `rgb(200,63,125)` | 44px | 768px | ltr | none |
+
+### The three adoption types, now all proven
+
+| Type | Cost | Example |
+| --- | --- | --- |
+| Already has the token contract | **one line** | `cupsbyaa.com` |
+| Has a token system under different names | one alias block | `almahamarble.om`, `fencing.om`/`mithaq.om` |
+| No token system at all | alias + judgement on colours | (none yet — `cardify.om` is the next candidate, after its drift is reconciled) |
+
+Triage rule for the remaining ~25 sites: check `--primary` first. If it resolves,
+it is a one-line job; if not, it needs an alias and a decision about which of the
+site's colours become `--primary`.
