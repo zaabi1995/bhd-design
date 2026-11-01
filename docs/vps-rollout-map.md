@@ -507,3 +507,75 @@ entry and is correct practice anyway.
 
 Diagnostic tell: if a stylesheet is 403 in the browser but 200 from `curl` with a
 cache-buster, it is the edge, not the origin.
+
+## Round 7 — generated prescription for every remaining surface
+
+`scripts/elements-adopt.mjs` turns the triage into a prescription: give it URLs and it
+prints the verdict, the tokens that already resolve, the page's painted palette, and the
+exact next step. It never edits anything, so it is safe against production.
+
+Result across the 40 remaining surfaces:
+
+| Verdict | Count |
+| --- | ---: |
+| `CONTRACT` — no semantic tokens | 30 |
+| `ALIAS` — partial tokens | 9 |
+| `ONE-LINE` — ready now | 1 (`mays.bhd.om`) |
+
+### The queue
+
+| Surface | Verdict | Candidate primary | Note |
+| --- | --- | --- | --- |
+| `alyas.bhdoman.com` | ALIAS | `#dfe4ee` | 2/8 |
+| `carlounge.bhd.om` | ALIAS | `#091117` | 2/8 |
+| `design.qplus.om` | ALIAS | `#10203A` | 2/8 |
+| `empowerment.bhdoman.com` | ALIAS | `#dfe4ee` | 2/8 |
+| `hosn.om` | ALIAS | `#0F3355` | 2/8 |
+| `location.bhd.om` | ALIAS | `#009bc1` | 2/8 |
+| `oits.bhd.om` | ALIAS | `#c6d2e6` | 2/8 |
+| `print.bhd.om` | ALIAS | `#dfe3ec` | 2/8 |
+| `saaf.bhd.om` | ALIAS | `#f3efe6` | 3/8 |
+| `arabian.ceo` | CONTRACT | `#544c3f` | 1/8 |
+| `bc.bhd.om` | CONTRACT | `#e5e7eb` | 0/8 |
+| `bhd.om` | CONTRACT | `#0f172a` | 0/8 |
+| `bhdoman.com` | CONTRACT | `#00b4d8` | 0/8 |
+| `dardasha.om` | CONTRACT | `#00d4ff` | 0/8 |
+| `docs.bhd.om` | CONTRACT | `#a3acb9` | 2/8 |
+| `ecothon.bhd.om` | CONTRACT | `#0d1520` | gold/ink (shares a template with 4 others) |
+| `fidatmajan.com` | CONTRACT | `#a0a0a0` | 1/8 |
+| `ideas.bhd.om` | CONTRACT | `#fbf7f3` | 1/8 |
+| `jaifar.bhd.om` | CONTRACT | `#0e5982` | 1/8 |
+| `kairuz.om` | CONTRACT | `#241A26` | 0/8 |
+| `lulus.om` | CONTRACT | `#ffffff` | 0/8 |
+| `neverboard.om` | CONTRACT | `#0B0B0D` | 1/8 |
+| `oia.bhd.om` | CONTRACT | `#0d1520` | gold/ink (shares a template with 4 others) |
+| `oiahub.bhd.om` | CONTRACT | `#0d1520` | gold/ink (shares a template with 4 others) |
+| `paperandpen.om` | CONTRACT | `#172e50` | 0/8 |
+| `present.hosn.om` | CONTRACT | `#0d1520` | gold/ink (shares a template with 4 others) |
+| `qr.bhd.om` | CONTRACT | `#fdf8ec` | cream/blue invitation (shares with sa) |
+| `sa.bhd.om` | CONTRACT | `#fdf8ec` | cream/blue invitation (shares with sa) |
+| `sama.bhd.om` | CONTRACT | `#009bc1` | 0/8 |
+| `social.alizaabi.om` | CONTRACT | `—` | 0/8 |
+| `sooraseebenterprises.com` | CONTRACT | `#1a1f2e` | 0/8 |
+| `sparkjewelry.om` | CONTRACT | `#FFFFFF` | 0/8 |
+| `standard.bhdoman.com` | CONTRACT | `#1a1a1a` | 0/8 |
+| `t11.bhd.om` | CONTRACT | `#111a44` | 1/8 |
+| `tanmia.bhd.om` | CONTRACT | `#0d1520` | gold/ink (shares a template with 4 others) |
+| `thabit.bhd.om` | CONTRACT | `#14213A` | 0/8 |
+| `thesocialbar.om` | CONTRACT | `#2c1810` | 0/8 |
+| `urban.bhd.om` | CONTRACT | `#f4ede0` | 0/8 |
+| `welle.om` | CONTRACT | `#FFFFFF` | 0/8 |
+| `mays.bhd.om` | ONE-LINE | `—` | 8/8 |
+
+### What this changes
+
+The queue is no longer 38 individual judgement calls. It clusters:
+
+- **A gold/ink family** — `tanmia`, `oia`, `oiahub`, `ecothon`, `present.hosn.om` all paint
+  `#0d1520` + `#c9a961`. Same template, so **one contract covers five sites**. Their files
+  differ (separate deploys) but the palette does not.
+- **A cream/blue pair** — `qr.bhd.om` and `sa.bhd.om`, same invitations template.
+- **Genuine one-offs** — `hosn.om` (239 pages, own system), `kairuz.om`, `welle.om`.
+
+So the real unit of work is a **template family**, not a site. That number is far smaller
+than 38 and is the right way to finish the rollout.
