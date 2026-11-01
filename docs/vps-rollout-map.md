@@ -679,3 +679,40 @@ will lie to you convincingly.
 It also means the "the queue clusters into families" conclusion is **withdrawn**.
 The remaining work is per-site, using the procedure that is now proven three
 ways. That is a smaller claim, and a true one.
+
+---
+
+## Elements adopter #9 — carlounge.bhd.om (verified live, EN + AR)
+
+First adoption done *after* the round-8 correction, applying the fixed procedure:
+confirm HTTP 200, read the site's real variables, map them, then link.
+
+Car Lounge names its palette `--steel` `#2a6689`, `--paper` `#f4f8fa`, `--text`
+`#172630`, `--line` `#dce7ed`, `--mist` `#dcebf3`, `--muted` `#5b6d78`,
+`--radius` 22px — a clean 1:1 map onto the contract, so no colour judgement was
+needed, only naming.
+
+Eight pages patched, not one: `/`, `/ar`, `/car-wash-partners-oman/` and its AR
+twin, `/car-care-marketplace-oman/` and its AR twin, `404.html`, and
+`/riyada/`.
+
+| Surface | `--primary` | badge | switch | body | dir |
+| --- | --- | --- | --- | --- | --- |
+| `/` | `#2a6689` | `rgb(42,102,137)` | 44px | `rgb(244,248,250)` | ltr |
+| `/ar` | `#2a6689` | `rgb(42,102,137)` | 44px | `rgb(244,248,250)` | rtl |
+| `/car-wash-partners-oman/` | `#2a6689` | `rgb(42,102,137)` | 44px | `rgb(244,248,250)` | ltr |
+
+### Two details worth reusing
+
+**`/riyada/` does not load `site.css`.** It is a standalone page with inline
+styles only, so the shared contract's `var(--steel)` had nothing to resolve
+against and would have fallen back to neutral. It got literal values in its own
+`<style>` block instead. A contract that references variables only works on pages
+that load the file those variables live in — checking which stylesheets a page
+actually links is part of the job.
+
+**Permissions were set before the link was added.** The round-6 failure was a
+file created `640 root:root` that nginx 403'd, then Cloudflare caching that 403.
+This time the contract file was `chmod 644` + `chown www:www` *first*, so the
+edge never saw a failing response to cache — and the link still carries `?v=1` as
+a belt-and-braces cache-buster.
