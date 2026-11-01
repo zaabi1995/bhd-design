@@ -39,43 +39,53 @@ So each site is a two-part job, and the second part is the one that pays:
 A site with one hand-rolled spinner is a 20-minute job. A site with a full custom
 design language is a rewrite, and should not be forced.
 
-## Cohorts, in the order worth doing them
+## Cohorts, ordered by measured effort (not by guess)
 
-### Cohort 1 — static brand sites with hand-rolled UI (highest ROI)
+Measured page counts on the VPS, 2 Nov 2026. The first draft of this map ranked
+`hosn.om` and `lulus.om` as quick wins. Both were wrong, and the measurements are
+why: `hosn.om` is **239 pages with its own `tokens.css` and `site.css`**, and
+`lulus.om` is a **4 KB coming-soon page with no controls at all**.
 
-`hosn.om` · `kairuz.om` · `lulus.om` · `welle.om` · `tanmia.bhd.om`
+| Site | Pages | Size | Reality |
+| --- | ---: | ---: | --- |
+| `urban.bhd.om` | 1 | 136 K | single page, no system |
+| `standard.bhdoman.com` | 5 | 40 K | five pages, no system |
+| `welle.om` | 7 + 10 php | 2.0 M | small, mixed static/PHP |
+| `kairuz.om` | 33 | 36 M | real site, no design system, has a local repo |
+| `cardify.om` | 45 + 1210 php | 3.3 G | one shared header partial reaches five surfaces |
+| `hosn.om` | 239 | 82 M | **has its own design system — integration, not adoption** |
+| `paperandpen.om` | 6 930 | 948 M | Astro-generated; edit templates, never output |
 
-All five load **neither** `design.bhd.om` **nor** `fonts.bhd.om`. They are the purest
-case: no design system at all, static HTML, low blast radius, and they are the
-brands a client actually looks at.
+### Cohort 1 — start at `kairuz.om`
 
-Procedure per site:
-1. `curl` the live page, inventory the custom controls it already renders.
-2. Add `tokens.css` + the brand's `themes/<brand>.css` + `elements.css` in `<head>`.
-3. Swap the matching controls for `.bhd-*` classes.
-4. Screenshot before/after, verify RTL, verify reduced-motion.
-5. Deploy, `curl` the live head to confirm the link is present and 200.
+33 pages, no design system, and a local repo (`~/claude/projects/kairuz`) so edits
+are reversible. That is the smallest site where the conversion actually buys
+something. `urban.bhd.om` and `standard.bhdoman.com` are smaller but have almost no
+controls to convert, so they prove the plumbing and nothing else.
 
-### Cohort 2 — PHP / WordPress (L1 only, no exceptions)
+### Cohort 2 — `cardify.om` + the four payment microsites
 
-`cardify.om` · `tfb.om` · the four `*.cardify.om` payment microsites · `trip.bhd.om`
+One shared header (`includes/ui-header.php`) reaches `cardify.om`, `ohh.`, `riyada.`,
+`signature.` and `spark.` — five surfaces in one edit. The design skill flags this
+file as the drift-prone one: `git status -s` before deploying, merge useful VPS-side
+drift into local first.
 
-These can never take a React component. They get `elements.css` in their shared
-header partial — for Cardify that is `includes/ui-header.php`, which the design skill
-already flags as the drift-prone file (`git status -s` before deploying).
+### Cohort 3 — `hosn.om` is a different job
 
-### Cohort 3 — Astro (L1 + L2 islands)
+239 pages, and it already has `tokens.css` + `site.css` of its own. Loading
+`design.bhd.om/tokens.css` on top risks redeclaring `--radius` and other semantic
+vars. This is **integration**: decide which of Hosn's tokens survive, alias the rest
+to the shared ones, then convert controls page by page. Budget it as a project, not
+a sweep. Do it last, and only if Hosn's own system is actually causing drift.
 
-`fencing.om` · `mithaq.om` · `paperandpen.om` · `qplus.om`
+### Cohort 4 — Astro: edit templates, never output
 
-Astro can mount React islands, so these take **both** layers. Caveat: an island costs
-a React runtime on a page that may currently ship zero JS. Use it for one section
-(hero marquee, stat band), not site-wide. `elements.css` covers everything else.
+`paperandpen.om` is 6 930 generated files. Any edit goes in the Astro `src/` and is
+rebuilt; touching `dist/` is guaranteed to be overwritten. Same for `qplus.om`.
+`fencing.om` and `mithaq.om` share a webroot (`/www/wwwroot/fencing.om/dist/client`),
+so one deploy hits both plus the admin shell — verify both.
 
-Note `fencing.om` and `mithaq.om` share a webroot (`/www/wwwroot/fencing.om/dist/client`)
-— one edit reaches both, and also hits the admin shell. Verify both.
-
-### Cohort 4 — React / Next apps (L2)
+### Cohort 5 — React / Next apps (L2)
 
 `arabian.ceo` · `neverboard.om` · `social.alizaabi.om` · `thesocialbar.om` ·
 `mays.bhd.om` · `print.bhd.om` · `trivia.bhd.om`
@@ -93,22 +103,23 @@ npx shadcn@latest add @bhd/bhd-theme @bhd/bhd-currency @bhd/bhd-button
 `bhd-theme` pulls the tokens and the no-letter-spacing-on-Arabic rule with it, so these
 apps stop re-deriving the palette.
 
-### Cohort 5 — ReactBits (exactly one)
+### Cohort 6 — ReactBits (exactly one)
 
 Already done: `bhdoman.com` (`bhd-shop`), vendored, not yet wired to a page.
 **Do not add it to a second app** until the first one ships and its LCP impact is measured.
 
 ## Sequencing
 
-| Wave | Sites | Layer | Why first |
+| Wave | Sites | Layer | Why here |
 | --- | --- | --- | --- |
-| 1 | `hosn.om`, `kairuz.om` | L1 | flagship brands, static, no design system |
-| 2 | `lulus.om`, `welle.om`, `tanmia.bhd.om` | L1 | same shape, same procedure |
-| 3 | `cardify.om` + 4 cardify microsites | L1 | one header partial, five surfaces |
-| 4 | `fencing.om` / `mithaq.om` | L1 + L2 | shared webroot, 2 sites + admin in one edit |
-| 5 | `paperandpen.om`, `qplus.om` | L1 + L2 | Astro |
+| 1 | `kairuz.om` | L1 | smallest site that actually has controls, and it has a repo |
+| 2 | `urban.bhd.om`, `standard.bhdoman.com`, `welle.om` | L1 | prove the procedure on low-risk surfaces |
+| 3 | `cardify.om` + 4 microsites | L1 | one header partial, five surfaces |
+| 4 | `fencing.om` / `mithaq.om` | L1 + L2 | shared webroot, 2 sites + admin in one deploy |
+| 5 | `paperandpen.om`, `qplus.om` | L1 + L2 | Astro templates |
 | 6 | the 7 React apps | L2 | per-repo, one command each |
-| 7 | remaining static (~30) | L1 | long tail, batch by template |
+| 7 | long tail (~30 static) | L1 | batch by template |
+| 8 | `hosn.om` | L1 (integration) | 239 pages + its own token system — a project |
 
 ## Guardrails
 
