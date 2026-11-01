@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-bhd-theme-mode="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI Elements · design.bhd.om</title>
+<meta name="description" content="Vendor-neutral element layer: switches, checkboxes, loaders, progress, badges, chips, tooltips, segmented controls. Pure CSS, no JavaScript, brand-agnostic and RTL-safe.">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/rtl.css">
+<link rel="stylesheet" href="/elements.css">
+<link rel="stylesheet" href="https://fonts.bhd.om/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
+<style>
+  body { margin: 0; background: var(--background); color: var(--foreground); font-family: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif; }
+  .wrap { max-inline-size: 62rem; margin-inline: auto; padding-inline: 1.25rem; padding-block: 2.5rem 4rem; }
+  h1 { font-size: 1.6rem; margin: 0 0 .35rem; letter-spacing: 0; }
+  .lede { color: var(--muted-foreground); margin: 0 0 1.25rem; font-size: .95rem; line-height: 1.6; }
+  .bar { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-block-end: 2rem; }
+  .bar a { font-size: .8rem; color: var(--muted-foreground); text-decoration: none; padding: .3rem .55rem; border-radius: .4rem; }
+  .bar a:hover { background: var(--muted); color: var(--foreground); }
+  section { margin-block-start: 2.25rem; }
+  h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: 0; color: var(--muted-foreground); font-weight: 600; margin: 0 0 .9rem; padding-block-end: .5rem; border-block-end: 1px solid var(--border); }
+  .row { display: flex; flex-wrap: wrap; gap: 1.1rem; align-items: center; }
+  .cardbox { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+  .demo { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; background: var(--card, var(--background)); }
+  .demo .lbl { font-size: .7rem; color: var(--muted-foreground); margin-block-start: .8rem; display: block; font-family: ui-monospace, monospace; }
+  code { font-size: .78rem; background: var(--muted); padding: .1rem .3rem; border-radius: .25rem; }
+  .switchline { display: inline-flex; align-items: center; gap: .6rem; font-size: .9rem; }
+  .mt { margin-block-start: 1rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>UI Elements</h1>
+  <p class="lede">
+    The layer that reaches every BHD site. Pure CSS, no JavaScript, no build step, and no React —
+    so the PHP, Laravel, WordPress and static sites get the same controls as the React products.
+    Every element reads our semantic tokens, so <code>data-brand</code> reskins all twelve brands,
+    and every one is RTL-safe by construction.
+  </p>
+  <div class="bar">
+    <a href="/">← design.bhd.om</a>
+    <a href="/patterns.html">Patterns</a>
+    <a href="/interactions.css">interactions</a>
+    <a href="https://registry.bhd.om">Registry (@bhd)</a>
+  </div>
+
+  <section>
+    <h2>Switches &amp; selection</h2>
+    <div class="cardbox">
+      <div class="demo">
+        <div class="row">
+          <label class="switchline"><input class="bhd-switch" type="checkbox" checked> <span>Enabled</span></label>
+          <label class="switchline"><input class="bhd-switch" type="checkbox"> <span>Off</span></label>
+          <label class="switchline"><input class="bhd-switch" type="checkbox" disabled> <span>Disabled</span></label>
+        </div>
+        <span class="lbl">.bhd-switch</span>
+      </div>
+      <div class="demo">
+        <div class="row">
+          <label class="switchline"><input class="bhd-check" type="checkbox" checked> <span>Checked</span></label>
+          <label class="switchline"><input class="bhd-check" type="checkbox"> <span>Empty</span></label>
+        </div>
+        <div class="row mt">
+          <label class="switchline"><input class="bhd-radio" type="radio" name="r1" checked> <span>One</span></label>
+          <label class="switchline"><input class="bhd-radio" type="radio" name="r1"> <span>Two</span></label>
+        </div>
+        <span class="lbl">.bhd-check / .bhd-radio</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Loaders &amp; progress</h2>
+    <div class="cardbox">
+      <div class="demo">
+        <div class="row">
+          <span class="bhd-spinner bhd-spinner--sm"></span>
+          <span class="bhd-spinner"></span>
+          <span class="bhd-spinner bhd-spinner--lg"></span>
+          <span class="bhd-dots"><i></i><i></i><i></i></span>
+        </div>
+        <span class="lbl">.bhd-spinner / .bhd-dots</span>
+      </div>
+      <div class="demo">
+        <div class="bhd-progress" style="--bhd-progress-value: 62%"></div>
+        <div class="bhd-progress bhd-progress--indeterminate mt"></div>
+        <span class="lbl">.bhd-progress</span>
+      </div>
+      <div class="demo">
+        <span class="bhd-loading-text">Loading invoice…</span>
+        <span class="lbl">.bhd-loading-text</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Badges &amp; chips</h2>
+    <div class="cardbox">
+      <div class="demo">
+        <div class="row">
+          <span class="bhd-badge bhd-badge--live"><span class="bhd-badge__dot"></span>Live</span>
+          <span class="bhd-badge bhd-badge--primary">Primary</span>
+          <span class="bhd-badge bhd-badge--success">Paid</span>
+          <span class="bhd-badge bhd-badge--warning">Pending</span>
+          <span class="bhd-badge bhd-badge--danger">Overdue</span>
+        </div>
+        <span class="lbl">.bhd-badge</span>
+      </div>
+      <div class="demo">
+        <div class="row">
+          <span class="bhd-chip">Cardify <button class="bhd-chip__x" aria-label="Remove Cardify">×</button></span>
+          <span class="bhd-chip">Hosn <button class="bhd-chip__x" aria-label="Remove Hosn">×</button></span>
+        </div>
+        <span class="lbl">.bhd-chip</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tooltip, segmented, divider</h2>
+    <div class="cardbox">
+      <div class="demo">
+        <span class="bhd-tip" data-bhd-tip="Official OMR sign, three decimals">
+          <span class="bhd-badge bhd-badge--primary">Hover me</span>
+        </span>
+        <span class="lbl">.bhd-tip</span>
+      </div>
+      <div class="demo">
+        <div class="bhd-segmented" role="tablist">
+          <button role="tab" aria-selected="true">Quotes</button>
+          <button role="tab" aria-selected="false">Invoices</button>
+          <button role="tab" aria-selected="false">Credit</button>
+        </div>
+        <span class="lbl">.bhd-segmented</span>
+      </div>
+      <div class="demo">
+        <div class="bhd-divider">or</div>
+        <span class="lbl">.bhd-divider</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Card lift</h2>
+    <div class="cardbox">
+      <div class="demo bhd-lift">Hover to lift<span class="lbl">.bhd-lift</span></div>
+      <div class="demo bhd-lift">Works on any card<span class="lbl">.bhd-lift</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>RTL check — the same markup, dir="rtl"</h2>
+    <div class="cardbox" dir="rtl" lang="ar">
+      <div class="demo">
+        <div class="row">
+          <label class="switchline"><input class="bhd-switch" type="checkbox" checked> <span>مُفعّل</span></label>
+          <label class="switchline"><input class="bhd-check" type="checkbox" checked> <span>محدد</span></label>
+          <span class="bhd-badge bhd-badge--success">مدفوع</span>
+        </div>
+        <span class="lbl">mirrored automatically</span>
+      </div>
+      <div class="demo">
+        <div class="bhd-segmented" role="tablist">
+          <button role="tab" aria-selected="true">عروض</button>
+          <button role="tab" aria-selected="false">فواتير</button>
+        </div>
+        <div class="bhd-progress mt" style="--bhd-progress-value: 48%"></div>
+        <span class="lbl">no extra CSS for RTL</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
