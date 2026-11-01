@@ -463,3 +463,47 @@ beside the file and `php -l` run before verifying.
 near-black — plausibly its intended monochrome, needs a look before adopting).
 The other 39 need the alias path, and `cardify.om` still needs its header drift
 reconciled first.
+
+---
+
+## Elements adopter #6 — khatm.bhd.om, and the ALIAS path proven
+
+First adoption on a site with **no token contract at all** — the case that covers
+40 of the 44 triaged surfaces. `khatm.bhd.om` is a BHD product but not a BHD brand:
+its palette is sage/cream/navy (`--car #7FB069`, `--paper #F6F1E7`, `--ink
+#1B2A4A`, `--rule #E3DCCD`, `--r 6px`). Dropping BHD cyan on it via
+`contract.css` would have been wrong, so this used the alias path instead: a
+site-scoped `khatm-contract.css` mapping its own vars 1:1.
+
+| Check | Result |
+| --- | --- |
+| `--primary` | `#7FB069` — Khatm sage, not BHD cyan |
+| badge | `rgb(127,176,105)` |
+| switch / progress | 44px / 640px |
+| page background | `rgb(246,241,231)` cream — unchanged |
+| console errors | none |
+| visual | identical layout, type and colours (screenshot compared) |
+
+**Deliberately not converted:** Khatm's `.btn`, `.tag` and `.badge` are bespoke to
+its look. Rewriting them to `.bhd-badge` would redesign a live brand site, which
+is not what "adopt the layer" means. The layer is installed and correct for new
+work.
+
+### Two traps that cost real debugging time
+
+**1. A new file is 640 root:root, and nginx 403s it.** Created over SSH, the file
+landed as `-rw-r----- root root`. The page loaded, the `<link>` was in the DOM,
+and the stylesheet silently 403'd. Fixed with `chown www:www` + `chmod 644`. This
+is the same 403 class the design skill records for the hub — it applies to every
+file created on a VPS as root, not just build output.
+
+**2. Cloudflare cached the transient 403 and kept serving it after the fix.**
+With the permissions corrected, `curl` returned 200 for
+`/khatm-contract.css?cb=<random>` but the browser still got a cached
+`403 Forbidden` for the bare path — so `--primary` stayed empty and the badge
+still fell back to `--ink`. The durable fix is **not** waiting for the TTL; it is
+versioning the link: `/khatm-contract.css?v=1`. That misses the poisoned cache
+entry and is correct practice anyway.
+
+Diagnostic tell: if a stylesheet is 403 in the browser but 200 from `curl` with a
+cache-buster, it is the edge, not the origin.
