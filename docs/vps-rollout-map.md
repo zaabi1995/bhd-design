@@ -765,3 +765,68 @@ the first registry item installed would fail to compile. A configured
 | --- | --- |
 | `bhd-currency` + `omr` | `qplus.om`, `qplus-web` |
 | `bhd-marquee`, `bhd-blur-fade`, `bhd-number-ticker`, `bhd-bento` | available, no adopter yet |
+
+---
+
+## Elements adopter #10 — welle.om, and the CSP rule
+
+Welle is the first site whose security policy **refuses the layer outright**, and
+that produced both a fix and a rule.
+
+### What happened
+
+The layer was linked cross-origin as usual. Welle sends:
+
+```
+default-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; ...
+```
+
+`style-src 'self'` blocks `design.bhd.om` entirely. The stylesheet was requested
+and refused, `--primary` resolved but nothing consumed it, and the switch stayed
+a 13px default checkbox. **The page looked untouched.**
+
+**The tool said `DONE`.** It was checking that the URL was present in
+`document.styleSheets` — and a CSP-blocked sheet still leaves an object there.
+That is the second time a probe has reported success for something that did not
+happen; it now injects a probe element and requires `.bhd-switch` to compute 44px
+before calling a site `DONE`, and reports `BLOCKED` otherwise:
+
+```
+-> linked but did not apply: check Content-Security-Policy style-src,
+   then self-host elements.css same-origin
+```
+
+### The rule
+
+**Do not loosen a site's CSP to adopt a stylesheet.** Welle's `default-src
+'none'` is a deliberate posture on a money-adjacent product; adding a CDN to
+`style-src` is a security decision, not a styling one, and not mine to take.
+
+The correct answer is **self-hosting**: copy `elements.css` into the site's own
+`/assets/` and link it same-origin. Satisfies `style-src 'self'`, no policy
+change, and it is faster (no cross-origin round trip). The tradeoff is that the
+copy does not auto-update with the CDN — it must be re-copied when the layer
+changes, so a self-hosted copy is a pinned dependency and should be noted as one.
+
+### Welle: verified in both colour schemes
+
+Welle prefixes its tokens `--w-` and redefines them under
+`prefers-color-scheme: dark`, so the contract maps by `var()` reference and the
+layer follows dark mode with no extra work:
+
+| Scheme | `--primary` | badge | switch | body |
+| --- | --- | --- | --- | --- |
+| light | `#14603F` | `rgb(20,96,63)` | 44px | `#FFFFFF` |
+| dark | `#4FB98C` | `rgb(79,185,140)` | 44px | `#080A09` |
+
+Five pages: `/`, `/support.html`, `/privacy.html`, `/feedback.html`, `404.html`.
+
+The only console error remaining is Cloudflare's injected beacon being refused by
+that same CSP — a pre-existing condition of the site, unrelated to the layer.
+
+### Which sites will need self-hosting
+
+Any site sending `style-src 'self'`. Worth checking **before** linking, not after:
+`curl -sI https://SITE | grep -i content-security-policy`. splitty.om already
+allowed `design.bhd.om`; welle did not. Both were correct decisions for their
+own context.

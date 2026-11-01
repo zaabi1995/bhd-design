@@ -130,7 +130,29 @@ for (const raw of targets) {
     }, PROPS);
 
     const { tokens, elements, themeColor, palette } = row.data;
-    if (elements) row.verdict = "DONE";
+
+    // "The <link> is in document.styleSheets" is NOT "the layer applied". A CSP
+    // as tight as style-src 'self' blocks the sheet while leaving a stylesheet
+    // object behind, so an earlier version reported DONE for a page that
+    // rendered nothing — caught on welle.om. Prove it by measuring a rule the
+    // layer owns: .bhd-switch is 2.75rem (44px) wide only if elements.css ran.
+    if (elements) {
+      const applied = await page.evaluate(() => {
+        const probe = document.createElement("input");
+        probe.className = "bhd-switch";
+        probe.type = "checkbox";
+        probe.style.position = "absolute";
+        probe.style.opacity = "0";
+        document.body.appendChild(probe);
+        const w = Number.parseFloat(getComputedStyle(probe).width);
+        probe.remove();
+        return Number.isFinite(w) && w > 30 && w < 60;
+      });
+      row.applied = applied;
+    }
+
+    if (elements && row.applied === false) row.verdict = "BLOCKED";
+    else if (elements) row.verdict = "DONE";
     else if (tokens["--primary"]) row.verdict = "ONE-LINE";
     else row.verdict = "--radius" in tokens && tokens["--radius"] ? "ALIAS" : "CONTRACT";
     row.themeColor = themeColor;
@@ -149,6 +171,8 @@ for (const raw of targets) {
       (row.palette?.length ? `  painted:${row.palette.join(",")}` : ""));
     if (row.verdict === "ONE-LINE") {
       console.log(`    -> add: <link rel="stylesheet" href="https://design.bhd.om/elements.css?v=1">`);
+    } else if (row.verdict === "BLOCKED") {
+      console.log(`    -> linked but did not apply: check Content-Security-Policy style-src, then self-host elements.css same-origin`);
     } else if (row.verdict === "ALIAS" || row.verdict === "CONTRACT") {
       console.log(`    -> needs a contract; candidate primary ${row.themeColor || row.palette?.[0] || "(inspect by hand)"}`);
     }
