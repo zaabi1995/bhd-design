@@ -397,3 +397,69 @@ image rebuild is needed.
 Triage rule for the remaining ~25 sites: check `--primary` first. If it resolves,
 it is a one-line job; if not, it needs an alias and a decision about which of the
 site's colours become `--primary`.
+
+---
+
+## Round 5 — full triage of the remaining estate
+
+Ran the triage rule across 44 surfaces in one pass (headless browser, images and
+fonts blocked, 20s cap). This is the map's most important measurement so far.
+
+| Verdict | Count | Meaning |
+| --- | ---: | --- |
+| `ALIAS` | **40** | no `--primary` → needs an alias and a colour decision |
+| `ONE-LINE` | **3** | `--primary` already resolves → link and done |
+| `UNREACHABLE` | 1 | `btb.bhd.om` did not answer |
+
+**The bottleneck is the token contract, not the stylesheet.** Forty of forty-four
+sites have no semantic tokens at all, so "add elements.css everywhere" was never
+going to work as a sweep.
+
+### The structural fix — `contract.css` and real fallbacks
+
+Two changes to the layer, both aimed at those 40:
+
+1. **`elements.css` now has fallbacks on every semantic name** — CSS system
+   colours (`Canvas` / `CanvasText`) and `currentColor`. A site with no tokens
+   renders something visible and neutral instead of the silent transparent
+   rendering measured on `almahamarble.om`.
+2. **`design.bhd.om/contract.css`** — a one-line path for a site with no token
+   system: BHD palette by default, three overrides (`--primary`,
+   `--primary-foreground`, `--background`) for any other brand.
+
+Verified all three states in a browser:
+
+| Setup | `--primary` | badge | switch |
+| --- | --- | --- | --- |
+| elements.css only | (none) | `rgb(0,0,0)` via currentColor — **visible** | 44px, black |
+| + contract.css | `#009bc1` | `rgb(0,155,193)` | 44px, cyan |
+| + tokens.css | `#009bc1` | `rgb(0,155,193)` | 44px, cyan |
+
+Existing adopters re-checked after the deploy and unchanged: cupsbyaa `#c83f7d`,
+fencing `#1e8439`, mithaq `#155340`.
+
+## Elements adopters #4 and #5 — splitty.om, eid.bhd.om (verified live)
+
+Both were `ONE-LINE`: tokens already present, so no alias.
+
+| Site | `--primary` | Surfaces verified |
+| --- | --- | --- |
+| `splitty.om` | `#0B72D8` | `/`, `/app`, `/ar` (RTL) |
+| `eid.bhd.om` | `#26b4d3` | `/` |
+
+Both needed the **both-branches** treatment: splitty splits its head into
+marketing and app variants, so the link went into each; `eid.bhd.om` loads
+`design.bhd.om/tokens.css` directly, so it inherited without an alias. splitty
+also already had `style-src ... design.bhd.om` in its CSP, so no CSP change was
+needed — worth checking *before* adding a CDN stylesheet, because a site with a
+tight CSP would block it silently.
+
+`eid.bhd.om` is a VPS-only edit (no repo); patched with a timestamped backup
+beside the file and `php -l` run before verifying.
+
+### Remaining queue
+
+`mays.bhd.om` is the last `ONE-LINE` (its `--primary` is `oklch(20.5% 0 0)`, a
+near-black — plausibly its intended monochrome, needs a look before adopting).
+The other 39 need the alias path, and `cardify.om` still needs its header drift
+reconciled first.
