@@ -830,3 +830,63 @@ Any site sending `style-src 'self'`. Worth checking **before** linking, not afte
 `curl -sI https://SITE | grep -i content-security-policy`. splitty.om already
 allowed `design.bhd.om`; welle did not. Both were correct decisions for their
 own context.
+
+---
+
+## Final state (round 12) — verified sweep
+
+Re-ran `scripts/elements-adopt.mjs` across every adopter. **10/10 report `DONE`**,
+meaning the sheet loaded *and* a `.bhd-switch` probe computed 44px — not just that
+a `<link>` existed. Tokens 8/8 on eight of ten (splitty 3/8, carlounge 7/8 are
+partial by their own design).
+
+| Site | `--primary` | Layer |
+| --- | --- | --- |
+| `almahamarble.om` | `#B87333` copper | elements.css + contract |
+| `fencing.om` / `mithaq.om` | `#1e8439` / `#155340` | elements.css + tenant contract |
+| `cupsbyaa.com` | `#c83f7d` | elements.css, zero alias |
+| `splitty.om` | `#0B72D8` | elements.css, zero alias |
+| `eid.bhd.om` | `#26b4d3` | elements.css, zero alias |
+| `khatm.bhd.om` | `#7FB069` | elements.css + contract |
+| `bhd.om` (EN + AR) | `#009bc1` | elements.css + contract.css |
+| `carlounge.bhd.om` (8 pages) | `#2a6689` | elements.css + contract |
+| `welle.om` (5 pages, dark mode) | `#14603F` / `#4FB98C` | self-hosted + contract |
+
+Registry (`@bhd`): **`qplus.om`** and **`qplus-web`**, both `bhd-currency` + `omr`,
+verified by rendering and kept as a regression test. ReactBits: vendored in
+`bhd-shop` with `ArabicSafeSplitText`, build-verified, **not wired to a page**.
+
+### The tool earned its keep by being wrong three times
+
+`elements-adopt.mjs` was corrected three times, each correction a real miss:
+
+1. **Measured 401 error pages as if they were products** → 5 protected sites
+   produced a fake "template family". Fixed: record HTTP status, refuse non-2xx.
+2. **Reported `DONE` for a CSP-blocked sheet** (welle.om) → a stylesheet object
+   survives in `document.styleSheets` even when the browser refuses to apply it.
+   Fixed: require a probe rule to actually compute.
+3. **Reported a false negative for async sheets** (almahamarble.om) → probed
+   before the `media="print"` swap. Fixed: poll until the rule applies.
+
+A diagnostic that is confidently wrong is worse than no diagnostic. All three
+were only caught by cross-checking a second way.
+
+### What remains, and why it is not in scope
+
+31 reachable sites are still unadopted, and each needs a decision rather than
+more work:
+
+- **24 `CONTRACT`** — no token system. Each needs its brand's colours mapped to
+  `--primary`; that is a per-brand design call, not ambiguity to resolve blindly.
+  `scripts/elements-adopt.mjs` already prints the candidate and the painted palette.
+- **7 `ALIAS`** — partial tokens (`hosn.om`, `location.bhd.om`, `oits.bhd.om`,
+  `alyas.bhdoman.com`, `empowerment.bhdoman.com`, `saaf.bhd.om`, `print.bhd.om`).
+  Same call, smaller surface.
+- **`cardify.om`** — blocked on a genuine conflict: its `ui-header.php` has 310
+  lines of two-branch drift where the VPS carries CSP and local carries newer
+  fonts. Deploying either over the other loses real work.
+- **5 `PROTECTED`** — 401 basic auth; nothing public can adopt into them.
+- **ReactBits** — needs a bundle/LCP call: enabling it means `gsap` (~50 KB gzip)
+  on a shop with Lighthouse targets.
+
+Everything that was safe and unambiguous is shipped and verified above.

@@ -137,17 +137,25 @@ for (const raw of targets) {
     // rendered nothing — caught on welle.om. Prove it by measuring a rule the
     // layer owns: .bhd-switch is 2.75rem (44px) wide only if elements.css ran.
     if (elements) {
-      const applied = await page.evaluate(() => {
-        const probe = document.createElement("input");
-        probe.className = "bhd-switch";
-        probe.type = "checkbox";
-        probe.style.position = "absolute";
-        probe.style.opacity = "0";
-        document.body.appendChild(probe);
-        const w = Number.parseFloat(getComputedStyle(probe).width);
-        probe.remove();
-        return Number.isFinite(w) && w > 30 && w < 60;
-      });
+      // Many BHD pages load the sheet with the media="print" -> onload swap, and
+      // a few promote it from a preload. Probing once, immediately, produced a
+      // false negative on almahamarble.om (reported ONE-LINE while the layer was
+      // live and applying). Poll until the rule takes effect, then judge.
+      let applied = false;
+      for (let i = 0; i < 12 && !applied; i++) {
+        applied = await page.evaluate(() => {
+          const probe = document.createElement("input");
+          probe.className = "bhd-switch";
+          probe.type = "checkbox";
+          probe.style.position = "absolute";
+          probe.style.opacity = "0";
+          document.body.appendChild(probe);
+          const w = Number.parseFloat(getComputedStyle(probe).width);
+          probe.remove();
+          return Number.isFinite(w) && w > 30 && w < 60;
+        });
+        if (!applied) await page.waitForTimeout(250);
+      }
       row.applied = applied;
     }
 
