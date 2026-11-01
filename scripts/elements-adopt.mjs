@@ -81,7 +81,22 @@ for (const raw of targets) {
   const page = await ctx.newPage();
   const row = { url, verdict: "UNREACHABLE" };
   try {
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 25000 });
+    const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: 25000 });
+    row.http = response ? response.status() : 0;
+
+    // A non-2xx page is NOT the site. This estate has five subdomains behind
+    // basic auth that all serve the same styled 401 page, and an earlier version
+    // of this tool happily read that error page's palette and reported it as the
+    // brand — which then got mistaken for a shared template. Measure nothing
+    // from a page we were not actually allowed to see.
+    if (row.http < 200 || row.http >= 300) {
+      row.verdict = row.http === 401 || row.http === 403 ? "PROTECTED" : `HTTP_${row.http}`;
+      await page.close();
+      results.push(row);
+      if (!asJson) console.log(`${url.padEnd(42)} ${row.verdict.padEnd(11)} HTTP ${row.http} — not measurable, needs credentials or is not public`);
+      continue;
+    }
+
     row.data = await page.evaluate((props) => {
       const cs = getComputedStyle(document.documentElement);
       const tokens = {};
@@ -129,7 +144,7 @@ for (const raw of targets) {
 
   if (!asJson) {
     const filled = Object.entries(row.tokens || {}).filter(([, v]) => v);
-    console.log(`${row.url.padEnd(42)} ${row.verdict.padEnd(11)} tokens:${filled.length}/${PROPS.length}` +
+    console.log(`${row.url.padEnd(42)} ${row.verdict.padEnd(11)} ${row.http ?? ''} tokens:${filled.length}/${PROPS.length}` +
       (row.themeColor ? `  theme:${row.themeColor}` : "") +
       (row.palette?.length ? `  painted:${row.palette.join(",")}` : ""));
     if (row.verdict === "ONE-LINE") {

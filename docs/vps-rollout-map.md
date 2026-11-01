@@ -617,3 +617,65 @@ page. Both bhd.om and fencing/mithaq fooled an "obvious" single-emitter fix.
 | `bhd.om/about` | `#009bc1` | `rgb(0,155,193)` | 44px | 640px | ltr |
 
 `scripts/elements-adopt.mjs bhd.om` now reports `DONE`, tokens 8/8.
+
+---
+
+## Round 8 — RETRACTION: there is no "template family"
+
+**The previous round asserted that five sites share a template, so one contract
+could cover all five. That was wrong, and the reasoning behind it was worse than
+the conclusion.**
+
+The five — `tanmia`, `oia`, `oiahub`, `ecothon`, `present.hosn.om` — all painted
+`#0d1520` + `#c9a961`. I read that as "same template", and planned a family-level
+contract around it.
+
+They are all behind **HTTP basic auth**. Every one returns `401`, and the palette
+was the **same styled 401 error page**, not the product. The tool was measuring
+pages it had never been allowed to see and reporting their colours as brand.
+
+Reading the actual variables (behind the wall) confirmed how wrong the grouping
+was: `oiahub` is a **light** cream/ink theme, `oia` and `present.hosn.om` are
+dark, `ecothon` carries its own teal `#168F82`. Not one template. Not even one
+mode.
+
+### What was done about it
+
+1. **Reverted** the `tanmia.bhd.om` patch — the site is protected, so the change
+   was pointless as well as based on a false premise. Restored from backup,
+   verified 0 occurrences of `elements.css`.
+2. **Fixed the tool.** `elements-adopt.mjs` now records the HTTP status and
+   refuses to measure a non-2xx page, reporting `PROTECTED` instead of a verdict:
+
+   ```
+   https://tanmia.bhd.om    PROTECTED   HTTP 401 — not measurable, needs credentials or is not public
+   ```
+
+   A diagnostic that silently reports a number for a page it could not load is
+   worse than no diagnostic.
+3. **Re-ran the prescription** with statuses enforced.
+
+### Corrected numbers (32 measurable surfaces + 5 protected)
+
+| Verdict | Count |
+| --- | ---: |
+| `CONTRACT` — no semantic tokens | 24 |
+| `ALIAS` — partial tokens | 8 |
+| `ONE-LINE` — ready now | 1 (`mays.bhd.om`) |
+| `PROTECTED` — 401, not measurable | 5 |
+
+The reachable `ALIAS` set is `hosn.om`, `location.bhd.om`, `oits.bhd.om`,
+`alyas.bhdoman.com`, `empowerment.bhdoman.com`, `saaf.bhd.om`,
+`carlounge.bhd.om`, `print.bhd.om`.
+
+### The lesson
+
+**An automated probe is only as good as its status check.** Two rounds of
+planning were built on a palette that came from an error page. Any tool that
+measures a live estate must assert the response it measured — a 401 body is a
+perfectly valid HTML document with a perfectly real `background-color`, and it
+will lie to you convincingly.
+
+It also means the "the queue clusters into families" conclusion is **withdrawn**.
+The remaining work is per-site, using the procedure that is now proven three
+ways. That is a smaller claim, and a true one.
