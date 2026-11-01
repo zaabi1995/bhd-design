@@ -716,3 +716,52 @@ file created `640 root:root` that nginx 403'd, then Cloudflare caching that 403.
 This time the contract file was `chmod 644` + `chown www:www` *first*, so the
 edge never saw a failing response to cache — and the link still carries `?v=1` as
 a belt-and-braces cache-buster.
+
+---
+
+## Round 10 — registry adopter #2 (qplus-web), and the L2 landscape
+
+`@bhd/bhd-currency` adopted into **`qplus-web`**, Q+'s application rather than its
+marketing site. Q+ bills in OMR and had no OMR component at all, so the rule the
+registry encodes — official sign on the visual left, three decimals, isolated LTR
+inside Arabic — was being hand-rolled per screen.
+
+Verified by rendering, not by compiling, and **kept as a regression test**
+(`src/components/ui/__tests__/bhd-currency.test.tsx`) because this is exactly the
+rule that silently rots:
+
+| Case | Asserted |
+| --- | --- |
+| `value={1250.5}` | `<svg>` before `<bdi>1,250.500</bdi>`, `dir="ltr"`, `unicode-bidi:isolate` |
+| `locale="ar-OM"` | `<bdi>١٬٢٥٠٫٥٠٠</bdi>` |
+| `value={null}` | no sign, `<bdi>-</bdi>` |
+
+`tsc -b && vite build` pass; 3/3 tests pass.
+
+### The L2 addressable set is smaller than the site list suggests
+
+Checked every live React product before assuming it could take the registry:
+
+| Project | State | Verdict |
+| --- | --- | --- |
+| `qplus.om` | shadcn, `src/lib/utils.ts`, no OMR | ✅ adopted (round 2) |
+| `qplus-web` | shadcn, `src/lib/utils.ts`, no OMR | ✅ adopted (this round) |
+| `bhd-shop` (bhdoman.com) | has its own `src/lib/omr` + `OmrSymbol` + `PriceDisplay` | ⛔ would duplicate; replacing it is a refactor of a live shop |
+| `fencing-om` | shadcn with **13 registries already configured**, but **no `@/lib/utils`** — its editor sub-libraries keep their own `cn` | ⚠️ needs `src/lib/utils.ts` (+ `clsx`, `tailwind-merge`) before any registry item will compile |
+| `neverboard.om`, `social.alizaabi.om`, `thesocialbar.om`, `mays.bhd.om`, `print.bhd.om` | not shadcn (Radix directly or bespoke) | ⛔ not a registry target without being converted first |
+
+So of the eight React surfaces in the original map, **two were ready, one is one
+small file away, one already solved the problem itself, and four are not shadcn
+projects at all.**
+
+The `fencing-om` case is the useful one to record: its `components.json` looks
+ready — 13 registries, aliases, `tsx: true` — but `@/lib/utils` does not exist, so
+the first registry item installed would fail to compile. A configured
+`components.json` is not evidence the project can take a registry item.
+
+### Registry adopters so far
+
+| Item | Adopted in |
+| --- | --- |
+| `bhd-currency` + `omr` | `qplus.om`, `qplus-web` |
+| `bhd-marquee`, `bhd-blur-fade`, `bhd-number-ticker`, `bhd-bento` | available, no adopter yet |
