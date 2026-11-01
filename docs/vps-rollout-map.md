@@ -11,19 +11,63 @@
 | **L2 — `@bhd` registry** | `bhd-marquee`, `bhd-blur-fade`, `bhd-number-ticker`, `bhd-bento`, `bhd-currency`, RTL-safe primitives, 12 brand themes | React, Next, Astro islands | needs React at runtime |
 | **L3 — ReactBits** | `SplitText` and friends | **one app only** | MIT + Commons Clause: never on a public CDN |
 
-## The headline
+## The headline (measured live, 2 Nov 2026)
 
-**Of ~70 public surfaces, 7 use the design system.** Everything else is inventing its
-own switches, loaders and badges from scratch, per site, forever.
+Sampled 42 public surfaces by fetching them and reading the `<head>`. The first
+version of this map said "7 of ~70 use the design system". That was wrong twice
+over: it undercounted, and it counted the wrong thing.
 
-| State | Count | Sites |
-| --- | --- | --- |
-| ✅ Already wired to `design.bhd.om` | 7 | `bhd.om`, `bhdoman.com`, `alyas.bhdoman.com`, `empowerment.bhdoman.com`, `ideas.bhd.om`, `location.bhd.om`, `oits.bhd.om` |
-| ⬜ Static, **no** design system | ~38 | `hosn.om`, `kairuz.om`, `lulus.om`, `welle.om`, `tanmia.bhd.om`, `thabit.bhd.om`, `t11.bhd.om`, `sa.bhd.om`, `sama.bhd.om`, `qr.bhd.om`, `docs.bhd.om`, `eid.bhd.om`, `ecothon.bhd.om`, `bc.bhd.om`, `btb.bhd.om`, `urban.bhd.om`, `jaifar.bhd.om`, `khatm.bhd.om`, `oia.bhd.om`, `oiahub.bhd.om`, `saaf.bhd.om`, `carlounge.bhd.om`, `present.hosn.om`, `standard.bhdoman.com`, `upload.bhdoman.com`, `fidatmajan.com`, `sparkjewelry.om`, `sooraseebenterprises.com`, `dispatch.sooraseebenterprises.com`, `courier.alali.om`, `gazette.kairuz.om`, `chronicle.cupsbyaa.com`, `concepts.arabian.ceo`, `concepts.cupsbyaa.com`, `news.arabian.ceo`, `observer.arabian.ceo`, `daily.arabian.ceo`, `asyad-flow.paperandpen.om`, `design.qplus.om`, `order.tfb.om`, `pay.tfb.om`, `admin.tfb.om`, `docs.dardasha.om` |
-| ⬜ PHP / WordPress | 7 | `cardify.om`, `tfb.om` (WP), `ohh.cardify.om`, `riyada.cardify.om`, `signature.cardify.om`, `spark.cardify.om`, `trip.bhd.om` |
-| ⬜ Astro | 4 | `fencing.om`, `mithaq.om`, `paperandpen.om`, `qplus.om` |
-| ⬜ React / Next apps | 8 | `arabian.ceo`, `neverboard.om`, `registry.bhd.om`, `social.alizaabi.om`, `thesocialbar.om`, `mays.bhd.om`, `print.bhd.om`, `trivia.bhd.om` |
-| ⛔ Locked — do not touch | — | `erp.bhd.om`, `erp.*`, `pnp-erp-*`, `alali`, `mail.*`, `dav.*`, `webmail.*`, `mcp.bhd.om`, `registry.bhd.om` internals |
+The distinction that matters is **icons vs the system**. Nine sites load
+`design.bhd.om` only for FontAwesome. That is not design-system adoption.
+
+| What they actually load | Count | Sites |
+| --- | ---: | --- |
+| **The system** — `tokens.css` / `themes/` / `tw.js` / `interactions` | **4** | `cupsbyaa.com`, `ideas.bhd.om`, `oits.bhd.om`, `almahamarble.om` |
+| **FontAwesome only** — icons, no tokens | 9 | `bhd.om`, `bhdoman.com`, `cardify.om`, `splitty.om`, `fencing.om`, `mithaq.om`, `location.bhd.om`, `alyas.bhdoman.com`, `empowerment.bhdoman.com` |
+| **Nothing at all** | 7 | `paperandpen.om`, `qplus.om`, `hosn.om`, `kairuz.om`, `dardasha.om`, `neverboard.om`, `arabian.ceo` |
+
+Four of forty-two, and two of those four (`almahamarble.om`) were loading
+`cmdk.css` / `skeleton.css` / `interactions.css` but **not** `tokens.css` — which
+turned out to matter a great deal. See the next section.
+
+## The token contract is a prerequisite, not a detail
+
+`elements.css` is **not** self-contained. It reads semantic names —
+`--primary`, `--background`, `--foreground`, `--border`, `--muted`,
+`--muted-foreground`, `--radius`, `--success`, `--warning`, `--destructive`.
+Those come from `tokens.css`, not from the element layer.
+
+Concretely, on `almahamarble.om` the first attempt loaded `elements.css` correctly
+and still rendered a **transparent badge**: the sheet was present, the class was
+applied, and `--primary` resolved to the empty string, because AlMaha had never
+loaded `tokens.css` and names its colours `--gold` / `--marble` / `--ink`.
+
+The fix is an alias, not a rewrite: map the site's own palette onto the contract
+names, and every element inherits that site's brand automatically.
+
+```html
+<style id="bhd-element-contract">
+:root {
+  --primary: var(--gold);          /* AlMaha's own vars, not BHD values */
+  --primary-foreground: #fff;
+  --background: var(--marble);
+  --foreground: var(--ink);
+  --border: var(--hairline-color);
+  --muted: var(--ink-08);
+  --muted-foreground: var(--ink-56);
+  --radius: 10px;
+}
+</style>
+```
+
+**So every adoption is two steps, and the second is mandatory:**
+
+1. `<link>` the layer.
+2. Establish the token contract — either load `design.bhd.om/tokens.css`, or
+   alias the site's existing palette onto those names.
+
+Skipping step 2 produces a page that looks untouched and a layer that does
+nothing. It fails silently, which is the worst kind of failure.
 
 ## The trap that makes this real
 
@@ -130,3 +174,46 @@ Already done: `bhdoman.com` (`bhd-shop`), vendored, not yet wired to a page.
   records two separate incidents of FontAwesome vanishing estate-wide.
 - Arabic: never per-character animation. Verify every converted page in `dir="rtl"`.
 - These are live brand sites. Screenshot before and after, every time.
+
+---
+
+## First adopter — almahamarble.om (done, verified live)
+
+`almahamarble.om` was the right first target: already loading `cmdk.css`,
+`skeleton.css` and `interactions.css` from the CDN, an EJS app with one shared
+`partials/head.ejs`, and a bespoke palette that made the token-contract problem
+visible immediately.
+
+What changed:
+
+- `head.ejs` now loads `elements.css` in the existing BHD-layer loop (one array
+  token, loaded async, same pattern as the other three sheets).
+- A `#bhd-element-contract` alias block maps AlMaha's `--gold` / `--marble` /
+  `--ink` / `--hairline-color` onto the semantic names the layer reads.
+
+Verified in a real browser, both languages:
+
+| Check | Result |
+| --- | --- |
+| Four CDN sheets load | `cmdk` · `skeleton` · `interactions` · `elements` |
+| `--primary` resolves | `#B87333` — AlMaha copper, **not** BHD cyan |
+| `.bhd-badge--primary` background | `color(srgb 0.72 0.45 0.2 / 0.14)` — copper at 14% |
+| `.bhd-switch` width | `44px` |
+| English page | `dir=ltr`, correct h1, no console errors |
+| Arabic page | `dir=rtl`, correct h1, no console errors, hero intact |
+
+**Not converted:** AlMaha's `chip` elements are interactive filter buttons
+(`aria-pressed`, live counts) and its only `badge` is a decorative film marker.
+Neither maps to `.bhd-chip` / `.bhd-badge` without redesigning behaviour, so they
+were left alone. The layer is now present and correct for *new* work.
+
+### What this proves about the rest of the estate
+
+The blocker is not effort, it is that **most sites have nothing generic to
+convert**. Sampled: `qr.bhd.om` is a personal invitation page, `standard.bhdoman.com`
+is a 1.8 KB placeholder, `lulus.om` is a coming-soon page, `docs.bhd.om` is
+Tech Foundry–branded and would need its own theme. A mechanical sweep is not
+available; each site needs the two-step adoption above plus a judgement call on
+which of its controls are generic enough to share.
+
+That judgement is why the remaining waves are per-site work, not a script.
