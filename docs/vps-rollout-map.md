@@ -278,3 +278,71 @@ palette), so it needs the alias step regardless.
 **Action required before Cardify can be touched:** reconcile the two branches —
 decide whether CSP stays (it should) and rebase the font work on top — then commit
 a single header. Until then, Cardify stays out of the rollout.
+
+---
+
+## Elements adopter #2 — fencing.om + mithaq.om (done, verified live)
+
+One repo, **two sites, two layouts, one tenant-aware token contract.**
+
+`fencing-om` is a multi-tenant Astro SSR app. `src/lib/branding.ts
+brandingToCssVars()` emits per-tenant CSS vars for both the public site
+(`Base.astro`) and the admin shell (`Admin.astro`), and it already enforces WCAG
+AA by darkening `--color-brand-solid` until white text clears 4.5:1. So the
+alias was added **inside that function**, and every tenant inherits the element
+layer in its own contrast-corrected colour with no per-tenant work:
+
+```css
+--primary: ${solid};              /* already the AA-corrected brand colour */
+--background: ${b.colors.surface};
+--foreground: ${ink};
+--border: ${b.colors.line};
+--muted-foreground: ${muted};
+--radius: 12px;
+```
+
+### The mistake worth recording
+
+The first deploy shipped only `Base.astro`. Live verification caught it:
+
+| Site | Before the second fix |
+| --- | --- |
+| `fencing.om` | loaded ✅ `--primary` **#1e8439** ✅ |
+| `mithaq.om` | **not loaded** ❌ `--primary` empty, switch 13px |
+
+`mithaq.om` renders through **`MithaqMarketing.astro`**, which neither extends
+`Base.astro` nor calls `brandingToCssVars` — it hardcodes its palette. "One
+tenant-aware change reaches every tenant" was true for the app shell and false
+for the marketing site. A second commit added `elements.css` plus an inline
+alias to that layout using its own values (`#155340` was already its
+`theme-color`, `#0b1f3a` its navy ink).
+
+**Lesson: verify every hostname, not every code path.** The two layouts are the
+same product and different surfaces.
+
+### Final verified state (production, after CI)
+
+| Surface | `--primary` | badge | switch | dir | errors |
+| --- | --- | --- | --- | --- | --- |
+| `fencing.om/` | `#1e8439` | `rgb(30,132,57)` | 44px | ltr | none |
+| `fencing.om/ar` | `#1e8439` | `rgb(30,132,57)` | 44px | rtl | none |
+| `mithaq.om/` | `#155340` | `rgb(21,83,64)` | 44px | ltr | none |
+| `mithaq.om/ar` | `#155340` | `rgb(21,83,64)` | 44px | rtl | none |
+| `fencing.om/admin` | `#1e8439` | `rgb(30,132,57)` | 44px | ltr | none |
+
+### Deploy path
+
+This repo deploys through **GitHub Actions** ("Deploy to VPS" on a self-hosted
+runner), not scp. The sanctioned flow is commit → push → CI → verify. Two
+practical notes:
+
+- The runner is single and shared, so a deploy can queue for 15–20 minutes
+  behind an E2E run. Budget for it; do not conclude it is broken.
+- The repo moves fast. My push was rejected once, rebased cleanly with
+  `--autostash` (26 `__pycache__` deletions in the tree), and a newer commit
+  landed on top mid-flight — harmless, because an ancestor commit deploys with
+  the newer one.
+
+`npm test` fails on `tests/unit/documentIndex.test.ts` with `missingLanguages:
+['ara']` (no tesseract Arabic pack locally). Confirmed pre-existing by stashing
+the change and reproducing the identical failure.
