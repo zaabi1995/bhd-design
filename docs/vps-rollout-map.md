@@ -579,3 +579,41 @@ The queue is no longer 38 individual judgement calls. It clusters:
 
 So the real unit of work is a **template family**, not a site. That number is far smaller
 than 38 and is the right way to finish the rollout.
+
+---
+
+## Elements adopter #7 — bhd.om, both languages (verified live)
+
+The group flagship: 81 pages, generated, no token contract of its own.
+
+Because it is generated, the layer went into the **two head emitters**
+(`_build.py head()` and `_brandpages.py`) rather than into 81 files — one edit,
+then `python3 _build.py` rewrote 33 pages. `contract.css` was correct here with
+no alias: bhd.om *is* BHD cyan, so the default `#009bc1` is its brand, not an
+imposition. Load order is contract → elements → `app.72425670.css`, so the
+site's own rules still win.
+
+### The Arabic mirror nearly shipped broken — again
+
+`ar/index.html` was the one page with no layer after the rebuild. It is
+**hand-maintained**, not generated: `_arpages.py` has an explicit output map of
+`ar/contact`, `ar/careers`, `ar/tech`, `ar/tf` and does not include the Arabic
+homepage, so `python3 _arpages.py` rewrote 16 pages and skipped it.
+
+Adding the links to `ar/index.html` by hand fixed it. Caught by probing `/ar`
+rather than trusting that an English-page fix covered the mirror — the same
+class of miss as `Base.astro` vs `MithaqMarketing.astro`, now on a third site.
+
+**Pattern worth stating plainly:** on this estate, "it works" almost always needs
+checking in **EN and AR**, and generated sites have at least one hand-maintained
+page. Both bhd.om and fencing/mithaq fooled an "obvious" single-emitter fix.
+
+### Verified
+
+| Surface | `--primary` | badge | switch | progress | dir |
+| --- | --- | --- | --- | --- | --- |
+| `bhd.om/` | `#009bc1` | `rgb(0,155,193)` | 44px | 640px | ltr |
+| `bhd.om/ar` | `#009bc1` | `rgb(0,155,193)` | 44px | 640px | rtl |
+| `bhd.om/about` | `#009bc1` | `rgb(0,155,193)` | 44px | 640px | ltr |
+
+`scripts/elements-adopt.mjs bhd.om` now reports `DONE`, tokens 8/8.
