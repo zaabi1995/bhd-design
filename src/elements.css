@@ -14,6 +14,18 @@
  * and redistribution provided the notice travels with the code, so this header
  * is the notice. Do not strip it.
  *
+ * CONTRACT AND FALLBACKS
+ * Every semantic name now carries a fallback, because a site without the token
+ * contract used to render this layer SILENTLY TRANSPARENT: measured on
+ * almahamarble.om, where the sheet loaded, the class applied, and the badge
+ * still came out rgba(0,0,0,0) because --primary was empty. A layer that looks
+ * like it did nothing is the worst possible failure.
+ *
+ * The fallbacks are CSS system colours (Canvas / CanvasText) and currentColor,
+ * not BHD brand values, so a site with no tokens gets something visible and
+ * neutral that follows its own text colour and colour scheme. A site that wants
+ * its real brand supplies the contract (see contract.css) and overrides these.
+ *
  * CONTRACT
  *   - Reads ONLY tokens.css semantic vars. Never a hard-coded brand colour.
  *   - Logical properties only (inline-start/end, margin-inline). Never
@@ -25,10 +37,10 @@
  */
 
 :root {
-  --bhd-el-ring: var(--ring, var(--primary));
+  --bhd-el-ring: var(--ring, var(--primary, currentColor));
   --bhd-el-focus: 0 0 0 3px color-mix(in srgb, var(--bhd-el-ring) 32%, transparent);
-  --bhd-el-muted: var(--muted, color-mix(in srgb, var(--foreground) 6%, transparent));
-  --bhd-el-track: color-mix(in srgb, var(--foreground) 14%, transparent);
+  --bhd-el-muted: var(--muted, color-mix(in srgb, var(--foreground, CanvasText) 6%, transparent));
+  --bhd-el-track: color-mix(in srgb, var(--foreground, CanvasText) 14%, transparent);
   --bhd-el-ease: var(--ease-spring, cubic-bezier(.2, .8, .2, 1));
   --bhd-el-fast: var(--duration-fast, 120ms);
   --bhd-el-base: var(--duration-slow, 220ms);
@@ -62,7 +74,7 @@
   box-shadow: 0 1px 3px rgb(0 0 0 / .28);
   transition: transform var(--bhd-el-base) var(--bhd-el-ease);
 }
-.bhd-switch:checked { background: var(--primary); }
+.bhd-switch:checked { background: var(--primary, currentColor); }
 /* translateX, not translate-inline: the track never mirrors visually */
 .bhd-switch:checked::before { transform: translateX(1.25rem); }
 [dir="rtl"] .bhd-switch:checked::before { transform: translateX(-1.25rem); }
@@ -110,7 +122,7 @@
   transition: transform var(--bhd-el-fast) var(--bhd-el-ease);
 }
 .bhd-check:checked,
-.bhd-radio:checked { background: var(--primary); border-color: var(--primary); }
+.bhd-radio:checked { background: var(--primary, currentColor); border-color: var(--primary, currentColor); }
 .bhd-check:checked::after { transform: rotate(-45deg) translate(0, -8%) scale(1); }
 .bhd-radio:checked::after { transform: scale(1); }
 .bhd-check:focus-visible,
@@ -167,7 +179,7 @@
   inset-inline-start: 0;
   inline-size: var(--bhd-progress-value);
   border-radius: inherit;
-  background: var(--primary);
+  background: var(--primary, currentColor);
   transition: inline-size var(--bhd-el-base) var(--bhd-el-ease);
 }
 .bhd-progress--indeterminate::after {
@@ -196,9 +208,9 @@
   line-height: 1.4;
   white-space: nowrap;
   background: var(--bhd-el-muted);
-  color: var(--foreground);
+  color: var(--foreground, CanvasText);
 }
-.bhd-badge--primary { background: color-mix(in srgb, var(--primary) 14%, transparent); color: var(--primary); }
+.bhd-badge--primary { background: color-mix(in srgb, var(--primary, currentColor) 14%, transparent); color: var(--primary, currentColor); }
 .bhd-badge--success { background: color-mix(in srgb, var(--success, #16a34a) 16%, transparent); color: var(--success, #16a34a); }
 .bhd-badge--danger  { background: color-mix(in srgb, var(--destructive, #dc2626) 16%, transparent); color: var(--destructive, #dc2626); }
 .bhd-badge--warning { background: color-mix(in srgb, var(--warning, #d97706) 18%, transparent); color: var(--warning, #d97706); }
@@ -241,7 +253,7 @@
   background: var(--background, transparent);
   font-size: .8125rem;
   line-height: 1.4;
-  color: var(--foreground);
+  color: var(--foreground, CanvasText);
 }
 .bhd-chip__x {
   display: inline-grid;
@@ -258,7 +270,7 @@
   font: inherit;
   line-height: 1;
 }
-.bhd-chip__x:hover { background: var(--bhd-el-muted); color: var(--foreground); }
+.bhd-chip__x:hover { background: var(--bhd-el-muted); color: var(--foreground, CanvasText); }
 .bhd-chip__x:focus-visible { outline: none; box-shadow: var(--bhd-el-focus); }
 
 /* ========================================================= 7. TOOLTIP */
@@ -279,8 +291,8 @@
   width: max-content;
   padding: .3125rem .5rem;
   border-radius: calc(var(--radius, .5rem) * .6);
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--foreground, CanvasText);
+  color: var(--background, Canvas);
   font-size: .75rem;
   font-weight: 500;
   line-height: 1.45;
@@ -314,7 +326,7 @@
   border: 0;
   border-radius: calc(var(--radius, .5rem) * .6);
   background: transparent;
-  color: var(--muted-foreground, var(--foreground));
+  color: var(--muted-foreground, var(--foreground, CanvasText));
   font: inherit;
   font-size: .8125rem;
   font-weight: 500;
@@ -322,12 +334,12 @@
   transition: background var(--bhd-el-fast) ease, color var(--bhd-el-fast) ease;
 }
 .bhd-segmented > button:hover,
-.bhd-segmented > label:hover { color: var(--foreground); }
+.bhd-segmented > label:hover { color: var(--foreground, CanvasText); }
 .bhd-segmented > [aria-selected="true"],
 .bhd-segmented > [aria-pressed="true"],
 .bhd-segmented > [data-active="true"] {
   background: var(--background, #fff);
-  color: var(--foreground);
+  color: var(--foreground, CanvasText);
   box-shadow: 0 1px 2px rgb(0 0 0 / .12);
 }
 .bhd-segmented :focus-visible { outline: none; box-shadow: var(--bhd-el-focus); }
@@ -338,7 +350,7 @@
   display: flex;
   align-items: center;
   gap: .75rem;
-  color: var(--muted-foreground, var(--foreground));
+  color: var(--muted-foreground, var(--foreground, CanvasText));
   font-size: .75rem;
   font-weight: 500;
   text-transform: none;
@@ -380,7 +392,7 @@
   background: linear-gradient(
     90deg,
     var(--bhd-el-muted) 25%,
-    color-mix(in srgb, var(--foreground) 12%, transparent) 37%,
+    color-mix(in srgb, var(--foreground, CanvasText) 12%, transparent) 37%,
     var(--bhd-el-muted) 63%
   );
   background-size: 400% 100%;

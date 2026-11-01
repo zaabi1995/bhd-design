@@ -1,0 +1,66 @@
+/* BHD element-layer token contract — design.bhd.om/contract.css
+ *
+ * USE THIS WHEN A SITE HAS NO TOKEN SYSTEM OF ITS OWN.
+ *
+ *   <link rel="stylesheet" href="https://design.bhd.om/contract.css">
+ *   <link rel="stylesheet" href="https://design.bhd.om/elements.css">
+ *
+ * elements.css reads semantic names (--primary, --background, --foreground,
+ * --border, --muted, --muted-foreground, --radius). Sites built on
+ * design.bhd.om/tokens.css already have them; sites with a system under other
+ * names (--gold, --ink, --line) should alias instead; sites with nothing at all
+ * want this file.
+ *
+ * WITHOUT one of those three, elements.css used to render SILENTLY TRANSPARENT.
+ * It no longer does — it now falls back to CSS system colours (Canvas /
+ * CanvasText) and currentColor, so it stays visible and neutral. But neutral is
+ * not branded, and this file is how you get branded with one line.
+ *
+ * THE DEFAULTS BELOW ARE THE BHD PALETTE. If you are not a BHD-branded surface,
+ * override --primary (and its foreground) in your own <style> AFTER this link:
+ *
+ *   <style>
+ *     :root { --primary: #A6843A; --primary-foreground: #fff; }
+ *   </style>
+ *
+ * Three overrides is usually the whole job: --primary, --primary-foreground,
+ * and --background if the page is not white.
+ */
+
+:root {
+  /* Brand ------------------------------------------------------------- */
+  --primary: #009bc1;              /* BHD cyan */
+  --primary-foreground: #ffffff;
+
+  /* Surfaces ---------------------------------------------------------- */
+  --background: #ffffff;
+  --foreground: #0f1a20;
+  --card: #ffffff;
+
+  /* Lines and muted text ---------------------------------------------- */
+  --border: #e5e7eb;
+  --muted: #f5f5f5;
+  --muted-foreground: #5f6874;
+
+  /* Status ------------------------------------------------------------ */
+  --success: #16a34a;
+  --warning: #d97706;
+  --destructive: #dc2626;
+
+  /* Shape and focus --------------------------------------------------- */
+  --radius: 0.625rem;
+  --ring: #009bc1;
+  --shadow-pop: 0 10px 30px -12px rgb(0 0 0 / 0.28);
+}
+
+/* Dark mode follows the host page's own convention: tokens.css and
+ * dark-mode.js both put `class="dark"` on <html>. Sites without either keep the
+ * light values, which is the safe default. */
+.dark {
+  --background: #0b1216;
+  --foreground: #f3f4f6;
+  --card: #111a20;
+  --border: rgb(255 255 255 / 0.14);
+  --muted: rgb(255 255 255 / 0.08);
+  --muted-foreground: rgb(243 244 246 / 0.72);
+}
