@@ -217,3 +217,64 @@ available; each site needs the two-step adoption above plus a judgement call on
 which of its controls are generic enough to share.
 
 That judgement is why the remaining waves are per-site work, not a script.
+
+---
+
+## Registry (@bhd) adopter #1 — qplus.om (done, verified)
+
+The registry layer had **zero** adopters. `qplus.om` was the right first: a clean
+repo (0 dirty), a genuine shadcn project (`components.json`, `rtl: true`), Astro,
+and unwired.
+
+```json
+{ "registries": { "@bhd": "https://registry.bhd.om/r/{name}.json" } }
+```
+```bash
+npx shadcn@latest add @bhd/bhd-currency
+```
+
+Pulled `bhd-currency` **and** its dependency `omr`; shadcn rewrote the internal
+`@/registry/new-york/lib/omr` import to `@/lib/omr`, so it compiled untouched.
+
+### The trap: do NOT install `bhd-theme` on a brand with its own palette
+
+`bhd-theme` is BHD cyan. Installing it on Q+ would have overwritten Q+'s palette
+with BHD's. The rule:
+
+- **Brand-neutral items** — `bhd-currency`, `omr`, `bhd-bento`, `bhd-marquee`,
+  `bhd-blur-fade`, `bhd-number-ticker`, `bhd-button`, `bhd-input`, `bhd-card` —
+  inherit whatever tokens the host app already has. Safe anywhere.
+- **`bhd-theme` / `theme-<brand>`** — only when the brand genuinely *is* that
+  brand, or has no palette of its own.
+
+Verified through Q+'s own Astro build, reading the emitted HTML:
+
+| Case | Rendered |
+| --- | --- |
+| `value={1250.5}` | `<svg>` sign **before** `<bdi>1,250.500</bdi>` |
+| `locale="ar-OM"` | sign before `<bdi>١٬٢٥٠٫٥٠٠</bdi>` (Arabic-Indic, 3 dp) |
+| `value={null}` | no sign, `<bdi>-</bdi>` |
+| wrapper, always | `dir="ltr"` + `unicode-bidi:isolate` inside an `dir="rtl"` page |
+
+`astro build`: 89 pages, 124 files, no problems.
+
+## cardify.om — deferred, and why
+
+Targeted as wave 2. **Stopped before editing**: `includes/ui-header.php` has 310
+lines of real divergence between local and the VPS, and it is not one branch
+being stale.
+
+- **VPS is newer** on security: `SecurityHeaders::send()` (CSP), `cspNonceAttr()`
+  on inline scripts, AdSense head injection, `NotoSansArabic`.
+- **Local is newer** on fonts: RTL/EN conditional Sora + Plus Jakarta, `onload`
+  async CSS.
+
+Deploying local over production would have **removed the CSP**, which is a
+security regression, not a style change. Scp-ing either direction is wrong here.
+
+Cardify also has no token contract (`--primary` empty; it is Tailwind with its own
+palette), so it needs the alias step regardless.
+
+**Action required before Cardify can be touched:** reconcile the two branches —
+decide whether CSP stays (it should) and rebase the font work on top — then commit
+a single header. Until then, Cardify stays out of the rollout.
