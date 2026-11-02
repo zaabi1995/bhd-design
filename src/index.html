@@ -11,12 +11,12 @@
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="BHD Design · Shared design system">
-  <meta property="og:description" content="One palette, one shell, eleven sites. Drop-in CSS tokens, dark-mode, Cmd+K, RTL utilities, and an admin shell for the BHD-Group portfolio.">
+  <meta property="og:description" content="One palette and one shell for every BHD Group site: CSS tokens, dark mode, Cmd+K, RTL utilities and an admin shell.">
   <meta property="og:url" content="https://design.bhd.om/">
   <meta property="og:image" content="https://design.bhd.om/og.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BHD Design · Shared design system">
-  <meta name="twitter:description" content="One palette, one shell, eleven sites: the BHD Group shared design system.">
+  <meta name="twitter:description" content="The BHD Group shared design system: one palette and one shell for every group site.">
   <meta name="twitter:image" content="https://design.bhd.om/og.png">
 
   <link rel="stylesheet" href="/tokens.css">
@@ -70,24 +70,28 @@
       backdrop-filter: blur(8px);
     }
     header.site .inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      height: 60px; max-width: 1180px;
     }
     header.site .brand {
       font-weight: 600; font-size: 0.95rem; color: var(--foreground);
-      display: inline-flex; align-items: center; gap: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
     }
     header.site .brand .dot {
       width: 8px; height: 8px; border-radius: 50%; background: var(--primary);
     }
-    header.site nav { display: flex; gap: 1.25rem; align-items: center; font-size: 0.875rem; }
-    header.site nav a { color: var(--muted-foreground); }
+    header.site nav {
+      display: flex; gap: 20px; align-items: center; font-size: 0.875rem;
+      min-width: 0; overflow-x: auto; scrollbar-width: none;
+    }
+    header.site nav::-webkit-scrollbar { display: none; }
+    header.site nav a { color: var(--muted-foreground); white-space: nowrap; padding: 8px 0; }
     header.site nav a:hover { color: var(--foreground); text-decoration: none; }
     .theme-btn {
       appearance: none; border: 1px solid var(--border); background: var(--card);
       color: var(--foreground); padding: 0.4rem 0.6rem; border-radius: var(--radius-md);
       cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.825rem;
+      font-size: 0.825rem; flex-shrink: 0;
     }
     .theme-btn:hover { background: var(--accent); }
 
@@ -96,16 +100,14 @@
       text-align: center;
     }
     .hero .eyebrow {
-      display: inline-block; padding: 0.25rem 0.65rem;
-      background: var(--muted); color: var(--muted-foreground);
-      border-radius: 9999px; font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.02em; margin-bottom: 1.25rem;
+      display: block; color: var(--muted-foreground);
+      font-size: 0.875rem; font-weight: 500; margin-bottom: 16px;
     }
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 700;
+      font-weight: 600;
       letter-spacing: -0.025em;
-      margin: 0 0 0.85rem;
+      margin: 0 0 16px;
       line-height: 1.1;
     }
     .hero p {
@@ -115,7 +117,17 @@
       margin: 0 auto 1.75rem;
     }
     .hero .cta {
-      display: inline-flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;
+      display: inline-flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+    }
+    .hero .pages {
+      margin: 24px auto 0; font-size: 0.875rem; color: var(--muted-foreground);
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 16px;
+    }
+    .hero .pages a { padding: 4px 0; }
+    kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.75rem;
+      padding: 1px 6px; border: 1px solid var(--border); border-bottom-width: 2px;
+      border-radius: 4px; color: var(--muted-foreground); background: var(--background);
     }
     .btn {
       appearance: none; cursor: pointer; font-family: inherit; font-size: 0.875rem;
@@ -175,9 +187,9 @@
       display: flex; align-items: center; gap: 0.5rem;
     }
     .module h3 .badge {
-      font-size: 0.7rem; padding: 0.1rem 0.4rem;
-      background: var(--muted); color: var(--muted-foreground);
-      border-radius: 9999px; font-weight: 400;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.75rem; color: var(--muted-foreground); font-weight: 400;
+      margin-inline-start: auto;
     }
     .module p {
       font-size: 0.825rem; color: var(--muted-foreground); margin: 0 0 0.75rem;
@@ -193,9 +205,30 @@
 
     .status-live { color: var(--success); font-weight: 500; }
 
+    /* Contrast (page only, shared tokens untouched): BHD cyan #009bc1 and
+       green-600 reach about 3.2:1 on white, so text and the primary button
+       use the 700 step in light mode (5.7:1). Dark mode muted text moves to
+       zinc-400 because zinc-500 on zinc-950 is about 4.1:1. */
+    html:not(.dark) a, html:not(.dark) .btn-primary { --primary: var(--color-bhd-700); }
+    html:not(.dark) .status-live { color: #15803d; }
+    .dark body { --muted-foreground: var(--color-zinc-400); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 4px;
+    }
+
+    /* The skeleton demo is the only looping motion on the page, and it stays
+       inside its demo card. Stop it for people who ask for less motion. */
+    @media (prefers-reduced-motion: reduce) {
+      .demo-card .bhd-skel { animation: none; }
+    }
+
     @media (max-width: 640px) {
-      header.site .inner { height: auto; flex-wrap: wrap; padding: 0.6rem 0; gap: 0.4rem 1rem; }
-      header.site nav { gap: 0.85rem; font-size: 0.825rem; flex-wrap: wrap; }
+      header.site .inner { height: auto; flex-wrap: wrap; padding: 8px 16px 0; gap: 0 16px; }
+      header.site nav { order: 3; width: 100%; gap: 16px; }
+      header.site nav a { padding: 12px 0; }
+      .theme-btn { min-height: 44px; }
+      .hero { padding: 48px 0 32px; }
     }
 
     .demo-grid {
@@ -248,32 +281,33 @@
       <a href="/orbs.html">Wait states</a>
       <a href="/icons.html">Icons</a>
       <a href="/dp/">Display pictures</a>
-      <a href="#admin-shell">Admin shell</a>
-      <a href="/admin-shell.html">Preview ↗</a>
+      <a href="/admin-shell.html">Admin shell</a>
+    </nav>
       <button class="theme-btn" onclick="BHDTheme.toggle()" aria-label="Toggle theme">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         Theme
       </button>
-    </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="wrap">
-    <span class="eyebrow">BHD Group shared design system · v2</span>
-    <h1>One palette, one shell, eleven sites.</h1>
-    <p>Drop-in tokens, RTL-safe interaction patterns, optional semantic sound, Cmd+K, dark mode, and an admin shell for the BHD Group portfolio.</p>
+    <span class="eyebrow">BHD Group shared design system, v2</span>
+    <h1>One palette and one shell for every BHD Group site</h1>
+    <p>Drop-in tokens, RTL-safe interaction patterns, optional semantic sound, Cmd+K, dark mode and an admin shell, served from one place.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="#quick-start">Quick start →</a>
-      <a class="btn btn-ghost" href="/brand.html">Brand guidelines ↗</a>
-      <a class="btn btn-ghost" href="/ai.html">AI blocks ↗</a>
-      <a class="btn btn-ghost" href="/orbs.html">Wait states ↗</a>
-      <a class="btn btn-ghost" href="/admin-shell.html">Live admin shell ↗</a>
-      <a class="btn btn-ghost bhd-tactile" href="/patterns.html" data-bhd-sfx="tap">Interaction lab ↗</a>
-      <a class="btn btn-ghost" href="/icons.html">Browse icons ↗</a>
-      <a class="btn btn-ghost" href="/dp/">Display pictures ↗</a>
-      <button class="btn btn-ghost" onclick="BHDCmdK.open()">Try ⌘K</button>
+      <a class="btn btn-primary" href="#quick-start">Quick start</a>
+      <button class="btn btn-ghost" onclick="BHDCmdK.open()">Search <kbd>⌘K</kbd></button>
     </div>
+    <nav class="pages" aria-label="Kit pages">
+      <a href="/brand.html">Brand guidelines</a>
+      <a href="/ai.html">AI blocks</a>
+      <a href="/orbs.html">Wait states</a>
+      <a href="/admin-shell.html">Admin shell</a>
+      <a href="/patterns.html" data-bhd-sfx="tap">Interaction lab</a>
+      <a href="/icons.html">Icons</a>
+      <a href="/dp/">Display pictures</a>
+    </nav>
   </div>
 </section>
 
@@ -342,7 +376,7 @@
         <span class="url">https://design.bhd.om/icons-client.js</span>
       </div>
       <div class="module">
-        <h3>interactions.css + .js <span class="badge">new</span></h3>
+        <h3>interactions.css + .js</h3>
         <p>Tactile buttons, dynamic actions, hold confirmation, magnetic drop zones, scroll fades, receipt printing, stamps, tickets, signatures, foil, and progressive-motion safeguards.</p>
         <span class="url">https://design.bhd.om/interactions.js</span>
       </div>
@@ -352,8 +386,8 @@
         <span class="url">https://design.bhd.om/sfx.js</span>
       </div>
       <div class="module">
-        <h3>elements.css <span class="badge">new</span></h3>
-        <p>The vendor-neutral element layer: switches, checkboxes, radios, spinners, dot loaders, progress bars, badges, chips, pure-CSS tooltips, segmented controls, dividers, card lift, and inline text shimmer. Pure CSS, no JavaScript, no build step — so the PHP, Laravel, WordPress and static sites get the same controls as the React products. Reads semantic tokens, so <code>data-brand</code> reskins every element for all twelve brands, and logical properties make it RTL-safe by construction.</p>
+        <h3>elements.css</h3>
+        <p>The vendor-neutral element layer: switches, checkboxes, radios, spinners, dot loaders, progress bars, badges, chips, pure-CSS tooltips, segmented controls, dividers, card lift, and inline text shimmer. Pure CSS with no JavaScript and no build step, so the PHP, Laravel, WordPress and static sites get the same controls as the React products. Reads semantic tokens, so <code>data-brand</code> reskins every element for all twelve brands, and logical properties make it RTL-safe by construction.</p>
         <span class="url">https://design.bhd.om/elements.css</span>
       </div>
       <div class="module">
@@ -419,7 +453,7 @@
 <section class="section" id="demos">
   <div class="wrap">
     <h2>Live demos</h2>
-    <p class="lead">All powered by the same tokens this page uses. Toggle the theme above and watch everything follow.</p>
+    <p class="lead">Each demo reads the same tokens as this page. Switch the theme and they follow.</p>
 
     <div class="demo-grid">
       <div class="demo-card">
@@ -501,7 +535,7 @@
 <section class="section" id="rollout">
   <div class="wrap">
     <h2>Portfolio rollout</h2>
-    <p class="lead">The package is live and most of the portfolio is already ported. Remaining ports below.</p>
+    <p class="lead">Where the kit is in use, and the ports still open.</p>
 
     <table style="width:100%; border-collapse: collapse; font-size: 0.875rem;">
       <thead>
@@ -523,7 +557,7 @@
         <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">BHD ERP</td><td style="padding: 0.5rem;">Tactile actions · hold confirm · semantic sound preference</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
         <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">CupsByAA</td><td style="padding: 0.5rem;">Receipt printer · artwork drop · soft semantic sound</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
         <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">bhdoman.com</td><td style="padding: 0.5rem;">Quote actions · upload feedback · premium foil</td><td style="padding: 0.5rem;"><span class="status-live">live</span></td></tr>
-        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">arabian.ceo</td><td style="padding: 0.5rem;">Full Bootstrap → Tailwind v4 + admin shell</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
+        <tr style="border-bottom: 1px solid var(--border);"><td style="padding: 0.5rem 0.5rem 0.5rem 0;">arabian.ceo</td><td style="padding: 0.5rem;">Full Bootstrap to Tailwind v4 + admin shell</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
         <tr><td style="padding: 0.5rem 0.5rem 0.5rem 0;">book.bhd.om, reachscreens.com, rabab, tfb.om</td><td style="padding: 0.5rem;">Tokens + landing patterns, per-project sessions</td><td style="padding: 0.5rem;"><span style="color: var(--muted-foreground)">pending</span></td></tr>
       </tbody>
     </table>
@@ -532,7 +566,7 @@
 
 <footer class="site">
   <div class="wrap">
-    <p>design.bhd.om · BHD Group shared design system · v2<br>UISFX runtime MIT, generated audio CC0. Interaction components are available across BHD Group projects.</p>
+    <p>design.bhd.om · BHD Group shared design system · v2<br>UISFX runtime MIT, generated audio CC0.</p>
   </div>
 </footer>
 
