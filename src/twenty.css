@@ -1,0 +1,240 @@
+/* =============================================================================
+   twenty.css: the Twenty UI look for every BHD-Group app (design.bhd.om).
+   Values: twenty-ui 2.55.0 (MIT, Twenty CRM) theme-light.css and theme-dark.css,
+   converted from display-p3 to sRGB hex. Ali, 6 Nov 2026: "Twenty UI to all
+   products", as a theme the user picks, never the forced default.
+
+   Switch it on with an attribute on <html>:
+     data-ui="twenty"        Twenty (light)
+     data-ui="twenty-dark"   Twenty Dark
+   data-ui="twenty" plus .dark or data-bhd-theme-mode="dark" also gives Twenty Dark,
+   so a product that already has a dark toggle keeps it.
+
+   Two layers:
+   1. --tw-*  Twenty's own roles (backgrounds, text, borders, accent, radius,
+              type, spacing, motion). Use these in new code.
+   2. The shared shadcn-style names (--background, --foreground, --primary,
+      --border, --radius, ...) that tokens.css and most of our Tailwind/shadcn
+      apps already read. They are re-pointed at layer 1, so those apps turn
+      Twenty with no code change.
+   Every rule is scoped to the attribute: a page without it is untouched.
+   ========================================================================== */
+@import url("https://fonts.bhd.om/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap");
+
+/* ---------- Layer 1: Twenty (light) ---------- */
+:root[data-ui="twenty"] {
+  --tw-bg-primary: #ffffff;        /* cards, panels, inputs */
+  --tw-bg-secondary: #fcfcfc;      /* page canvas inside the app */
+  --tw-bg-tertiary: #f1f1f1;       /* hover rows, chips */
+  --tw-bg-quaternary: #ebebeb;
+  --tw-bg-app: #f9f9f9;            /* app shell and sidebar */
+  --tw-bg-overlay: rgba(0, 0, 0, 0.36);
+  --tw-fill-lighter: rgba(0, 0, 0, 0.02);
+  --tw-fill-light: rgba(0, 0, 0, 0.039);   /* hover */
+  --tw-fill-medium: rgba(0, 0, 0, 0.078);  /* pressed, selected */
+  --tw-fill-strong: rgba(0, 0, 0, 0.161);
+  --tw-text-primary: #333333;
+  --tw-text-secondary: #666666;
+  --tw-text-tertiary: #999999;
+  --tw-text-light: #b3b3b3;
+  --tw-text-extra-light: #cccccc;
+  --tw-text-inverted: #ffffff;
+  --tw-border-light: #f1f1f1;
+  --tw-border-medium: #ebebeb;
+  --tw-border-strong: #d6d6d6;
+  --tw-accent: #3e63dd;            /* indigo 9: filled buttons, focus, links */
+  --tw-accent-hover: #3358d4;
+  --tw-accent-text: #3a5bc7;       /* indigo used as text on light */
+  --tw-accent-soft: #edf2fe;       /* selected row, active pill */
+  --tw-accent-softer: #f7f9ff;
+  --tw-accent-border: #d2deff;
+  --tw-on-accent: #ffffff;
+  --tw-danger: #e5484d;
+  --tw-danger-text: #ce2c31;
+  --tw-danger-soft: #fbecec;
+  --tw-warning: #ff9c00;
+  --tw-warning-text: #c25700;
+  --tw-warning-soft: #fff4e5;
+  --tw-success: #30a46c;
+  --tw-success-text: #218358;
+  --tw-success-soft: #e9f6ec;
+  --tw-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.039), 0 0 4px rgba(0, 0, 0, 0.078);
+  --tw-shadow-strong: 2px 4px 16px rgba(0, 0, 0, 0.161), 0 2px 4px rgba(0, 0, 0, 0.078);
+  --tw-tooltip-bg: rgba(0, 0, 0, 0.72);
+  color-scheme: light;
+}
+
+/* ---------- Layer 1: Twenty Dark ---------- */
+:root[data-ui="twenty-dark"],
+:root[data-ui="twenty"].dark,
+:root[data-ui="twenty"][data-bhd-theme-mode="dark"] {
+  --tw-bg-primary: #1b1b1b;
+  --tw-bg-secondary: #1d1d1d;
+  --tw-bg-tertiary: #222222;
+  --tw-bg-quaternary: #2a2a2a;
+  --tw-bg-app: #171717;
+  --tw-bg-overlay: rgba(0, 0, 0, 0.36);
+  --tw-fill-lighter: rgba(255, 255, 255, 0.031);
+  --tw-fill-light: rgba(255, 255, 255, 0.059);
+  --tw-fill-medium: rgba(255, 255, 255, 0.102);
+  --tw-fill-strong: rgba(255, 255, 255, 0.141);
+  --tw-text-primary: #ebebeb;
+  --tw-text-secondary: #b3b3b3;
+  --tw-text-tertiary: #818181;
+  --tw-text-light: #666666;
+  --tw-text-extra-light: #4c4c4c;
+  --tw-text-inverted: #171717;
+  --tw-border-light: #1d1d1d;
+  --tw-border-medium: #222222;
+  --tw-border-strong: #333333;
+  --tw-accent: #3e63dd;
+  --tw-accent-hover: #5472e4;
+  --tw-accent-text: #9db1ff;
+  --tw-accent-soft: rgba(53, 102, 255, 0.14);
+  --tw-accent-softer: rgba(53, 102, 255, 0.08);
+  --tw-accent-border: #3a4f97;
+  --tw-on-accent: #ffffff;
+  --tw-danger: #e5484d;
+  --tw-danger-text: #ff9592;
+  --tw-danger-soft: rgba(229, 72, 77, 0.16);
+  --tw-warning: #ff9c00;
+  --tw-warning-text: #ffa057;
+  --tw-warning-soft: rgba(255, 156, 0, 0.14);
+  --tw-success: #30a46c;
+  --tw-success-text: #3dd68c;
+  --tw-success-soft: rgba(48, 164, 108, 0.16);
+  --tw-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 4px rgba(0, 0, 0, 0.6);
+  --tw-shadow-strong: 2px 4px 16px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.6);
+  --tw-tooltip-bg: rgba(0, 0, 0, 0.72);
+  color-scheme: dark;
+}
+
+/* ---------- Layer 1: shape, type, spacing, motion (both modes) ---------- */
+:root[data-ui="twenty"],
+:root[data-ui="twenty-dark"] {
+  --tw-font: "Inter", "IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --tw-font-ar: "IBM Plex Sans Arabic", "Inter", sans-serif;
+  --tw-font-mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+  --tw-font-size-xs: 11px;
+  --tw-font-size-sm: 12px;
+  --tw-font-size-md: 13px;          /* the Twenty body size */
+  --tw-font-size-lg: 16px;
+  --tw-font-size-xl: 20px;
+  --tw-font-weight-regular: 400;
+  --tw-font-weight-medium: 500;
+  --tw-font-weight-semibold: 600;
+  --tw-line-height: 1.5;
+  --tw-radius-xs: 2px;
+  --tw-radius-sm: 4px;
+  --tw-radius-md: 8px;
+  --tw-radius-lg: 16px;
+  --tw-radius-pill: 999px;
+  --tw-space-1: 4px;
+  --tw-space-2: 8px;
+  --tw-space-3: 12px;
+  --tw-space-4: 16px;
+  --tw-space-6: 24px;
+  --tw-space-8: 32px;
+  --tw-control-height: 32px;       /* buttons and inputs */
+  --tw-control-height-sm: 24px;
+  --tw-row-height: 32px;           /* table rows, menu items */
+  --tw-nav-item-height: 28px;
+  --tw-side-panel-width: 500px;
+  --tw-duration-instant: 75ms;
+  --tw-duration-fast: 150ms;
+  --tw-duration-normal: 300ms;
+}
+
+/* ---------- Layer 2: the shared names our apps already read ---------- */
+:root[data-ui="twenty"],
+:root[data-ui="twenty-dark"],
+:root[data-ui="twenty"].dark,
+:root[data-ui="twenty"][data-bhd-theme-mode="dark"] {
+  --background: var(--tw-bg-app);
+  --foreground: var(--tw-text-primary);
+  --card: var(--tw-bg-primary);
+  --card-foreground: var(--tw-text-primary);
+  --popover: var(--tw-bg-primary);
+  --popover-foreground: var(--tw-text-primary);
+  --primary: var(--tw-accent);
+  --primary-foreground: var(--tw-on-accent);
+  --secondary: var(--tw-bg-tertiary);
+  --secondary-foreground: var(--tw-text-primary);
+  --muted: var(--tw-bg-tertiary);
+  --muted-foreground: var(--tw-text-secondary);
+  --accent: var(--tw-fill-light);
+  --accent-foreground: var(--tw-text-primary);
+  --destructive: var(--tw-danger);
+  --destructive-foreground: #ffffff;
+  --success: var(--tw-success);
+  --warning: var(--tw-warning);
+  --border: var(--tw-border-medium);
+  --input: var(--tw-border-medium);
+  --ring: var(--tw-accent);
+  --radius: var(--tw-radius-md);
+  --radius-sm: var(--tw-radius-sm);
+  --radius-md: var(--tw-radius-md);
+  --radius-lg: var(--tw-radius-md);
+  --radius-xl: var(--tw-radius-lg);
+  --shadow-card: var(--tw-shadow-light);
+  --shadow-pop: var(--tw-shadow-strong);
+  --sidebar: var(--tw-bg-app);
+  --sidebar-foreground: var(--tw-text-secondary);
+  --sidebar-accent: var(--tw-fill-light);
+  --sidebar-accent-foreground: var(--tw-text-primary);
+  --sidebar-border: var(--tw-border-light);
+  --sidebar-primary: var(--tw-accent);
+  --sidebar-primary-foreground: var(--tw-on-accent);
+  /* Tailwind v4 (@theme inline) reads --color-* names */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* ---------- Base: type and quiet chrome ---------- */
+:root[data-ui="twenty"] body,
+:root[data-ui="twenty-dark"] body {
+  font-family: var(--tw-font);
+  font-size: var(--tw-font-size-md);
+  line-height: var(--tw-line-height);
+  color: var(--tw-text-primary);
+  background: var(--tw-bg-app);
+  -webkit-font-smoothing: antialiased;
+}
+:root[data-ui="twenty"] [lang="ar"], :root[data-ui="twenty"] [dir="rtl"],
+:root[data-ui="twenty-dark"] [lang="ar"], :root[data-ui="twenty-dark"] [dir="rtl"] {
+  font-family: var(--tw-font-ar);
+  letter-spacing: 0 !important;    /* HARD RULE: no letter-spacing on Arabic */
+}
+:root[data-ui="twenty"] :focus-visible,
+:root[data-ui="twenty-dark"] :focus-visible {
+  outline: 2px solid var(--tw-accent);
+  outline-offset: 1px;
+}
+:root[data-ui="twenty"] ::selection,
+:root[data-ui="twenty-dark"] ::selection { background: var(--tw-accent-soft); }
+:root[data-ui="twenty"] ::-webkit-scrollbar,
+:root[data-ui="twenty-dark"] ::-webkit-scrollbar { width: 4px; height: 4px; }
+:root[data-ui="twenty"] ::-webkit-scrollbar-thumb,
+:root[data-ui="twenty-dark"] ::-webkit-scrollbar-thumb { background: var(--tw-border-medium); border-radius: 999px; }
+:root[data-ui="twenty"] ::-webkit-scrollbar-track,
+:root[data-ui="twenty-dark"] ::-webkit-scrollbar-track { background: transparent; }
+@media (prefers-reduced-motion: reduce) {
+  :root[data-ui="twenty"] *, :root[data-ui="twenty-dark"] * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}

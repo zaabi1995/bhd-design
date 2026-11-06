@@ -11,8 +11,10 @@
     "build:hub": "python3 scripts/build_hub.py",
     "build:tokens": "python3 scripts/build_tokens_json.py",
     "check:tokens": "python3 scripts/build_tokens_json.py --check",
-    "deploy": "npm run build:hub && npm run build:tokens && bash deploy/deploy.sh",
-    "check:licences": "node scripts/check-licences.mjs"
+    "deploy": "npm run build:hub && npm run build:tokens && npm run build:twenty && bash deploy/deploy.sh",
+    "check:licences": "node scripts/check-licences.mjs",
+    "build:twenty": "python3 scripts/build_twenty_json.py",
+    "check:twenty": "python3 scripts/build_twenty_json.py --check"
   },
   "dependencies": {
     "uisfx": "0.4.0"
